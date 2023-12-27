@@ -1,5 +1,5 @@
-import * as THREE from "https://unpkg.com/three@0.126.1/build/three.module.js";
-import { OrbitControls } from "https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js";
+import * as THREE from "three";
+// import { OrbitControls } from "https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js";
 
 // 캔버스 요소를 참조 후 WebGLRenderer 를 생성했다.
 // 렌더러 종류로 여러가지 있었지만 현재 3차원을 그리는 WebGLRenderer 를 사용한다.
@@ -76,9 +76,9 @@ requestAnimationFrame(render);
 // 지금은 예시로 DirectionalLight 를 사용한다.
 {
   const color = 0xFFFFFF;
-  const intensity = 1;
+  const intensity = 2;
   const light = new THREE.DirectionalLight(color, intensity);
-  light.position.set(2, 2, 3);
+  light.position.set(1, 1, 1);
   scene.add(light);
 }
 // DirectionalLight 에 위치(position) 와 타깃(target) 속성이 있다.

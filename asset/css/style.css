@@ -13,3 +13,15 @@
 .character {position: absolute;width:100px;height:100px;}
 .hero {background-color: blue;}
 .enemy {background-color: red;}
+
+
+.sphere-wrap {
+	margin: 0;
+	background-color: #555;
+}
+.sphere-wrap canvas {
+	display: block;
+	width: 300px;
+	height: 300px;
+}
+
