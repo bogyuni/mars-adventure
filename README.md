@@ -1,17 +1,20 @@
 # Mars Adventure
 
 - Bogyuni's Mars lab. Project
+- https://bogyuni.github.io/mars-adventure/
 
 ## npm install
 
+- vite : build tool
+
 - three.js
-- vite
 
 ## 실행, npx vite
 
 ## Page information
 
-- pages.html : main root
+- index.html : main root
+- main.html : main page, texture test
 - cellmove.html : command action test
 - dot_editor.html : dot editor
 
@@ -26,6 +29,9 @@ Trigger Action : `space key`
 
 ## Date list
 
-- 2023-12-27
-  3D texture add
-  page, file 정리
+- 2023-12-27<br>
+  3D texture add<br>
+  page, file 정리<br>
+
+- 2023-12-29
+  메인 페이지 구성 시작 (메모 참고)

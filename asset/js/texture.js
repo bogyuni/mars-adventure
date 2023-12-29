@@ -4,9 +4,17 @@ import * as THREE from "three";
 // 캔버스 요소를 참조 후 WebGLRenderer 를 생성했다.
 // 렌더러 종류로 여러가지 있었지만 현재 3차원을 그리는 WebGLRenderer 를 사용한다.
 // Three.js 에 canvas 요소를 넘기지 않으면 자동으로 생성되므로 동적으로 삽입되어 코드를 직접 코쳐야하니 호환성 면에서 캔버스 요소를 직접 넣자.
-const canvas = document.querySelector('#sphere');
+const mars = document.querySelector('#mars');
+
+const earth = document.querySelector('#earth');
+
 const renderer = new THREE.WebGLRenderer({
-  canvas,
+  canvas: mars,
+  alpha: true,
+  premultipliedAlpha: false,
+});
+const renderer2 = new THREE.WebGLRenderer({
+  canvas: earth,
   alpha: true,
   premultipliedAlpha: false,
 });
