@@ -13,8 +13,7 @@
 
 ## Page information
 
-- index.html : main root
-- main.html : main page, texture test
+- index.html : main page, texture test
 - cellmove.html : command action test
 - dot_editor.html : dot editor
 
@@ -33,5 +32,8 @@ Trigger Action : `space key`
   3D texture add<br>
   page, file 정리<br>
 
-- 2023-12-29
+- 2023-12-29<br>
   메인 페이지 구성 시작 (메모 참고)
+
+- 2024-01-02<br>
+  오브젝트 복수 생성
