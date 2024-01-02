@@ -45,7 +45,7 @@ const scene = new THREE.Scene();
 // const heightSegments = 8;
 // const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
 const radius = 1.1;
-const detail = 4;
+const detail = 6;
 const geometry = new THREE.TetrahedronGeometry(radius, detail);
 
 // Meterial 을 만들어 색을 지정한다.
@@ -71,6 +71,7 @@ function render(time) {
   sphere.rotation.x = time;
   sphere.rotation.y = time;
   renderer.render(scene, camera);
+  renderer2.render(scene, camera);
   requestAnimationFrame(render);
 }
 requestAnimationFrame(render);

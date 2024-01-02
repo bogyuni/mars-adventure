@@ -13,6 +13,9 @@ body {
   border: 2px dotted red;
   background-color: #fff;
 }
+.page-popup li {
+  margin-bottom: 1em;
+}
 .page-popup.open {
   display: block;
 }

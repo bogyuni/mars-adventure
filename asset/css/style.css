@@ -29,10 +29,9 @@
 	color: #fff;
 }
 
-.main-obj {border: 1px solid red;}
 
-canvas {
-	display: block;
-	width: 300px;
-	height: 300px;
+.main-obj {
+	border: 1px solid red;
+	
 }
+
