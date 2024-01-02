@@ -3,3 +3,16 @@ html,body{height:100%;}
 body {
   background-color: #111;
 }
+
+.page-popup {
+  display: none;
+  position: fixed;
+  right: 2em;
+  top: 2em;
+  padding: 1em;
+  border: 2px dotted red;
+  background-color: #fff;
+}
+.page-popup.open {
+  display: block;
+}
