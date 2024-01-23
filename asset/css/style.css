@@ -29,9 +29,47 @@
 	color: #fff;
 }
 
-
-.main-obj {
-	border: 1px solid red;
-	
+.main-gate {
+	background: url(../img/bg_stars.jpeg) repeat center;
+	background-size: 100% auto;
+	background-attachment: fixed;
+	height: 500vh;
 }
 
+
+.main-obj {
+	position: absolute;
+}
+
+.main-obj img {
+	width: 100%;
+}
+
+#earth {
+	left: 40%;
+	top: -1000px;
+	transform: translateX(-50%);
+}
+
+#iss {
+	right: 30%;
+	top: 800px;
+	width: 100px;
+}
+
+#moon {
+	right: 20%;
+	top: 1500px;
+}
+
+#mars {
+	left: 10%;
+	top: 3000px;
+}
+
+#rocket {
+	position: fixed;
+	left:50%;
+	top:50%;
+	width: 100px;
+}
