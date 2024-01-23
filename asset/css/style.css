@@ -39,6 +39,7 @@
 
 .main-obj {
 	position: absolute;
+	border: 1px solid red;
 }
 
 .main-obj img {
@@ -47,8 +48,8 @@
 
 #earth {
 	left: 40%;
-	top: -1000px;
-	transform: translateX(-50%);
+	top: 0;
+	transform: translate(-50%, -50%);
 }
 
 #iss {
