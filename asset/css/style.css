@@ -1,6 +1,7 @@
 @charset "utf-8";
 
 @import url(./common.css);
+@import url(./animation.css);
 
 .wrap {position: relative;width:100vw;height: 100vh;
 	background-color: #888;
@@ -16,8 +17,8 @@
 
 
 
+/* 바둑판 격자 무늬 */
 .main-gate {
-	min-height: 100%;
 	background-color: #111;
 	background-image:
 		linear-gradient(rgba(255,255,255,.07) 2px, transparent 2px),
@@ -26,20 +27,39 @@
 		linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
 	background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
 	background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
-	color: #fff;
 }
 
 .main-gate {
-	background: url(../img/bg_stars.jpeg) repeat center;
-	background-size: 100% auto;
-	background-attachment: fixed;
+	position: relative;
+	color: #fff;
+	min-height: 100%;
 	height: 500vh;
+	background-image: url(../img/bg_stars.jpeg);
+	background-repeat: repeat;
+	background-position: center 0px;
+	background-size: cover;
+	background-attachment: fixed;
+}
+.main-gate::before {
+	content:'';
+	display: block;
+	position: absolute;
+	left:0;
+	top:0;
+	width: 100%;
+	height: 100%;
+	background-image: url(../img/bg_stars.jpeg);
+	background-repeat: repeat;
+	background-position: center 0px;
+	background-size: auto;
+	/* background-attachment: fixed; */
+	opacity: 0.3;
 }
 
 
 .main-obj {
 	position: absolute;
-	border: 1px solid red;
+	display: none;
 }
 
 .main-obj img {
@@ -48,8 +68,9 @@
 
 #earth {
 	left: 40%;
-	top: 0;
-	transform: translate(-50%, -50%);
+	top: 200px;
+	transform: translateX(-50%);
+	z-index: 3;
 }
 
 #iss {
@@ -65,12 +86,66 @@
 
 #mars {
 	left: 10%;
-	top: 3000px;
+	top: 4000px;
 }
 
 #rocket {
+	z-index: 2;
 	position: fixed;
 	left:50%;
-	top:50%;
-	width: 100px;
+	top:0;
+	display: none;
+}
+#rocket.on {
+	display: block;
+	animation-name: r_start;
+	animation-duration: 1.2s;
+	/* animation-timing-function: ease-out; */
+	animation-timing-function: cubic-bezier(.62,.16,.13,1.01);;
+	animation-delay: 0s;
+	animation-iteration-count: 1;
+	animation-direction:normal;
+	animation-fill-mode: both;
+}
+
+.intro {
+	position: absolute;
+	left:50%;
+	top:50vh;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+.intro h1 {
+  font-family: "Micro 5", sans-serif;
+	font-size: 100px;
+}
+
+.guide-scroll {
+	position: absolute;
+	left:50%;
+	top:100vh;
+	transform: translate(-50%, -400%);
+	text-align: center;
+}
+.guide-scroll::before,
+.guide-scroll::after {
+	content: '';
+	display: block;
+	position: absolute;
+	left: 50%;
+	border: 2px solid #fff;
+	border-top: 0;
+	border-left: 0;
+	transform: rotate(45deg);
+	margin-left: -10px;
+	width: 20px;
+	height: 20px;
+}
+.guide-scroll::before {
+	top: 90%;
+	animation: guide_scroll 1.4s ease 0s infinite;
+}
+.guide-scroll::after {
+	top: 130%;
+	animation: guide_scroll 1.4s ease 0.4s infinite;
 }

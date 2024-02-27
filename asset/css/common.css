@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Micro+5&display=swap');
+
+.micro5 {
+  font-family: "Micro 5", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 *{padding:0;margin:0;box-sizing: border-box;}
 html,body{height:100%;}
 body {
@@ -16,6 +25,6 @@ body {
 .page-popup li {
   margin-bottom: 1em;
 }
-.page-popup.open {
+/* .page-popup.open {
   display: block;
-}
+} */

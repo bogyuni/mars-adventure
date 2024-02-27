@@ -84,6 +84,13 @@ function createMainCanvas(objDom, canvasWidth, canvasHeight, objColor, objType) 
   renderer.setSize(cameraWidth, cameraHeight, false);
   renderer.setPixelRatio(window.devicePixelRatio);
 }
-createMainCanvas(earth, 2000, 2000, 0xaa8844, 'earth');
-createMainCanvas(moon, 400, 400, 0xaa8844, 'moon');
+createMainCanvas(earth, 500, 500, 0xaa8844, 'earth');
+createMainCanvas(moon, 300, 300, 0xaa8844, 'moon');
 createMainCanvas(mars, 600, 600, 0xaa8844, 'mars');
+
+
+window.onload = function () {
+  setTimeout(function(){
+    // document.getElementById('rocket').classList.add('on');
+  }, 1000);
+}
