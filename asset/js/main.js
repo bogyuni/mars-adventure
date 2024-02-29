@@ -1,9 +1,15 @@
 import * as THREE from "three";
 
+const winHeight = window.innerHeight;
+const mainGate = document.querySelector('.main-gate');
+const backSpace = document.querySelector('.back-space');
+const introBG = document.querySelector('.intro-bg');
+const guideScroll = document.querySelector('.guide-scroll');
+
 const earth = document.querySelector('#earth');
 const mars = document.querySelector('#mars');
 const moon = document.querySelector('#moon');
-
+const iss = document.querySelector('#iss');
 
 /**
  * Main 페이지 Canvas object 생성 함수
@@ -89,8 +95,37 @@ createMainCanvas(moon, 300, 300, 0xaa8844, 'moon');
 createMainCanvas(mars, 600, 600, 0xaa8844, 'mars');
 
 
-window.onload = function () {
-  setTimeout(function(){
-    // document.getElementById('rocket').classList.add('on');
-  }, 1000);
+window.onload = () => {
+}
+
+const earthTop = earth.offsetTop;
+let earthStart = earthTop - winHeight;
+
+console.log(iss);
+
+window.onscroll = (e) => {
+  // console.log(window.scrollY);
+
+  if (window.scrollY > 10) {
+    guideScroll.classList.add('scrolled');
+    introBG.classList.add('scrolled');
+  } else {
+    guideScroll.classList.remove('scrolled');
+    introBG.classList.remove('scrolled');
+  }
+
+  if (window.scrollY > 913) {
+    document.getElementById('rocket').classList.add('on');
+  } else {
+    document.getElementById('rocket').classList.remove('on');
+  }
+
+  let earthSetScale = window.scrollY > earthStart ? (window.scrollY / 1000) + 0.1 : 0.1;
+  earthSetScale = earthSetScale > 1.2 ? 1.2 : earthSetScale;
+  earth.style.transform = 'scale('+ earthSetScale +')';
+
+  iss.style.transform = 'translate('+ (window.scrollY/2 - 200) +'px, -' + (window.scrollY/3) + 'px)';
+
+  mainGate.style.backgroundPosition = 'center -' + (window.scrollY/18)+'px';
+  backSpace.style.backgroundPosition = 'center -' + (window.scrollY/8)+'px';
 }
