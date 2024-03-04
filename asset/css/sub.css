@@ -1,0 +1,86 @@
+@charset "utf-8";
+
+@import url(./common.css);
+@import url(./animation.css);
+
+:root {
+  --ground-h: 100px;
+}
+
+.sub-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.bg-wrap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-image:
+    linear-gradient(rgba(255,255,255,.07) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255,255,255,.07) 2px, transparent 2px),
+    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+}
+.scenery {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200%;
+  height: 100%;
+  background: url(../img/back1.jpeg) no-repeat left top/100% 100%;
+  transition: transform 0.2s ease;
+}
+.ground {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: var(--ground-h);
+  background-color: #666;
+  background: url(../img/back2.jpeg) no-repeat left top/cover;
+}
+
+.obj-wrap {
+  width: 100%;
+  height: calc(100% - var(--ground-h));
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.portfolio {
+  width: 200px;
+  height: 400px;
+  background-color: aqua;
+  position: absolute;
+  left: 200px;
+  bottom: 0;
+}
+
+.hero {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: absolute;
+  left: 200px;
+  bottom: 0;
+  transition: left 0.2s ease;
+}
+
+.guide-popup {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 2px dashed #999;
+  background-color: #fff;
+  padding: 2em;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}

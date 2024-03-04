@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 const winHeight = window.innerHeight;
-const mainGate = document.querySelector('.main-gate');
+const mainWrap = document.querySelector('.main-wrap');
 const backSpace = document.querySelector('.back-space');
 const introBG = document.querySelector('.intro-bg');
 const guideScroll = document.querySelector('.guide-scroll');
@@ -10,6 +10,7 @@ const earth = document.querySelector('#earth');
 const mars = document.querySelector('#mars');
 const moon = document.querySelector('#moon');
 const iss = document.querySelector('#iss');
+const rocket = document.querySelector('#rocket');
 
 /**
  * Main 페이지 Canvas object 생성 함수
@@ -44,16 +45,16 @@ function createMainCanvas(objDom, canvasWidth, canvasHeight, objColor, objType) 
       // specularMap: new THREE.TextureLoader().load('./asset/img/earth.jpg'),  // Replace with your specular map
       // specular: new THREE.Color('grey')
     });
+  } else if (objType === 'moon') {
+    geometry = new THREE.TetrahedronGeometry(1, 8);
+    material = new THREE.MeshPhongMaterial({
+      map: new THREE.TextureLoader().load('./asset/img/moon_dot.png'),  // Replace with your earth texture
+    });
   } else if (objType === 'mars') {
     // geometry = new THREE.SphereGeometry(1, 32, 32);
     geometry = new THREE.TetrahedronGeometry(1, 8);
     material = new THREE.MeshPhongMaterial({
       map: new THREE.TextureLoader().load('./asset/img/mars_dot.png'),  // Replace with your earth texture
-    });
-  } else {
-    geometry = new THREE.TetrahedronGeometry(1, 8);
-    material = new THREE.MeshPhongMaterial({
-      map: new THREE.TextureLoader().load('./asset/img/moon_dot.png'),  // Replace with your earth texture
     });
   }
 
@@ -94,17 +95,19 @@ createMainCanvas(earth, 500, 500, 0xaa8844, 'earth');
 createMainCanvas(moon, 300, 300, 0xaa8844, 'moon');
 createMainCanvas(mars, 600, 600, 0xaa8844, 'mars');
 
+let earthTop = 0;
+let earthStart = 0;
+let earthSetScale = 0;
+let marsTop = 0;
 
 window.onload = () => {
-}
-
-const earthTop = earth.offsetTop;
-let earthStart = earthTop - winHeight;
-
-console.log(iss);
+  earthTop = earth.offsetTop;
+  earthStart = earthTop - winHeight;
+  marsTop = mars.offsetTop;
+} // onload
 
 window.onscroll = (e) => {
-  // console.log(window.scrollY);
+  console.log(window.scrollY);
 
   if (window.scrollY > 10) {
     guideScroll.classList.add('scrolled');
@@ -113,19 +116,26 @@ window.onscroll = (e) => {
     guideScroll.classList.remove('scrolled');
     introBG.classList.remove('scrolled');
   }
+  mainWrap.style.backgroundPosition = 'center -' + (window.scrollY/18)+'px';
+  backSpace.style.backgroundPosition = 'center -' + (window.scrollY/8)+'px';
 
-  if (window.scrollY > 913) {
-    document.getElementById('rocket').classList.add('on');
-  } else {
-    document.getElementById('rocket').classList.remove('on');
-  }
-
-  let earthSetScale = window.scrollY > earthStart ? (window.scrollY / 1000) + 0.1 : 0.1;
-  earthSetScale = earthSetScale > 1.2 ? 1.2 : earthSetScale;
+  // earth min scale
+  earthSetScale = window.scrollY > earthStart ? (window.scrollY / 1000) + 0.1 : 0.1;
+  // earth max scale
+  earthSetScale = earthSetScale > 1.3 ? 1.3 : earthSetScale;
   earth.style.transform = 'scale('+ earthSetScale +')';
 
   iss.style.transform = 'translate('+ (window.scrollY/2 - 200) +'px, -' + (window.scrollY/3) + 'px)';
 
-  mainGate.style.backgroundPosition = 'center -' + (window.scrollY/18)+'px';
-  backSpace.style.backgroundPosition = 'center -' + (window.scrollY/8)+'px';
-}
+  if (window.scrollY > (earthTop - 200) ) {
+    rocket.classList.add('on');
+  } else {
+    rocket.classList.remove('on');
+  }
+
+  if (window.scrollY > marsTop - 300) {
+    rocket.classList.add('in');
+  } else {
+    rocket.classList.remove('in');
+  }
+} // onscroll
