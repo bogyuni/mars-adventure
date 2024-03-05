@@ -1,12 +1,17 @@
+const winWidth = window.innerWidth;
+
 const hero = document.querySelector('#hero');
 let heroX = 200;
 const posX = 100;
-const winWidth = window.innerWidth;
 
-const scenery = document.querySelector('.scenery');
-let sceneryX = 0;
+const zLine1 = document.querySelector('.z-line-wrap');
+let zLine1X = 0;
+const zLine2 = document.querySelector('.z-line-back.back1');
+let zLine2X = 0;
+const zLine3 = document.querySelector('.z-line-back.back2');
+let zLine3X = 0;
+
 const mapWidth = winWidth * 2;
-// console.log(mapWidth);
 
 window.addEventListener('keydown', (e) => {
   let key = e.key || e.keyCode;
@@ -17,33 +22,49 @@ window.addEventListener('keydown', (e) => {
       heroX -= posX;
     }
     // bg move
-    if (heroX < winWidth * 0.2 && sceneryX > 0 ) {
-      sceneryX -= posX * 0.8;
-      scenery.style.transform = 'translateX(-'+sceneryX+'px)';
+    if (heroX < winWidth * 0.2 && zLine1X > 0 ) {
+      zLine1X -= posX * 0.8;
+      zLine1.style.transform = 'translateX(-'+zLine1X+'px)';
+      zLine2X -= posX * 0.3;
+      zLine2.style.transform = 'translateX(-'+zLine2X+'px)';
+      zLine3X -= posX * 0.05;
+      zLine3.style.transform = 'translateX(-'+zLine3X+'px)';
     }
+    hero.classList.remove('right');
+    hero.classList.add('left');
   }
   if (key === 'ArrowRight') {
     if (heroX < winWidth * 0.8) {
       heroX += posX;
     }
     // bg move
-    if (heroX > winWidth * 0.8 && sceneryX < mapWidth - winWidth) {
-      sceneryX += posX * 0.8;
-      scenery.style.transform = 'translateX(-'+sceneryX+'px)';
+    if (heroX > winWidth * 0.8 && zLine1X < mapWidth - winWidth) {
+      zLine1X += posX * 0.8;
+      zLine1.style.transform = 'translateX(-'+zLine1X+'px)';
+      zLine2X += posX * 0.3;
+      zLine2.style.transform = 'translateX(-'+zLine2X+'px)';
+      zLine3X += posX * 0.05;
+      zLine3.style.transform = 'translateX(-'+zLine3X+'px)';
     }
+    hero.classList.remove('left');
+    hero.classList.add('right');
   }
   hero.style.left = heroX+'px';
 
   if (key === 'ArrowUp' || key === ' ') {
     console.log('ENTER !!');
   }
-
-  // console.log(heroX, sceneryX);
-
+});
+window.addEventListener('keyup', (e) => {
+  hero.classList.remove('left');
+  hero.classList.remove('right');
 });
 
+window.onload = () => {
+  document.querySelector('#rocket').classList.add('on');
+  hero.classList.add('on');
+};
 
 document.querySelector('.guide-popup').addEventListener('click', function () {
-  console.log(this);
   this.remove();
 });

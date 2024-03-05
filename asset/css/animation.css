@@ -21,3 +21,15 @@
     opacity: 0.2;
   }
 }
+
+@keyframes r_landing {
+  0% {
+    bottom: 100%;
+  }
+  90% {
+    bottom: 5%;
+  }
+  100% {
+    bottom: 0;
+  }
+}
