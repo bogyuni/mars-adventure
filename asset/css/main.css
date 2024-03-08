@@ -99,33 +99,27 @@
 .main-obj {
 	position: absolute;
 }
-
 .main-obj img {
 	width: 100%;
 }
-
 #earth {
 	left: 30%;
 	top: 134vh;
 }
-
 #iss {
 	left: 10%;
 	top: 229vh;
 	width: 100px;
 	transition: transform 0.1s ease;
 }
-
 #moon {
 	right: 20%;
 	top: 300vh;
 }
-
 #mars {
 	left: 10%;
 	top: 600vh;
 }
-
 #rocket {
 	z-index: 2;
 	position: fixed;
@@ -135,14 +129,6 @@
 	transition: all 1.2s cubic-bezier(.62,.16,.13,1.01);
 }
 #rocket.on {
-	/* display: block; */
-	/* animation-name: r_start;
-	animation-duration: 1.2s;
-	animation-timing-function: cubic-bezier(.62,.16,.13,1.01);
-	animation-delay: 0s;
-	animation-iteration-count: 1;
-	animation-direction:normal;
-	animation-fill-mode: both; */
 	transform: scale(0.4) rotate(180deg) translate(-100px, -710px);
 }
 #rocket.in {
@@ -151,6 +137,10 @@
 	left: 20%;
 	transform: scale(0.0) rotate(595deg) translate(-5000px, -400px);
 }
+.rocket-obj {
+	transform: scaleX(-1);
+}
+
 
 .main-gate {
 	position: absolute;

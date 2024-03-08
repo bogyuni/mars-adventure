@@ -13,6 +13,13 @@
   height: 100%;
 }
 
+#beltscroll {
+  /* display: none; */
+}
+#cellmove {
+  display: none;
+}
+
 .viewport {
   position: absolute;
   left:0;
@@ -28,7 +35,7 @@
   bottom: 100px;
   width: 180%;
   height: calc(100% - var(--ground-h));
-  transition: transform 0.2s ease;
+  transition: left 0.2s ease;
 }
 .z-line-back.back1 {
   width: 180%;
@@ -46,10 +53,10 @@
   left: 0;
   top: 0;
   min-width: 200%;
-  width: 200%;
+  width: 3100px;
   height: 100%;
   overflow: hidden;
-  transition: transform 0.2s ease;
+  transition: left 0.2s ease;
 }
 .z-line-wrap .line {
   position: absolute;
@@ -96,11 +103,21 @@
   height: 200px;
   background-color:brown;
 }
+.aboutme.on {
+  background-color: red;
+  color: #fff;
+  font-size: 4em;
+}
 .portfolio {
   left: 1900px;
   width: 200px;
   height: 400px;
   background-color: aqua;
+}
+.portfolio.on {
+  background-color: red;
+  color: #fff;
+  font-size: 4em;
 }
 .contactus {
   left: 2600px;
@@ -108,7 +125,12 @@
   height: 100px;
   background-color: cadetblue;
 }
-.hero {
+.contactus.on {
+  background-color: red;
+  color: #fff;
+  font-size: 4em;
+}
+#beltscroll .hero {
   position: absolute;
   left: 200px;
   bottom: var(--ground-h);
@@ -117,31 +139,26 @@
   visibility: hidden;
   transition: left 0.2s ease, visibility 0.2s linear 2.2s;
 }
-.hero.on {
+#beltscroll .hero.on {
   visibility: visible;
 }
-.hero .wheel {
+#beltscroll .hero .wheel {
   position: absolute;
   top: 200px;
 }
-.hero .wheelL {
+#beltscroll .hero .wheelL {
   left: 0px;
 }
-.hero .wheelR {
+#beltscroll .hero .wheelR {
   left: 150px;
 }
-@keyframes wheelMove {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#beltscroll .hero.left {
+  transform: scale(-0.5, 0.5);
 }
-.hero.left .wheel {
+#beltscroll .hero.move.left .wheel {
   animation: wheelMove 0.2s ease 0s infinite normal ;
 }
-.hero.right .wheel {
+#beltscroll .hero.move.right .wheel {
   animation: wheelMove 0.2s ease 0s infinite reverse ;
 }
 
@@ -155,4 +172,61 @@
   text-align: center;
   transform: translate(-50%, -50%);
   display: none;
+}
+
+.aboutme-popup {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  overflow: hidden;
+  width: 0px;
+  height: 0px;
+  margin-top: -300px;
+  transform: translateX(-50%);
+  transition: width 0.4s ease 0s, height 0.6s ease 0.5s;
+}
+@keyframes openAboutme {
+  0% {
+    width:0;
+    height: 0;
+  }
+  30% {
+    width: 800px;
+    height: 0;
+  }
+  100% {
+    width: 800px;
+    height: 600px;
+  }
+}
+.aboutme-popup.on {
+  /* width: 800px;
+  height: 600px; */
+  animation: openAboutme 1s ease 0s 1 normal forwards;
+}
+.aboutme-popup.off {
+  animation: openAboutme 1s ease 0s 1 reverse forwards;
+}
+.aboutme-popup .inner {
+  background-color: #fff;
+  border: 1px solid #572f07;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  overflow: auto;
+}
+.aboutme-popup .inner > * {
+  visibility: hidden;
+  transition: visibility 0s ease 1s;
+}
+.aboutme-popup.on .inner > * {
+  visibility: visible;
+}
+.aboutme-popup .btn-close {
+  position: absolute;
+  right:10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
 }

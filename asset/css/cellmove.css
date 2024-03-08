@@ -11,6 +11,6 @@
 	background-size: 200px 200px;
 }
 .character {position: absolute;width:100px;height:100px;}
-.hero {background-color: blue;}
-.enemy {background-color: red;}
+#cellmove .hero {background-color: blue;}
+.character.enemy {background-color: red;}
 

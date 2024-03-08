@@ -1,22 +1,23 @@
-const app = document.querySelector('#app');
+import {subStatus, setSub} from './substatus.js';
+
 const winWidth = window.innerWidth;
 const winHeight = window.innerHeight;
 const tileSize = 100;
-const hero = document.querySelector('.hero');
+const heroCM = document.querySelector('#heroCM');
 const enemy = document.querySelector('.enemy');
 
-const heroStat = {
+const heroCMStat = {
 	posTop : parseInt(winHeight / 2 / tileSize) * tileSize,
 	posLeft : parseInt(winWidth / 2 / tileSize) * tileSize,
-	direction : hero.dataset.direction = 'right'
+	direction : heroCM.dataset.direction = 'right'
 }
 const enemyStat = {
 	posTop : parseInt(winHeight / 4 / tileSize) * tileSize,
 	posLeft : parseInt(winWidth / 2 / tileSize) * tileSize
 }
 
-hero.style.top = heroStat.posTop+'px';
-hero.style.left = heroStat.posLeft+'px';
+heroCM.style.top = heroCMStat.posTop+'px';
+heroCM.style.left = heroCMStat.posLeft+'px';
 enemy.style.top = enemyStat.posTop+'px';
 enemy.style.left = enemyStat.posLeft+'px';
 
@@ -26,49 +27,43 @@ function positionCheck(character, coordinate) {
 	return currentCoordinate;
 }
 
+function cellmoveKeydown(key) {
+	let currentTop = parseInt(positionCheck(heroCM, 'top'));
+	let currentLeft = parseInt(positionCheck(heroCM, 'left'));
 
-window.onkeydown = (e) => {
-	let currentTop = parseInt(positionCheck(hero, 'top'));
-	let currentLeft = parseInt(positionCheck(hero, 'left'));
-
-	if (e.key === 'ArrowLeft')
-	{
-		hero.style.left = `${currentLeft-tileSize}px`;
-		hero.dataset.direction = 'left';
-	}
-	else if (e.key === 'ArrowRight')
-	{
-		hero.style.left = `${currentLeft+tileSize}px`;
-		hero.dataset.direction = 'right';
-	}
-	else if (e.key === 'ArrowUp')
-	{
-		hero.style.top = `${currentTop-tileSize}px`;
-		hero.dataset.direction = 'up';
-	}
-	else if (e.key === 'ArrowDown')
-	{
-		hero.style.top = `${currentTop+tileSize}px`;
-		hero.dataset.direction = 'down';
+	if (key === 'ArrowLeft') {
+		heroCM.style.left = `${currentLeft-tileSize}px`;
+		heroCM.dataset.direction = 'left';
+	} else if (key === 'ArrowRight') {
+		heroCM.style.left = `${currentLeft+tileSize}px`;
+		heroCM.dataset.direction = 'right';
+	} else if (key === 'ArrowUp') {
+		heroCM.style.top = `${currentTop-tileSize}px`;
+		heroCM.dataset.direction = 'up';
+	} else if (key === 'ArrowDown') {
+		heroCM.style.top = `${currentTop+tileSize}px`;
+		heroCM.dataset.direction = 'down';
 	}
 
-	hero.innerHTML = hero.dataset.direction;
+	heroCM.innerHTML = heroCM.dataset.direction;
 }
 
-window.onkeyup = (e) => {
-	let currentTop = parseInt(positionCheck(hero, 'top'));
-	let currentLeft = parseInt(positionCheck(hero, 'left'));
+function cellmoveKeyup(key) {
+	let currentTop = parseInt(positionCheck(heroCM, 'top'));
+	let currentLeft = parseInt(positionCheck(heroCM, 'left'));
 	let enemyTop = parseInt(positionCheck(enemy, 'top'));
 	let enemyLeft = parseInt(positionCheck(enemy, 'left'));
 
-	if( enemyTop == currentTop && enemyLeft == currentLeft ) 
-	{
-		alert('Warnning!!');
-	}
-	else
-	{
+	if( enemyTop == currentTop && enemyLeft == currentLeft ) {
+		setSub('beltscroll');
+		document.querySelector('#beltscroll').style.display = 'block';
+		document.querySelector('#cellmove').style.display = 'none';
+		heroCM.style.top = heroCMStat.posTop+'px';
+		heroCM.style.left = heroCMStat.posLeft+'px';
+
+	} else {
 		console.log('top:'+(currentTop), 'left:'+(currentLeft));
 	}
-
-
 }
+
+export {cellmoveKeydown, cellmoveKeyup};
