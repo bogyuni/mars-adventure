@@ -1,0 +1,216 @@
+@charset "utf-8";
+
+:root {
+  --ground-h: 100px;
+}
+
+#beltscroll .viewport {
+  position: absolute;
+  left:0;
+  top:0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.z-line-back {
+  position: absolute;
+  left: 0;
+  bottom: 100px;
+  width: 180%;
+  height: calc(100% - var(--ground-h));
+  transition: left 0.2s ease;
+}
+.z-line-back.back1 {
+  width: 180%;
+  height: 60%;
+  background: url(../img/back2.jpeg) no-repeat center/cover;
+}
+.z-line-back.back2 {
+  width: 150%;
+  height: 100%;
+  background: url(../img/back3.jpeg) no-repeat center/cover;
+}
+
+.z-line-wrap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 200%;
+  width: 3100px;
+  height: 100%;
+  overflow: hidden;
+  transition: left 0.2s ease;
+}
+.z-line-wrap .line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+.scenery {
+  bottom: var(--ground-h);
+  height: calc(100% - var(--ground-h));
+  height: 30%;
+  background: url(../img/back1.jpeg) repeat left top;
+}
+.ground {
+  bottom: 0;
+  height: var(--ground-h);
+  background: url(../img/ground.jpeg) repeat left -60px/130px;
+}
+.obj-wrap {
+  bottom: var(--ground-h);
+  height: calc(100% - var(--ground-h));
+}
+.sub-obj {
+  position: absolute;
+  bottom: 0;
+}
+.rocket {
+  transform: scale(0.5);
+  transform-origin:bottom;
+  left: 200px;
+  bottom: 130%;
+}
+.rocket .rocket-fire {
+  transition: visibility 0s 1.8s;
+}
+.rocket.on {
+  animation: r_landing 2.2s ease 0s 1 forwards;
+}
+.rocket.on .rocket-fire {
+  visibility: hidden;
+}
+.aboutme {
+  left: 1200px;
+  width: 200px;
+  height: 200px;
+  background-color:brown;
+}
+.aboutme.on {
+  background-color: red;
+  color: #fff;
+  font-size: 4em;
+}
+.portfolio {
+  left: 1900px;
+  width: 200px;
+  height: 400px;
+  background-color: aqua;
+}
+.portfolio.on {
+  background-color: red;
+  color: #fff;
+  font-size: 4em;
+}
+.contactus {
+  left: 2600px;
+  width: 300px;
+  height: 100px;
+  background-color: cadetblue;
+}
+.contactus.on {
+  background-color: red;
+  color: #fff;
+  font-size: 4em;
+}
+#beltscroll .hero {
+  position: absolute;
+  left: 200px;
+  bottom: var(--ground-h);
+  transform: scale(0.5);
+  transform-origin: bottom;
+  visibility: hidden;
+  transition: left 0.2s ease, visibility 0.2s linear 2.2s;
+}
+#beltscroll .hero.on {
+  visibility: visible;
+}
+#beltscroll .hero .wheel {
+  position: absolute;
+  top: 200px;
+}
+#beltscroll .hero .wheelL {
+  left: 0px;
+}
+#beltscroll .hero .wheelR {
+  left: 150px;
+}
+#beltscroll .hero.left {
+  transform: scale(-0.5, 0.5);
+}
+#beltscroll .hero.move.left .wheel {
+  animation: wheelMove 0.2s ease 0s infinite normal ;
+}
+#beltscroll .hero.move.right .wheel {
+  animation: wheelMove 0.2s ease 0s infinite reverse ;
+}
+
+.guide-popup {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 2px dashed #999;
+  background-color: #fff;
+  padding: 2em;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.aboutme-popup {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  overflow: hidden;
+  width: 0px;
+  height: 0px;
+  margin-top: -300px;
+  transform: translateX(-50%);
+  transition: width 0.4s ease 0s, height 0.6s ease 0.5s;
+}
+@keyframes openAboutme {
+  0% {
+    width:0;
+    height: 0;
+  }
+  30% {
+    width: 800px;
+    height: 0;
+  }
+  100% {
+    width: 800px;
+    height: 600px;
+  }
+}
+.aboutme-popup.on {
+  /* width: 800px;
+  height: 600px; */
+  animation: openAboutme 1s ease 0s 1 normal forwards;
+}
+.aboutme-popup.off {
+  animation: openAboutme 1s ease 0s 1 reverse forwards;
+}
+.aboutme-popup .inner {
+  background-color: #fff;
+  border: 1px solid #572f07;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  overflow: auto;
+}
+.aboutme-popup .inner > * {
+  visibility: hidden;
+  transition: visibility 0s ease 1s;
+}
+.aboutme-popup.on .inner > * {
+  visibility: visible;
+}
+.aboutme-popup .btn-close {
+  position: absolute;
+  right:10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+}

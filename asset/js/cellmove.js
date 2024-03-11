@@ -1,19 +1,24 @@
-import {subStatus, setSub} from './substatus.js';
+import {setSubStatus} from './substatus.js';
 
 const winWidth = window.innerWidth;
 const winHeight = window.innerHeight;
 const tileSize = 100;
+const delayTime = 201; // 0.2s
+let moveCheck = true; // 캐릭터 이동 후 딜레이 체크
+const viewWidth = 1000;
+const viewHeight = 700;
+
 const heroCM = document.querySelector('#heroCM');
 const enemy = document.querySelector('.enemy');
 
 const heroCMStat = {
-	posTop : parseInt(winHeight / 2 / tileSize) * tileSize,
-	posLeft : parseInt(winWidth / 2 / tileSize) * tileSize,
+	posTop : parseInt(viewHeight / 2 / tileSize) * tileSize,
+	posLeft : parseInt(viewWidth / 2 / tileSize) * tileSize,
 	direction : heroCM.dataset.direction = 'right'
 }
 const enemyStat = {
-	posTop : parseInt(winHeight / 4 / tileSize) * tileSize,
-	posLeft : parseInt(winWidth / 2 / tileSize) * tileSize
+	posTop : parseInt(viewHeight / 4 / tileSize) * tileSize,
+	posLeft : parseInt(viewWidth / 2 / tileSize) * tileSize
 }
 
 heroCM.style.top = heroCMStat.posTop+'px';
@@ -22,48 +27,74 @@ enemy.style.top = enemyStat.posTop+'px';
 enemy.style.left = enemyStat.posLeft+'px';
 
 function positionCheck(character, coordinate) {
-	let currentCoordinatePx = window.getComputedStyle(character).getPropertyValue(coordinate);
-	let currentCoordinate = parseInt(currentCoordinatePx.split('px')[0]);
+	const currentCoordinatePx = window.getComputedStyle(character).getPropertyValue(coordinate);
+	const currentCoordinate = parseInt(currentCoordinatePx.split('px')[0]);
 	return currentCoordinate;
 }
 
 function cellmoveKeydown(key) {
-	let currentTop = parseInt(positionCheck(heroCM, 'top'));
-	let currentLeft = parseInt(positionCheck(heroCM, 'left'));
+	if (moveCheck === true) {
+		moveCheck = false;
+		const currentTop = parseInt(positionCheck(heroCM, 'top'));
+		const currentLeft = parseInt(positionCheck(heroCM, 'left'));
 
-	if (key === 'ArrowLeft') {
-		heroCM.style.left = `${currentLeft-tileSize}px`;
-		heroCM.dataset.direction = 'left';
-	} else if (key === 'ArrowRight') {
-		heroCM.style.left = `${currentLeft+tileSize}px`;
-		heroCM.dataset.direction = 'right';
-	} else if (key === 'ArrowUp') {
-		heroCM.style.top = `${currentTop-tileSize}px`;
-		heroCM.dataset.direction = 'up';
-	} else if (key === 'ArrowDown') {
-		heroCM.style.top = `${currentTop+tileSize}px`;
-		heroCM.dataset.direction = 'down';
+		console.log(currentLeft, currentTop)
+
+		if (key === 'ArrowLeft') {
+			if( currentLeft > 0) {
+				heroCM.style.left = `${currentLeft-tileSize}px`;
+				heroCM.dataset.direction = 'left';
+			} else {
+				console.log('LEFT MAX')
+			}
+		} else if (key === 'ArrowRight') {
+			if (currentLeft < viewWidth - tileSize) {
+				heroCM.style.left = `${currentLeft+tileSize}px`;
+				heroCM.dataset.direction = 'right';
+			} else {
+				console.log('Right MAX');
+			}
+		} else if (key === 'ArrowUp') {
+			if (currentTop > 0) {
+				heroCM.style.top = `${currentTop-tileSize}px`;
+				heroCM.dataset.direction = 'up';
+			} else {
+				console.log('Top MAX');
+			}
+		} else if (key === 'ArrowDown') {
+			if (currentTop < viewHeight - tileSize) {
+				heroCM.style.top = `${currentTop+tileSize}px`;
+				heroCM.dataset.direction = 'down';
+			} else {
+				console.log('Bottom MAX');
+			}
+		}
+	
+		heroCM.innerHTML = heroCM.dataset.direction;
+
+		setTimeout(function(){
+			moveCheck = true;
+		}, delayTime);
 	}
-
-	heroCM.innerHTML = heroCM.dataset.direction;
 }
 
 function cellmoveKeyup(key) {
-	let currentTop = parseInt(positionCheck(heroCM, 'top'));
-	let currentLeft = parseInt(positionCheck(heroCM, 'left'));
-	let enemyTop = parseInt(positionCheck(enemy, 'top'));
-	let enemyLeft = parseInt(positionCheck(enemy, 'left'));
-
-	if( enemyTop == currentTop && enemyLeft == currentLeft ) {
-		setSub('beltscroll');
-		document.querySelector('#beltscroll').style.display = 'block';
-		document.querySelector('#cellmove').style.display = 'none';
-		heroCM.style.top = heroCMStat.posTop+'px';
-		heroCM.style.left = heroCMStat.posLeft+'px';
-
-	} else {
-		console.log('top:'+(currentTop), 'left:'+(currentLeft));
-	}
+		setTimeout(function(){
+			const currentTop = parseInt(positionCheck(heroCM, 'top'));
+			const currentLeft = parseInt(positionCheck(heroCM, 'left'));
+			const enemyTop = parseInt(positionCheck(enemy, 'top'));
+			const enemyLeft = parseInt(positionCheck(enemy, 'left'));
+		
+			if( enemyTop == currentTop && enemyLeft == currentLeft ) {
+				setSubStatus('beltscroll');
+				heroCM.style.top = heroCMStat.posTop+'px';
+				heroCM.style.left = heroCMStat.posLeft+'px';
+	
+				console.log('Acecss !!');
+			} else {
+				// console.log('top:'+(currentTop), 'left:'+(currentLeft));
+			}
+		}, delayTime);
 }
 
 export {cellmoveKeydown, cellmoveKeyup};

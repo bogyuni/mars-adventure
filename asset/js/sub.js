@@ -1,5 +1,5 @@
-import {subStatus, setSub} from './substatus.js';
-import {beltscrollKeydown} from './beltscroll.js';
+import {subStatus, setSubStatus} from './substatus.js';
+import {beltscrollKeydown, aboutmeClose} from './beltscroll.js';
 import {cellmoveKeydown, cellmoveKeyup} from './cellmove.js';
 
 /* * module 사용시 주의 사항 *
@@ -12,14 +12,9 @@ import {cellmoveKeydown, cellmoveKeyup} from './cellmove.js';
   같은 선택자라도 class="aboutme" 는 ID값이 없어서 접근하면 에러난다,
 */
 
-// document.querySelector('#beltscroll').style.display = 'none';
-// document.querySelector('#cellmove').style.display = 'block';
-
 document.querySelector('.aboutme-popup .btn-close').onclick = () => {
-  document.querySelector('.aboutme-popup').classList.remove('on');
-  document.querySelector('.aboutme-popup').classList.remove('on');
+  aboutmeClose();
 };
-
 
 window.onkeydown = (e) => {
   const key = e.key || e.keyCode;
@@ -39,6 +34,8 @@ window.onkeyup = (e) => {
 };
 
 window.onload = () => {
+  setSubStatus(subStatus);
+
   if (subStatus === 'beltscroll') {
     document.querySelector('#rocket').classList.add('on');
     heroBC.classList.add('on');
@@ -50,5 +47,3 @@ window.onload = () => {
 // document.querySelector('.guide-popup').addEventListener('click', function () {
 //   this.remove();
 // });
-
-// export {subStatus};

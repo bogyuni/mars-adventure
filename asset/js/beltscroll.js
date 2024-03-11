@@ -1,10 +1,11 @@
-import {subStatus, setSub} from './substatus.js';
+import {setSubStatus} from './substatus.js';
 
 const winWidth = window.innerWidth;
+let keyMove = true;
 const heroBC = document.querySelector('#heroBC');
 const heroBCWidth = heroBC.offsetWidth;
-let heroBCX = 200; // 탐색로버의 초기 위치값
 const posX = 50; // 이동 거리 단위
+let heroBCX = 200; // 탐색로버의 초기 위치값
 
 const zLine1 = document.querySelector('.z-line-wrap');
 let zLine1X = 0;
@@ -36,7 +37,7 @@ const aboutmePopup = document.querySelector('.aboutme-popup');
 
 
 function beltscrollKeydown(key) {
-  if (key === 'ArrowLeft') {
+  if (key === 'ArrowLeft' && keyMove === true) {
     if (heroBCX > winWidth * 0.15) {
       heroBCX -= posX;
     }
@@ -53,7 +54,7 @@ function beltscrollKeydown(key) {
     heroBC.classList.add('left');
     heroBC.classList.add('move');
   }
-  if (key === 'ArrowRight') {
+  if (key === 'ArrowRight' && keyMove === true) {
     if (heroBCX < winWidth * 0.75) {
       heroBCX += posX;
     }
@@ -72,46 +73,42 @@ function beltscrollKeydown(key) {
   }
   heroBC.style.left = heroBCX+'px';
 
-  let aboutmeLeft = aboutme.getBoundingClientRect().left + (aboutmeStatus.width / 2);
-  let portfolioLeft = portfolio.getBoundingClientRect().left + (portfolioStatus.width / 2);
-  let contactusLeft = contactus.getBoundingClientRect().left + (contactusStatus.width / 2);
-  let heroBCLeft = heroBC.getBoundingClientRect().left + (heroBCWidth / 4);
-
   if (key === 'ArrowUp' || key === ' ') {
+    const heroBCLeft = heroBC.getBoundingClientRect().left + (heroBCWidth / 4);
+
+    const aboutmeLeft = aboutme.getBoundingClientRect().left + (aboutmeStatus.width / 2);
+    const portfolioLeft = portfolio.getBoundingClientRect().left + (portfolioStatus.width / 2);
+    const contactusLeft = contactus.getBoundingClientRect().left + (contactusStatus.width / 2);
+
     const aboutmePosition = heroBCLeft - aboutmeLeft < 0 ? (heroBCLeft - aboutmeLeft) * -1 : heroBCLeft - aboutmeLeft;
     const portfolioPosition = heroBCLeft - portfolioLeft < 0 ? (heroBCLeft - portfolioLeft) * -1 : heroBCLeft - portfolioLeft;
     const contactusPosition = heroBCLeft - contactusLeft < 0 ? (heroBCLeft - contactusLeft) * -1 : heroBCLeft - contactusLeft;
 
     if (aboutmePosition <= aboutmeStatus.range) {
-      aboutmeStatus.open = true;
-    } else {
-      aboutmeStatus.open = false;
-    }
-    if (portfolioPosition <= portfolioStatus.range) {
-      portfolioStatus.open = true;
-    } else {
-      portfolioStatus.open = false;
-    }
-    if (contactusPosition <= contactusStatus.range) {
-      contactusStatus.open = true;
-    } else {
-      contactusStatus.open = false;
-    }
-
-    if (aboutmeStatus.open) {
       aboutme.classList.add('on');
       aboutmePopup.classList.add('on');
+      keyMove = false;
     }
-    if (portfolioStatus.open) {
+    if (portfolioPosition <= portfolioStatus.range) {
       portfolio.classList.add('on');
-      setSub('cellmove');
-      document.querySelector('#beltscroll').style.display = 'none';
-      document.querySelector('#cellmove').style.display = 'block';
+      setSubStatus('cellmove');
     }
-    if (contactusStatus.open) {
+    if (contactusPosition <= contactusStatus.range) {
       contactus.classList.add('on');
     }
   }
+
+  if (key === 'Escape') {
+    aboutme.classList.remove('on');
+    aboutmePopup.classList.remove('on');
+    keyMove = true;
+  }
 }
 
-export {beltscrollKeydown};
+function aboutmeClose() {
+  aboutme.classList.remove('on');
+  aboutmePopup.classList.remove('on');
+  keyMove = true;
+}
+
+export {beltscrollKeydown, aboutmeClose};
