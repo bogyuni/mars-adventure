@@ -39,3 +39,18 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes openAboutme {
+  0% {
+    width:0;
+    height: 0;
+  }
+  30% {
+    width: 800px;
+    height: 0;
+  }
+  100% {
+    width: 800px;
+    height: 600px;
+  }
+}

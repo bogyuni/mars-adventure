@@ -1,7 +1,8 @@
 @charset "utf-8";
 
 :root {
-	--tile: 100px;
+	--tile: 50px;
+	--duration: 0.1s;
 }
 
 #cellmove .viewport {
@@ -10,25 +11,73 @@
 	height: 100vh;
 	background-color: #000;
 }
-.move-area {
+#cellmove .move-area {
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	transform: translate(-50%, -50%);
 	width:1000px;
 	height: 700px;
 	background-image: 
 	linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444),
 	linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444);
-	background-position: 0 0, 100px 100px;
-	background-size: 200px 200px;
+	background-position: 0 0, var(--tile) var(--tile);
+	background-size: calc(var(--tile) * 2) calc(var(--tile) * 2);
+	transform: translate(-50%, -50%) scale(1);
 }
-.character {
+
+#cellmove .hero {
 	position: absolute;
-	width:100px;
-	height:100px;
-	transition: left 0.2s ease, top 0.2s ease;
+	width:var(--tile);
+	height:var(--tile);
+	transition: left var(--duration) ease, top var(--duration) ease;
+	z-index: 2;
+	background-color: blue;
 }
-#cellmove .hero {background-color: blue;}
-.character.enemy {background-color: red;}
+
+.port-obj {
+	position: absolute;
+	background-color: #fff;
+	width:calc(var(--tile) * 3);
+	height: calc(var(--tile) * 2);
+	text-align: center;
+}
+.port-obj h5 {
+	font-size: 24px;
+	line-height: 1;
+	height: 18px;
+	font-family: 'Micro 5';
+}
+.port-obj p {
+	font-size: 12px;
+}
+.port-obj .entrance {
+	position: absolute;
+	left: var(--tile);
+	top: var(--tile);
+	width: var(--tile);
+	height: var(--tile);
+	background: linear-gradient(180deg, #000 50%, transparent 100%);
+	border: 2px solid black;
+	border-bottom: 2px dotted #fff;
+}
+.port-obj.portfolio {
+	left: calc(var(--tile) * 2);
+	top: calc(var(--tile) * 1);
+}
+.port-obj.benchmarking {
+	left: calc(var(--tile) * 16);
+	top: calc(var(--tile) * 2);
+}
+.port-obj.game {
+	left: calc(var(--tile) * 2);
+	top: calc(var(--tile) * 6);
+}
+.port-obj.doteditor {
+	left: calc(var(--tile) * 15);
+	top: calc(var(--tile) * 7);
+}
+.port-obj.exit {
+	left: calc(var(--tile) * 9);
+	top: calc(var(--tile) * 0);
+}
 

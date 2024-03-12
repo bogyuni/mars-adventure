@@ -1,10 +1,14 @@
 @charset "utf-8";
 @import url('https://fonts.googleapis.com/css2?family=Micro+5&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 
 .micro5 {
-  font-family: "Micro 5", sans-serif;
+  font-family: 'Micro 5', sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+.noto-sans {
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 * {padding:0;margin:0;box-sizing: border-box;}
@@ -12,6 +16,7 @@ ol, ul, li {list-style: none;}
 html,
 body {height:100%;}
 body {
+  font-family: 'Noto Sans KR', Arial, Helvetica, sans-serif;
   background-color: #111;
   background-image:
     linear-gradient(rgba(255,255,255,.07) 2px, transparent 2px),
