@@ -11,7 +11,7 @@
 	height: 100vh;
 	background-color: #000;
 }
-#cellmove .move-area {
+#cellmove .view-area {
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -31,6 +31,19 @@
 	height:var(--tile);
 	transition: left var(--duration) ease, top var(--duration) ease;
 	z-index: 2;
+	background-color: blue;
+}
+
+#cellmove .hero[data-direction="up"] {
+	background-color: green;
+}
+#cellmove .hero[data-direction="right"] {
+	background-color: red;
+}
+#cellmove .hero[data-direction="down"] {
+	background-color: yellow;
+}
+#cellmove .hero[data-direction="left"] {
 	background-color: blue;
 }
 
@@ -81,3 +94,18 @@
 	top: calc(var(--tile) * 0);
 }
 
+.port-popup {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 60%;
+	height: 60%;
+	padding: 20px;
+	background-color: #fff;
+	border: 1px solid red;
+	display: none;
+}
+.port-popup.open {
+	display: block;
+}

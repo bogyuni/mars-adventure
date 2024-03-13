@@ -72,34 +72,41 @@
 
 <main class="sub-wrap" id="cellmove">
   <div class="viewport">
-    <div class="move-area">
+    <div class="view-area" id="viewArea">
       <div class="hero" data-direction="right" id="heroCM"></div>
 
-      <div class="port-obj portfolio">
+      <div class="port-obj portfolio" data-id="portfolio">
         <h5>PORTFOLIO</h5>
         <p>[2012-2023]</p>
         <div class="entrance"></div>
       </div>
-      <div class="port-obj benchmarking">
+      <div class="port-obj benchmarking" data-id="benchmarking">
         <h5>BENCHMARKING</h5>
         <p>[2022]</p>
         <div class="entrance"></div>
       </div>
-      <div class="port-obj game">
+      <div class="port-obj game" data-id="game">
         <h5>GAME</h5>
         <p>[2016]</p>
         <div class="entrance"></div>
       </div>
-      <div class="port-obj doteditor">
+      <div class="port-obj doteditor" data-id="doteditor">
         <h5>DOT EDITOR</h5>
         <p>[2024]</p>
         <div class="entrance"></div>
       </div>
-      <div class="port-obj exit">
+      <div class="port-obj exit" data-id="exit">
         <h5>EXIT</h5>
         <p>[Go to MARS]</p>
-        <div class="entrance" id="exit"></div>
+        <div class="entrance"></div>
       </div>
+    </div>
+
+    <div class="port-popup" id="portPopup">
+      <h3 id="portPopTit">Portfolio Title</h3>
+      <p id="portPopCap">Caption</p>
+      <a id="portPopLink" href="" target="_blank">Move to link</a>
+      <span>* Enter를 누르면 새창으로 이동합니다.</span>
     </div>
   </div>
 </main>

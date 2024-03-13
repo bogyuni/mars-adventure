@@ -1,5 +1,5 @@
-// let subStatus = 'beltscroll';
-let subStatus = 'cellmove';
+let subStatus = 'beltscroll';
+// let subStatus = 'cellmove';
 
 function setSubStatus(val) {
   subStatus = val;
