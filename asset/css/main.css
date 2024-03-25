@@ -39,7 +39,7 @@
 	text-align: center;
 }
 .intro h1 {
-	font-family: "Micro 5";
+	font-family: "Micro";
 	font-size: 100px;
 }
 /* 바둑판 격자 무늬 */
@@ -152,7 +152,7 @@
 	border-radius: 30px;
 }
 .main-gate a {
-	font-family: "Micro 5";
+	font-family: "Micro";
 	font-size: 100px;
 	text-decoration: none;
 	color: #bf7758;
