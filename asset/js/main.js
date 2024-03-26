@@ -100,6 +100,28 @@ let earthStart = 0;
 let earthSetScale = 0;
 let marsTop = 0;
 
+const pixelData = {
+  rocketFire: './asset/pixel/rocket-fire.html',
+  rocketObj: './asset/pixel/rocket-obj.html',
+}
+
+const pixelCall = (uri, obj) => {
+  fetch(uri, {method:'get'})
+  .then((response) => {
+    console.log(response);
+    return response.text();
+  })
+  .then((text) => {
+    obj.insertAdjacentHTML('beforeend', text)
+  })
+  .catch((error) => {
+    alert(error);
+  });
+}
+pixelCall(pixelData.rocketFire, rocket);
+pixelCall(pixelData.rocketObj, rocket);
+
+
 window.onload = () => {
   earthTop = earth.offsetTop;
   earthStart = earthTop - winHeight;
