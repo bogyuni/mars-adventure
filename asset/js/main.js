@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { pixelData, pixelDataLoad } from "./pixel.js";
 
 const winHeight = window.innerHeight;
 const mainWrap = document.querySelector('.main-wrap');
@@ -11,6 +12,10 @@ const mars = document.querySelector('#mars');
 const moon = document.querySelector('#moon');
 const iss = document.querySelector('#iss');
 const rocket = document.querySelector('#rocket');
+
+pixelDataLoad(pixelData.rocketFire, rocket);
+pixelDataLoad(pixelData.rocketObj, rocket);
+
 
 /**
  * Main 페이지 Canvas object 생성 함수
@@ -100,28 +105,6 @@ let earthStart = 0;
 let earthSetScale = 0;
 let marsTop = 0;
 
-const pixelData = {
-  rocketFire: './asset/pixel/rocket-fire.html',
-  rocketObj: './asset/pixel/rocket-obj.html',
-}
-
-const pixelCall = (uri, obj) => {
-  fetch(uri, {method:'get'})
-  .then((response) => {
-    console.log(response);
-    return response.text();
-  })
-  .then((text) => {
-    obj.insertAdjacentHTML('beforeend', text)
-  })
-  .catch((error) => {
-    alert(error);
-  });
-}
-pixelCall(pixelData.rocketFire, rocket);
-pixelCall(pixelData.rocketObj, rocket);
-
-
 window.onload = () => {
   earthTop = earth.offsetTop;
   earthStart = earthTop - winHeight;
@@ -129,8 +112,6 @@ window.onload = () => {
 } // onload
 
 window.onscroll = (e) => {
-  console.log(window.scrollY);
-
   if (window.scrollY > 10) {
     guideScroll.classList.add('scrolled');
     introBG.classList.add('scrolled');

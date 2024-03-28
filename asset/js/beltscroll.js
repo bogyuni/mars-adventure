@@ -1,4 +1,5 @@
-import {setSubStatus} from './substatus.js';
+import { setSubStatus } from './substatus.js';
+import { pixelData, pixelDataLoad } from './pixel.js';
 
 const winWidth = window.innerWidth;
 let keyMove = true;
@@ -6,6 +7,13 @@ const heroBC = document.querySelector('#heroBC');
 const heroBCWidth = heroBC.offsetWidth;
 const posX = 50; // 이동 거리 단위
 let heroBCX = 200; // 탐색로버의 초기 위치값
+const rocket = document.querySelector('#rocket');
+
+pixelDataLoad(pixelData.rocketFire, rocket);
+pixelDataLoad(pixelData.rocketObj, rocket);
+pixelDataLoad(pixelData.rover, heroBC);
+pixelDataLoad(pixelData.roverWheel, heroBC, 'wheelL');
+pixelDataLoad(pixelData.roverWheel, heroBC, 'wheelR');
 
 const zLine1 = document.querySelector('.z-line-wrap');
 let zLine1X = 0;
