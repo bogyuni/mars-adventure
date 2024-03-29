@@ -58,7 +58,7 @@ const getWeather = (lat, lon) => {
     const id = json.weather[0].id;
     document.querySelector('#weatherData').innerHTML = `온도: ${temperature} // 지역: ${place} // 날씨: ${description} // 아이디: ${id}`;
     // weatherDisplay(id);
-    weatherDisplay(801);
+    weatherDisplay(500);
   })
   .catch((error) => {
     alert(error);
