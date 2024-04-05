@@ -27,7 +27,7 @@ window.onkeydown = (e) => {
 
 window.onkeyup = (e) => {
   if (subStatus === 'beltscroll') {
-    heroBC.classList.remove('move');
+    heroBS.classList.remove('move');
   } else if (subStatus === 'cellmove') {
     cellmoveKeyup();
   }
@@ -38,7 +38,7 @@ window.onload = () => {
 
   if (subStatus === 'beltscroll') {
     document.querySelector('#rocket').classList.add('on');
-    heroBC.classList.add('on');
+    heroBS.classList.add('on');
   } else if (subStatus === 'cellmove') {
     console.log('Cell move');
   }

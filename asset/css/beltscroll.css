@@ -1,5 +1,4 @@
 @charset "utf-8";
-@import url(./weather.css);
 
 :root {
   --ground-h: 100px;
@@ -57,8 +56,17 @@
 .line.ground {
   bottom: 0;
   height: var(--ground-h);
-  background: url(../img/ground.jpeg) repeat left -60px/130px;
+  white-space: nowrap;
+  padding-left: 120px;
 }
+.line.ground .pixelBox {
+  display: inline-block;
+  transform-origin: left top;
+  scale: 0.5;
+  margin-top: -20px;
+  margin-left: -120px;
+}
+
 .line.obj-wrap {
   bottom: var(--ground-h);
   height: calc(100% - var(--ground-h));
@@ -198,4 +206,14 @@
   top: 10px;
   width: 30px;
   height: 30px;
+}
+
+.weather-wrap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border: 2px dotted red;
 }

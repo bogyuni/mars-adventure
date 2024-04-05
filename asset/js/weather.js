@@ -40,7 +40,8 @@ function weatherDisplay(code) {
   }
   else {
     console.log(code+' : 맑음');
-    pixelDataLoad(pixelData.clear, weather);
+    pixelDataLoad(pixelData.cloud, weather);
+    // pixelDataLoad(pixelData.clear, weather);
   }
 }
 
@@ -57,8 +58,7 @@ const getWeather = (lat, lon) => {
     const description = json.weather[0].description;
     const id = json.weather[0].id;
     document.querySelector('#weatherData').innerHTML = `온도: ${temperature} // 지역: ${place} // 날씨: ${description} // 아이디: ${id}`;
-    // weatherDisplay(id);
-    weatherDisplay(500);
+    weatherDisplay(id);
   })
   .catch((error) => {
     alert(error);
@@ -74,4 +74,4 @@ const fail = () => {
   alert("좌표를 받아올 수 없음");
 }
 
-navigator.geolocation.getCurrentPosition(success, fail);
+// navigator.geolocation.getCurrentPosition(success, fail);

@@ -1,17 +1,21 @@
 const pixelRoot = './asset/pixel/';
 
 const pixelData = {
+  // Hero
   rocketFire: pixelRoot + 'rocket-fire.html',
   rocketObj: pixelRoot + 'rocket-obj.html',
-
   rover: pixelRoot + 'rover.html',
   roverWheel: pixelRoot + 'rover-wheel.html',
 
+  // Weather
   clear: pixelRoot + 'w-clear.html',
   cloud: pixelRoot + 'w-cloud.html',
   rain: pixelRoot + 'w-rain.html',
   snow: pixelRoot + 'w-snow.html',
 
+  // Background
+  ground: pixelRoot + 'bg-ground.html',
+  rock1: pixelRoot + 'bg-rock1.html',
 }
 
 const pixelDataLoad = (uri, obj, custom) => {
