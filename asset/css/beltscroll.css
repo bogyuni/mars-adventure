@@ -24,12 +24,12 @@
 .z-line-back.back1 {
   width: 180%;
   height: 60%;
-  background: url(../img/back2.jpeg) no-repeat center/cover;
+  background: url(../img/back2.png) no-repeat center/cover;
 }
 .z-line-back.back2 {
   width: 150%;
   height: 100%;
-  background: url(../img/back3.jpeg) no-repeat center/cover;
+  background: url(../img/back3.png) no-repeat center/cover;
 }
 
 .z-line-wrap {
