@@ -16,6 +16,7 @@ const pixelData = {
   // Background
   ground: pixelRoot + 'bg-ground.html',
   rock1: pixelRoot + 'bg-rock1.html',
+  rock2: pixelRoot + 'bg-rock2.html',
 }
 
 const pixelDataLoad = (uri, obj, custom) => {

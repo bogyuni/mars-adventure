@@ -51,7 +51,10 @@
   bottom: var(--ground-h);
   height: calc(100% - var(--ground-h));
   height: 30%;
-  background: url(../img/back1.jpeg) repeat left top;
+  /* background: url(../img/back1.jpeg) repeat left top; */
+}
+.line.scenery > div {
+  display: inline-block;
 }
 .line.ground {
   bottom: 0;

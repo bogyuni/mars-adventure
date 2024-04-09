@@ -20,6 +20,7 @@ pixelDataLoad(pixelData.roverWheel, heroBS, 'wheelL');
 pixelDataLoad(pixelData.roverWheel, heroBS, 'wheelR');
 
 pixelDataLoad(pixelData.rock1, scenery);
+pixelDataLoad(pixelData.rock2, scenery);
 
 function groundRendering() {
   const groundWidth = ground.offsetWidth;
@@ -60,6 +61,8 @@ const contactusStatus = {
 }
 const aboutmePopup = document.querySelector('.aboutme-popup');
 
+const zLine2Speed = 0.4;
+const zLine3Speed = 0.1;
 
 function beltscrollKeydown(key) {
   if (key === 'ArrowLeft' && keyMove === true) {
@@ -70,9 +73,9 @@ function beltscrollKeydown(key) {
     if (heroBSX < winWidth * 0.15 && zLine1X > 0 ) {
       zLine1X -= posX;
       zLine1.style.left = '-'+zLine1X+'px';
-      zLine2X -= posX * 0.3;
+      zLine2X -= posX * zLine2Speed;
       zLine2.style.left = '-'+zLine2X+'px';
-      zLine3X -= posX * 0.05;
+      zLine3X -= posX * zLine3Speed;
       zLine3.style.left = '-'+zLine3X+'px';
     }
     heroBS.classList.remove('right');
@@ -87,9 +90,9 @@ function beltscrollKeydown(key) {
     if (heroBSX >= winWidth * 0.75 && zLine1X < mapWidth - winWidth) {
       zLine1X += posX;
       zLine1.style.left = '-'+zLine1X+'px';
-      zLine2X += posX * 0.3;
+      zLine2X += posX * zLine2Speed;
       zLine2.style.left = '-'+zLine2X+'px';
-      zLine3X += posX * 0.05;
+      zLine3X += posX * zLine3Speed;
       zLine3.style.left = '-'+zLine3X+'px';
     }
     heroBS.classList.remove('left');
