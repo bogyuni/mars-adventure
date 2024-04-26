@@ -1,5 +1,5 @@
 import {subStatus, setSubStatus} from './substatus.js';
-import {beltscrollKeydown, aboutmeClose} from './beltscroll.js';
+import {beltscrollKeyDown, beltscrollKeyUp, aboutmeClose} from './beltscroll.js';
 import {cellmoveKeydown, cellmoveKeyup} from './cellmove.js';
 
 /* * module 사용시 주의 사항 *
@@ -10,6 +10,10 @@ import {cellmoveKeydown, cellmoveKeyup} from './cellmove.js';
   대신 ID 속성 값이 지정되어 있어야한다,
   class="hero" 는 id="hero" 가 있어서 접근이 되지만,
   같은 선택자라도 class="aboutme" 는 ID값이 없어서 접근하면 에러난다,
+
+  - 위 내용은 틀렸다. - 2024-04-26
+  원래 ID 선택자는 모듈과 상관 없이 그냥 접근이 가능하다.
+  따로 변수 지정을 하지 않아도 같은 이름이면 가능함.
 */
 
 document.querySelector('.aboutme-popup .btn-close').onclick = () => {
@@ -19,7 +23,7 @@ document.querySelector('.aboutme-popup .btn-close').onclick = () => {
 window.onkeydown = (e) => {
   const key = e.key || e.keyCode;
   if (subStatus === 'beltscroll') {
-    beltscrollKeydown(key);
+    beltscrollKeyDown(key);
   } else if (subStatus === 'cellmove') {
     cellmoveKeydown(key);
   }
@@ -27,7 +31,7 @@ window.onkeydown = (e) => {
 
 window.onkeyup = (e) => {
   if (subStatus === 'beltscroll') {
-    heroBS.classList.remove('move');
+    beltscrollKeyUp();
   } else if (subStatus === 'cellmove') {
     cellmoveKeyup();
   }
@@ -38,7 +42,7 @@ window.onload = () => {
 
   if (subStatus === 'beltscroll') {
     document.querySelector('#rocket').classList.add('on');
-    heroBS.classList.add('on');
+    document.querySelector('#heroBS').classList.add('on');
   } else if (subStatus === 'cellmove') {
     console.log('Cell move');
   }

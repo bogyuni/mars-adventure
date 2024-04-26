@@ -34,5 +34,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-	display: none;
+}
+.changeover .circle {
+  border: 1px solid black;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  box-sizing: border-box;
+  translate: -50% -50%;
+  transition: border 3s ease;
 }
