@@ -3,6 +3,8 @@ import {beltscrollKeyDown, beltscrollKeyUp, aboutmeClose} from './beltscroll.js'
 import {cellmoveKeydown, cellmoveKeyup} from './cellmove.js';
 import subData from './subdata.js';
 
+subData();
+
 console.log(keyStatusCheck);
 
 /* * module 사용시 주의 사항 *
