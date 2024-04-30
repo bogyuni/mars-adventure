@@ -25,23 +25,24 @@
 }
 
 .changeover {
+  overflow: hidden;
   position: fixed;
   left: 0;
   top: 0;
+  width: 0;
+  height: 0;
+}
+.changeover.on {
   width: 100vw;
   height: 100vh;
-  border: 2px dotted blue;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .changeover .circle {
-  border: 1px solid black;
+  border: 0px solid black;
   border-radius: 50%;
   position: absolute;
   left: 50%;
   top: 50%;
   box-sizing: border-box;
   translate: -50% -50%;
-  transition: border 3s ease;
+  transition: border 1.2s ease-out;
 }

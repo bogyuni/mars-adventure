@@ -1,14 +1,20 @@
 import { setSubStatus } from './substatus.js';
 import { pixelData, pixelDataLoad } from './pixel.js';
 
+export {beltscrollKeyDown, beltscrollKeyUp, aboutmeClose};
+
+
 const winWidth = window.innerWidth;
-let keyMove = true;
-const heroBS = document.querySelector('#heroBS');
+const winHeight = window.innerHeight;
+const winHighRatioSize = winWidth - winHeight > 0 ? winWidth : winHeight;
+
+// const rocket = document.querySelector('#rocket');
+// const heroBS = document.querySelector('#heroBS');
 const heroBSWidth = heroBS.offsetWidth;
-const heroBSHeight = heroBS.offsetHeight;
+
 const posX = 50; // 이동 거리 단위
 let heroBSX = 200; // 탐색로버의 초기 위치값
-const rocket = document.querySelector('#rocket');
+let keyMove = true;
 
 // 1차 배경 선택자 / 바닥, 후경
 const ground = document.querySelector('#ground');
@@ -29,7 +35,6 @@ function groundRendering() {
   const groundWidth = ground.offsetWidth;
   const groundTileWidth = 120;
   const tileLegth = Math.round(groundWidth / groundTileWidth);
-  console.log(Math.round(groundWidth / groundTileWidth), groundWidth / groundTileWidth);
   for (let i = 0; i < tileLegth; i++) {
     pixelDataLoad(pixelData.ground, ground);
   }
@@ -73,25 +78,15 @@ const zLine2Speed = 0.4;
 const zLine3Speed = 0.1;
 
 
-const overCircle = document.querySelector('#overCircle');
-const overCircleDiameter = Math.round(winWidth * 1.32);
-overCircle.style.width = overCircleDiameter + 'px';
-overCircle.style.height = overCircleDiameter + 'px';
-// setTimeout(function(){
-//   overCircle.style.borderWidth = Math.round(overCircleDiameter / 2) + 'px';
-// }, 2000);
-
-// 1637 / 1237
 
 
 // 트리거 발동 함수
 function activeTrigger() {
-  const heroBSLeft = heroBS.getBoundingClientRect().left + (heroBSWidth / 4);
-  const heroBSTop = heroBS.getBoundingClientRect().top + (heroBSHeight / 4);
-
   const aboutmeLeft = aboutme.getBoundingClientRect().left + (aboutmeStatus.width / 2);
   const portfolioLeft = portfolio.getBoundingClientRect().left + (portfolioStatus.width / 2);
   const contactusLeft = contactus.getBoundingClientRect().left + (contactusStatus.width / 2);
+
+  const heroBSLeft = heroBS.getBoundingClientRect().left + (heroBSWidth / 4);
 
   const aboutmePosition = heroBSLeft - aboutmeLeft < 0 ? (heroBSLeft - aboutmeLeft) * -1 : heroBSLeft - aboutmeLeft;
   const portfolioPosition = heroBSLeft - portfolioLeft < 0 ? (heroBSLeft - portfolioLeft) * -1 : heroBSLeft - portfolioLeft;
@@ -106,17 +101,7 @@ function activeTrigger() {
   // 포트폴리오 전환 트리거 범위
   else if (portfolioPosition <= portfolioStatus.range) {
     portfolio.classList.add('on');
-
-    overCircle.style.left = heroBSLeft+'px';
-    overCircle.style.top = heroBSTop+'px';
-    overCircle.style.borderWidth = Math.round(overCircleDiameter / 2) + 'px';
-
-    console.log(
-      heroBSLeft
-
-    );
-
-    // setSubStatus('cellmove');
+    setSubStatus('cellmove');
   }
   // 컨택어스 오픈 트리거 범위
   else if (contactusPosition <= contactusStatus.range) {
@@ -185,5 +170,3 @@ function aboutmeClose() {
   aboutmePopup.classList.remove('on');
   keyMove = true;
 }
-
-export {beltscrollKeyDown, beltscrollKeyUp, aboutmeClose};

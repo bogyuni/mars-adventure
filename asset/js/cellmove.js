@@ -1,5 +1,8 @@
 import {setSubStatus} from './substatus.js';
 
+export {cellmoveKeydown, cellmoveKeyup};
+
+
 const heroCM = document.querySelector('#heroCM');
 const viewArea = document.querySelector('#viewArea');
 const tileSize = 50;
@@ -138,9 +141,11 @@ function cellmoveKeyup(key) {
 			for (let i = 0; i < portObjAry.length; i++) {
 				if(portObjAry[i].y == currentTop && portObjAry[i].x == currentLeft) {
 					if (portObjAry[i].id === 'exit') {
-						heroCM.style.top = heroCMStat.y+'px';
-						heroCM.style.left = heroCMStat.x+'px';
 						setSubStatus('beltscroll');
+						setTimeout(function(){
+							heroCM.style.top = heroCMStat.y+'px';
+							heroCM.style.left = heroCMStat.x+'px';
+						},1400);
 					} else {
 						openPortPopup(portObjAry[i].id);
 					}
@@ -149,5 +154,3 @@ function cellmoveKeyup(key) {
 		}, delayTime);
 	}
 }
-
-export {cellmoveKeydown, cellmoveKeyup};

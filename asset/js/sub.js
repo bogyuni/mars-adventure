@@ -1,6 +1,9 @@
 import {subStatus, setSubStatus} from './substatus.js';
 import {beltscrollKeyDown, beltscrollKeyUp, aboutmeClose} from './beltscroll.js';
 import {cellmoveKeydown, cellmoveKeyup} from './cellmove.js';
+import subData from './subdata.js';
+
+console.log(keyStatusCheck);
 
 /* * module 사용시 주의 사항 *
   기본적으로 module 에서 선언한 변수는 가져올 수 없다.
@@ -38,7 +41,9 @@ window.onkeyup = (e) => {
 };
 
 window.onload = () => {
-  setSubStatus(subStatus);
+  // setSubStatus(subStatus);
+  document.querySelector('#cellmove').style.display = 'none';
+
 
   if (subStatus === 'beltscroll') {
     document.querySelector('#rocket').classList.add('on');
