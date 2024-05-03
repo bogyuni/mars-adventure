@@ -81,7 +81,7 @@ function cellmoveKeydown(key) {
 				heroCM.style.left = `${currentLeft-tileSize}px`;
 				heroCM.dataset.direction = 'left';
 			} else {
-				console.log('LEFT MAX')
+				console.log('Left MAX')
 			}
 		} else if (key === 'ArrowRight') {
 			if (currentLeft < viewWidth - tileSize) {

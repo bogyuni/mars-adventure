@@ -1,7 +1,7 @@
 import { setSubStatus } from './substatus.js';
 import { pixelData, pixelDataLoad } from './pixel.js';
 
-export {beltscrollKeyDown, beltscrollKeyUp, aboutmeClose};
+export { beltscrollKeyDown, beltscrollKeyUp };
 
 
 const winWidth = window.innerWidth;
@@ -9,6 +9,7 @@ const winHeight = window.innerHeight;
 const winHighRatioSize = winWidth - winHeight > 0 ? winWidth : winHeight;
 
 // const rocket = document.querySelector('#rocket');
+
 // const heroBS = document.querySelector('#heroBS');
 const heroBSWidth = heroBS.offsetWidth;
 
@@ -51,6 +52,9 @@ let zLine2X = 0;
 const zLine3 = document.querySelector('.z-line-back.back2');
 let zLine3X = 0;
 const mapWidth = zLine1.offsetWidth;
+// 배경 이동 속도
+const zLine2Speed = 0.4;
+const zLine3Speed = 0.1;
 
 const aboutme = document.querySelector('.aboutme');
 const aboutmeStatus = {
@@ -73,9 +77,6 @@ const contactusStatus = {
 }
 const aboutmePopup = document.querySelector('.aboutme-popup');
 
-// 배경 이동 속도
-const zLine2Speed = 0.4;
-const zLine3Speed = 0.1;
 
 
 
@@ -153,9 +154,7 @@ function beltscrollKeyDown(key) {
 
   // 취소, 창 닫기
   else if (key === 'ArrowDown' || key === 'Escape') {
-    aboutme.classList.remove('on');
-    aboutmePopup.classList.remove('on');
-    keyMove = true;
+    aboutmeClose();
   }
 
   heroBS.style.left = heroBSX+'px';
@@ -165,8 +164,13 @@ function beltscrollKeyUp() {
   heroBS.classList.remove('move');
 }
 
+// aboutme 창닫기
 function aboutmeClose() {
   aboutme.classList.remove('on');
   aboutmePopup.classList.remove('on');
   keyMove = true;
 }
+
+document.querySelector('.aboutme-popup .btn-close').onclick = () => {
+  aboutmeClose();
+};

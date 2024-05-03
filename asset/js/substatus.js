@@ -1,14 +1,18 @@
+// import { C, B, S } from './subdata.js';
+
 export {subStatus, setSubStatus};
 
 let subStatus = 'beltscroll';
-// let subStatus = 'cellmove';
+
 const winWidth = window.innerWidth;
 const winHeight = window.innerHeight;
 const winHighRatioSize = winWidth - winHeight > 0 ? winWidth : winHeight;
 const heroBS = document.querySelector('#heroBS');
 
-// change over - 화면 전환
+// change over - 화면전환
 function changeOver(direct, subname) {
+  // 화면전환 시 키입력 불가
+  S.keyCheck = false;
   const changeOverWrap = document.querySelector('.changeover');
   const overCircle = document.querySelector('#overCircle');
 
@@ -36,6 +40,8 @@ function changeOver(direct, subname) {
     overCircle.style.borderWidth = '0px';
     setTimeout(function(){
       changeOverWrap.classList.remove('on');
+      // 화면전환 후 키입 력 가능
+      S.keyCheck = true;
     }, 1400);
   }
 }
