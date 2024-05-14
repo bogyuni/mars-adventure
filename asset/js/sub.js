@@ -1,18 +1,13 @@
-import { STRT } from './subdata.js';
-
+import { PHASE, STRT, CHAR, CHECK } from './subdata.js';
 import { subStatus, setSubStatus } from './substatus.js';
 import { beltscrollKeyDown, beltscrollKeyUp } from './beltscroll.js';
 import { cellmoveKeydown, cellmoveKeyup } from './cellmove.js';
 
-
-console.log(
-  STRT.ABME
-)
-//.sub-obj.rocket.on 로켓의 착률 시간
+// 페이지 로드되고 로켓 객체의 착륙 시간
 const landingTime = 2200;
 
 window.onkeydown = (e) => {
-  if (S.keyCheck === true) {
+  if (CHECK.key === true) {
     const key = e.key || e.keyCode;
     if (subStatus === 'beltscroll') {
       beltscrollKeyDown(key);
@@ -33,24 +28,20 @@ window.onkeyup = (e) => {
 };
 
 window.onload = () => {
-  // setSubStatus(subStatus);
-  // document.querySelector('#cellmove').style.display = 'none';
-  // B.CM.style.display = 'none';
+  PHASE.CM.style.display = 'none';
 
   if (subStatus === 'beltscroll') {
-    // document.querySelector('#rocket').classList.add('on');
-    C.ROC.classList.add('on');
+    CHAR.ROC.classList.add('on');
     setTimeout(function(){
-      S.keyCheck = true;
+      CHECK.key = true;
     }, landingTime);
-    // document.querySelector('#heroBS').classList.add('on');
-    C.HBS.classList.add('on');
+    CHAR.HBS.classList.add('on');
   } else if (subStatus === 'cellmove') {
     console.log('Cell move');
   }
 };
 
-
+// 가이드 팝업 제작 중
 // document.querySelector('.guide-popup').addEventListener('click', function () {
 //   this.remove();
 // });

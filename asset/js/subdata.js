@@ -1,13 +1,13 @@
+// PHASE 페이지 영역
+const phase = {
+  BS: document.querySelector('#beltscroll'),
+  CM: document.querySelector('#cellmove'),
+};
 // CHAR 캐릭터 선택자
 const character = {
   ROC: document.querySelector('#rocket'),
   HBS: document.querySelector('#heroBS'),
   HCM: document.querySelector('#heroCM'),
-};
-// PHASE 페이지 영역
-const phase = {
-  BS: document.querySelector('#beltscroll'),
-  CM: document.querySelector('#cellmove'),
 };
 // BG 배경
 const background = {
@@ -19,7 +19,7 @@ const background = {
   scenery: document.querySelector('#scenery'),
   // Cell move
 };
-// STRT
+// STRT 구조들
 const structure = {
   BS: {
     AM: document.querySelector('.sub-obj.aboutme'),
@@ -42,11 +42,11 @@ const check = {
 
 };
 
-// console.log('Module loaded - Sub data', status);
+console.log('Module loaded - Sub data');
 
-export { 
-  character as CHAR,
+export {
   phase as PHASE,
+  character as CHAR,
   background as BG,
   structure as STRT,
   popup as POP,
