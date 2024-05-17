@@ -9,6 +9,7 @@ const tileSize = 50;
 const delayTime = 101; // 0.101s
 const viewWidth = viewArea.offsetWidth;
 const viewHeight = viewArea.offsetHeight;
+
 let moveCheck = true; // 캐릭터 이동 후 딜레이 체크
 let popupOpenCheck = false;
 const heroCMStat = {
@@ -154,3 +155,5 @@ function cellmoveKeyup(key) {
 		}, delayTime);
 	}
 }
+
+console.log('Module loaded - cellmove');

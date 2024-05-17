@@ -2,30 +2,31 @@ const pixelRoot = './asset/pixel/';
 
 const pixelData = {
   // Hero
-  rocketFire: pixelRoot + 'rocket-fire.html',
-  rocketObj: pixelRoot + 'rocket-obj.html',
-  rover: pixelRoot + 'rover.html',
-  roverWheel: pixelRoot + 'rover-wheel.html',
+  rocketFire: 'rocket-fire.html',
+  rocketObj: 'rocket-obj.html',
+  rover: 'rover.html',
+  roverWheel: 'rover-wheel.html',
 
   // Weather
-  clear: pixelRoot + 'w-clear.html',
-  cloud: pixelRoot + 'w-cloud.html',
-  rain: pixelRoot + 'w-rain.html',
-  snow: pixelRoot + 'w-snow.html',
+  clear: 'w-clear.html',
+  cloud: 'w-cloud.html',
+  rain: 'w-rain.html',
+  snow: 'w-snow.html',
 
   // Background
-  ground: pixelRoot + 'bg-ground.html',
-  rock1: pixelRoot + 'bg-rock1.html',
-  rock2: pixelRoot + 'bg-rock2.html',
+  ground: 'bg-ground.html',
+  rock1: 'bg-rock1.html',
+  rock2: 'bg-rock2.html',
 }
 
 const pixelDataLoad = (uri, obj, custom) => {
-  fetch(uri, {method:'get'})
+  fetch(pixelRoot + uri, {method:'get'})
   .then((response) => {
     return response.text();
   })
   .then((text) => {
     obj.insertAdjacentHTML('beforeend', text);
+    // console.log(uri + ' - pixel loaded');
     if (custom) {
       obj.lastChild.classList.add(custom);
     }
@@ -36,3 +37,5 @@ const pixelDataLoad = (uri, obj, custom) => {
 };
 
 export { pixelData, pixelDataLoad };
+
+console.log('Module loaded - pixel data');

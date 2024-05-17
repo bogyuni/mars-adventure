@@ -1,7 +1,5 @@
 import { CHAR, CHECK } from './subdata.js';
 
-export { subStatus, setSubStatus };
-
 /**
  * 서브페이지의 페이즈에 대한 상태 값
  * 처음 진입할 때는 벨트스트롤(beltscroll)로 시작
@@ -79,7 +77,7 @@ function setSubStatus(val) {
   subStatus = val;
   if (val === 'beltscroll') {
     changeOver('in', 'beltscroll');
-    // 전환효과의 진행 진행시간 동안 벨트스크롤에 대한 세팅
+    // 전환효과의 진행 시간 동안 벨트스크롤에 대한 세팅
     setTimeout(function(){
       document.querySelector('#beltscroll').style.display = 'block';
       document.querySelector('#cellmove').style.display = 'none';
@@ -89,6 +87,7 @@ function setSubStatus(val) {
     }, changeTime);
 } else if (val === 'cellmove') {
     changeOver('in', 'cellmove');
+    // 전환효과의 진행 시간 동안 셀무브에 대한 세팅
     setTimeout(function(){
       document.querySelector('#beltscroll').style.display = 'none';
       document.querySelector('#cellmove').style.display = 'block';
@@ -96,3 +95,7 @@ function setSubStatus(val) {
     }, changeTime);
   }
 }
+
+export { subStatus, setSubStatus };
+
+console.log('Module loaded - Sub status');

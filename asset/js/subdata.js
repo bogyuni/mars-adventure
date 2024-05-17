@@ -30,26 +30,24 @@ const structure = {
     
   }
 }
-// POP 팝업
+// POPUP 팝업
 const popup = {
   AM: document.querySelector('.aboutme-popup'),
 
 }
 // CHECK 상태 체크 값
 const check = {
-  key: false, // 최초 키입력 가능 불가능
+  key: false, // 키입력 가능 상태
   popup: false, // 팝업 상태
-
 };
-
-console.log('Module loaded - Sub data');
 
 export {
   phase as PHASE,
   character as CHAR,
   background as BG,
   structure as STRT,
-  popup as POP,
+  popup as POPUP,
   check as CHECK,
-
 };
+
+console.log('Module loaded - Sub data');
