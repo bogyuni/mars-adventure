@@ -1,18 +1,18 @@
-import { CHAR, CHECK } from './subdata.js';
-
 /**
  * 서브페이지의 페이즈에 대한 상태 값
  * 처음 진입할 때는 벨트스트롤(beltscroll)로 시작
  * @type { string } 서브상태
  * */
 let subStatus = 'beltscroll';
+let subChange = false; // 화면전환 진행
 
-// 브라우저 크기 설정, 가로세로비율에 따른 크기 비교
+// 브라우저 크기 설정
 const winWidth = window.innerWidth;
 const winHeight = window.innerHeight;
+// 가로세로비율에 따른 크기 비교
 const winHighRatioSize = winWidth - winHeight > 0 ? winWidth : winHeight;
 // 벨트스크롤에서 조작하는 주인공 선택자
-const heroBS = CHAR.HBS;
+const heroBS = document.querySelector('#heroBS');
 // 화면전환 선택자
 const changeOverWrap = document.querySelector('.changeover');
 const overCircle = document.querySelector('#overCircle');
@@ -21,14 +21,13 @@ const changeTime = 1400;
 
 /**
  * 화면전환 효과 함수
- * 페이즈 이동하면서 화면이 전환되는 효과를 담당하며,
- * 키입력과 같은 상태값을 제어한다.
+ * 페이즈 이동하면서 화면이 전환되는 효과를 담당하며, 키입력과 같은 상태값을 제어한다.
  * @param { string } direct 방향을 나타냄, in, out
  * @param { string } subname 서브 페이즈 이름, beltscroll, cellmove
  */
 function changeOver(direct, subname) {
   // 화면전환 시 키입력 불가
-  CHECK.key = false;
+  subChange = true;
   // 벨트스크롤은 주인공 객체의 현재위치에 전환 효과가 집중되어야함.
   // 현재 주인공 객체의 위치값을 받아옴
   const heroBSWidth = heroBS.offsetWidth;
@@ -45,8 +44,9 @@ function changeOver(direct, subname) {
   if (subname === 'cellmove') {
     overCircle.style.left = heroBSLeft + 'px';
     overCircle.style.top = heroBSTop + 'px';
+  }
   // 벨트스크롤로 전환 할 때는, 화면의 중앙으로 위치 지정
-  } else if (subname === 'beltscroll') {
+  else if (subname === 'beltscroll') {
     overCircle.style.left = '50%';
     overCircle.style.top = '50%';
   }
@@ -55,11 +55,12 @@ function changeOver(direct, subname) {
   if (direct === 'in') {
     changeOverWrap.classList.add('on');
     overCircle.style.borderWidth = Math.round(overCircleDiameter / 2) + 'px';
+  }
   // 나가는 모션
-  } else if (direct === 'out') {
+  else if (direct === 'out') {
     overCircle.style.borderWidth = '0px';
-    // 나가는 모션 시작하면 키입 력 가능
-    CHECK.key = true;
+    // 화면전환 종료, 나가는 모션 시작하면 키입력 가능
+    subChange = false;
     // 화면전환 효과가 끝나면, 화면전환효과의 래핑 객체를 줄임 처리
     setTimeout(function(){
       changeOverWrap.classList.remove('on');
@@ -85,7 +86,7 @@ function setSubStatus(val) {
       heroBS.classList.add('on');
       changeOver('out', 'cellmove');
     }, changeTime);
-} else if (val === 'cellmove') {
+  } else if (val === 'cellmove') {
     changeOver('in', 'cellmove');
     // 전환효과의 진행 시간 동안 셀무브에 대한 세팅
     setTimeout(function(){
@@ -96,6 +97,6 @@ function setSubStatus(val) {
   }
 }
 
-export { subStatus, setSubStatus };
+export { subStatus, setSubStatus, subChange};
 
 console.log('Module loaded - Sub status');

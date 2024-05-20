@@ -26,7 +26,6 @@ const pixelDataLoad = (uri, obj, custom) => {
   })
   .then((text) => {
     obj.insertAdjacentHTML('beforeend', text);
-    // console.log(uri + ' - pixel loaded');
     if (custom) {
       obj.lastChild.classList.add(custom);
     }
