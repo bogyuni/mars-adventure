@@ -17,6 +17,10 @@ const pixelData = {
   ground: 'bg-ground.html',
   rock1: 'bg-rock1.html',
   rock2: 'bg-rock2.html',
+
+  // structure
+  aboutme: 'aboutme.html',
+  portfolio: 'portfolio.html',
 }
 
 const pixelDataLoad = (uri, obj, custom) => {

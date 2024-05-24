@@ -24,6 +24,8 @@ const pixelList = [
   {uri: pixelData.roverWheel, obj: heroBS, custom: 'wheelR'},
   {uri: pixelData.rock1, obj: scenery},
   {uri: pixelData.rock2, obj: scenery},
+  {uri: pixelData.aboutme, obj: aboutme},
+  {uri: pixelData.portfolio, obj: portfolio},
 ];
 
 pixelList.forEach((el) => {

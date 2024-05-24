@@ -95,25 +95,18 @@
 }
 .sub-obj.aboutme {
   left: 1200px;
-  width: 200px;
-  height: 200px;
-  background-color:brown;
 }
 .sub-obj.aboutme.on {
-  background-color: red;
-  color: #fff;
-  font-size: 4em;
+  /* color: #fff;
+  font-size: 4em; */
 }
 .sub-obj.portfolio {
   left: 1900px;
-  width: 200px;
-  height: 400px;
-  background-color: aqua;
+  /* width: 200px;
+  height: 400px; */
 }
 .sub-obj.portfolio.on {
   background-color: red;
-  color: #fff;
-  font-size: 4em;
 }
 .sub-obj.contactus {
   left: 2600px;
@@ -219,4 +212,5 @@
   width: 100%;
   height: 100%;
   border: 2px dotted red;
+  display: none;
 }

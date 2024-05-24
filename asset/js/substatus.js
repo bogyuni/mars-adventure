@@ -1,10 +1,12 @@
 /**
  * 서브페이지의 페이즈에 대한 상태 값
- * 처음 진입할 때는 벨트스트롤(beltscroll)로 시작
- * @type { string } 서브상태
+ * 처음 진입할 때는 벨트스트롤(beltscroll)로 시작, 키입력 불가
+ * @type { object } 서브 상태
  * */
-let subStatus = 'beltscroll';
-let subChange = false; // 화면전환 진행
+const subStatus = {
+  name: 'beltscroll',
+  key: false,
+};
 
 // 브라우저 크기 설정
 const winWidth = window.innerWidth;
@@ -27,7 +29,8 @@ const changeTime = 1400;
  */
 function changeOver(direct, subname) {
   // 화면전환 시 키입력 불가
-  subChange = true;
+  // subChange = true;
+  subStatus.key = false;
   // 벨트스크롤은 주인공 객체의 현재위치에 전환 효과가 집중되어야함.
   // 현재 주인공 객체의 위치값을 받아옴
   const heroBSWidth = heroBS.offsetWidth;
@@ -60,7 +63,8 @@ function changeOver(direct, subname) {
   else if (direct === 'out') {
     overCircle.style.borderWidth = '0px';
     // 화면전환 종료, 나가는 모션 시작하면 키입력 가능
-    subChange = false;
+    // subChange = false;
+    subStatus.key = true;
     // 화면전환 효과가 끝나면, 화면전환효과의 래핑 객체를 줄임 처리
     setTimeout(function(){
       changeOverWrap.classList.remove('on');
@@ -75,14 +79,14 @@ function changeOver(direct, subname) {
  */
 function setSubStatus(val) {
   // 전달 받은 이름은 현재 서브 상태값에 저장
-  subStatus = val;
+  subStatus.name = val;
   if (val === 'beltscroll') {
     changeOver('in', 'beltscroll');
     // 전환효과의 진행 시간 동안 벨트스크롤에 대한 세팅
     setTimeout(function(){
       document.querySelector('#beltscroll').style.display = 'block';
       document.querySelector('#cellmove').style.display = 'none';
-      document.querySelector('.portfolio').classList.remove('on');
+      document.querySelector('.sub-obj.portfolio').classList.remove('on');
       heroBS.classList.add('on');
       changeOver('out', 'cellmove');
     }, changeTime);
@@ -97,6 +101,6 @@ function setSubStatus(val) {
   }
 }
 
-export { subStatus, setSubStatus, subChange};
+export { subStatus, setSubStatus };
 
 console.log('Module loaded - Sub status');
