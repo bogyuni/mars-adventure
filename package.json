@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "firebase": "^10.12.1",
     "three": "^0.156.1"
   },
   "devDependencies": {

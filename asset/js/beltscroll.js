@@ -14,6 +14,7 @@ const aboutme = document.querySelector('.sub-obj.aboutme'); // 구조물 - 어�
 const portfolio = document.querySelector('.sub-obj.portfolio'); // 구조물 - 포트폴리오
 const contactus = document.querySelector('.sub-obj.contactus') // 구조물 - 컨택어스
 const aboutmePopup = document.querySelector('.aboutme-popup'); // 팝업 - 어바웃미
+const contactusPopup = document.querySelector('.contactus-popup'); // 팝업 - 어바웃미
 
 // 픽셀 로드
 const pixelList = [
@@ -94,6 +95,8 @@ function activeTrigger() {
   // 컨택어스 오픈 트리거 범위
   else if (contactusPosition <= contactusRange) {
     contactus.classList.add('on');
+    contactusPopup.classList.add('on');
+    popupCheck = true;
   }
 }
 
@@ -157,6 +160,7 @@ function beltscrollKeyDown(key) {
   // 취소, 창 닫기
   else if (key === 'ArrowDown' || key === 'Escape') {
     aboutmeClose();
+    contactusClose();
   }
 
   heroBS.style.left = heroBSX+'px';
@@ -172,10 +176,17 @@ function aboutmeClose() {
   aboutmePopup.classList.remove('on');
   popupCheck = false;
 }
+// aboutme 창닫기
+function contactusClose() {
+  contactus.classList.remove('on');
+  contactusPopup.classList.remove('on');
+  popupCheck = false;
+}
 
 // 창닫기 버튼 누르면 팝업창 닫음
-document.querySelector('.aboutme-popup .btn-close').onclick = () => {
+document.querySelector('.popup .btn-close').onclick = () => {
   aboutmeClose();
+  contactusClose();
 };
 
 

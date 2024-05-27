@@ -163,7 +163,7 @@
   display: none;
 }
 
-.aboutme-popup {
+.popup {
   position: fixed;
   left: 50%;
   top: 50%;
@@ -174,13 +174,13 @@
   transform: translateX(-50%);
   transition: width 0.4s ease 0s, height 0.6s ease 0.5s;
 }
-.aboutme-popup.on {
+.popup.on {
   animation: openAboutme 1s ease 0s 1 normal forwards;
 }
-.aboutme-popup.off {
+.popup.off {
   animation: openAboutme 1s ease 0s 1 reverse forwards;
 }
-.aboutme-popup .inner {
+.popup .inner {
   background-color: #fff;
   border: 1px solid #572f07;
   border-radius: 10px;
@@ -189,14 +189,14 @@
   padding: 10px;
   overflow: auto;
 }
-.aboutme-popup .inner > * {
+.popup .inner > * {
   visibility: hidden;
   transition: visibility 0s ease 1s;
 }
-.aboutme-popup.on .inner > * {
+.popup.on .inner > * {
   visibility: visible;
 }
-.aboutme-popup .btn-close {
+.popup .btn-close {
   position: absolute;
   right:10px;
   top: 10px;

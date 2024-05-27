@@ -31,7 +31,7 @@
 
   <div class="weather-wrap" id="weather"></div>
 
-  <div class="aboutme-popup">
+  <div class="popup aboutme-popup">
     <div class="inner">
       <h1>About me..</h1>
       <ul>
@@ -57,6 +57,19 @@
           Cafe24
         </li>
       </ul>
+    </div>
+    <button class="btn-close">Close</button>
+  </div>
+  <div class="popup contactus-popup">
+    <div class="inner">
+      <h1>Contact us</h1>
+      <form id="contactForm">
+        <input type="text" id="contactTitle" placeholder="제목" required>
+        <input type="text" id="contactEmail" placeholder="연락처" required>
+        <input type="text" id="contactName" placeholder="사용자명" required>
+        <textarea id="contactMessage" placeholder="하고싶은말" required></textarea>
+        <button type="submit">제출</button>
+      </form>
     </div>
     <button class="btn-close">Close</button>
   </div>
@@ -119,5 +132,6 @@
 
 <script src="./asset/js/sub.js" type="module"></script>
 <script src="./asset/js/weather.js" type="module"></script>
+<script src="./asset/js/contactus.js" type="module"></script>
 </body>
 </html>
