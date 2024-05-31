@@ -1,5 +1,6 @@
 import { db } from './firebaseConfig.js';
-import { collection, addDoc } from 'firebase/firestore';
+// import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
 
 document.getElementById('contactForm').addEventListener('submit', async (e) => {
   e.preventDefault();

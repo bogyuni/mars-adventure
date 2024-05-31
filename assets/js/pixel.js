@@ -1,4 +1,4 @@
-const pixelRoot = './asset/pixel/';
+const pixelRoot = './assets/pixel/';
 
 const pixelData = {
   // Hero

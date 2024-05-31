@@ -4,10 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Beerboy's Home page</title>
-	<link rel="icon" href="./asset/img/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="./asset/css/sub.css">
-  <link rel="stylesheet" href="./asset/css/beltscroll.css">
-  <link rel="stylesheet" href="./asset/css/cellmove.css">
+	<link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/fontawesome/css/fontawesome.css">
+  <link rel="stylesheet" href="./assets/fontawesome/css/brands.css">
+  <link rel="stylesheet" href="./assets/fontawesome/css/solid.css">
+  <link rel="stylesheet" href="./assets/css/sub.css">
+  <link rel="stylesheet" href="./assets/css/beltscroll.css">
+  <link rel="stylesheet" href="./assets/css/cellmove.css">
+  <script src="./assets/js/common.js"></script>
 </head>
 <body>
 <main class="sub-wrap" id="beltscroll">
@@ -32,46 +36,49 @@
   <div class="weather-wrap" id="weather"></div>
 
   <div class="popup aboutme-popup">
+    <div class="popup-border"></div>
     <div class="inner">
-      <h1>About me..</h1>
-      <ul>
-        <li><span>이름</span> : 서보균</li>
-        <li><span>나이</span> : 41(만)</li>
-        <li><span>거주지역</span> : 서울</li>
-        <li><span>경력</span> : 12.4년차</li>
-        <li><span>이메일</span> : bogyuni@naver.com</li>
-        <li><span>연락처</span> : 010-6608-0083</li>
-        <li><span>스킬</span> : 
-          HTML5,
-          CSS3,
-          SCSS,
-          JavaScript,
-          TypeScript
-          Jquery,
-          Ajax,
-          React,
-          Vue.js,
-          Vuetify,
-          SVN,
-          Git,
-          Cafe24
-        </li>
-      </ul>
+      <h2>About me</h2>
+      <table class="aboutme-table"></table>
     </div>
-    <button class="btn-close">Close</button>
+    <button class="btn btn-close">
+      <span class="shadow"></span>
+      <i class="fa-solid fa-xmark"></i>
+    </button>
   </div>
-  <div class="popup contactus-popup">
+
+  <div class="popup contactus-popup on">
+    <div class="popup-border"></div>
     <div class="inner">
-      <h1>Contact us</h1>
+      <h2>Guest book</h2>
       <form id="contactForm">
-        <input type="text" id="contactTitle" placeholder="제목" required>
-        <input type="text" id="contactEmail" placeholder="연락처" required>
-        <input type="text" id="contactName" placeholder="사용자명" required>
-        <textarea id="contactMessage" placeholder="하고싶은말" required></textarea>
-        <button type="submit">제출</button>
+        <div class="row">
+          <label for="contactTitle">Title</label>
+          <input type="text" id="contactTitle" placeholder="제목" required>
+        </div>
+        <div class="row">
+          <div class="col w50">
+            <label for="contactEmail">E-mail</label>
+            <input type="text" id="contactEmail" placeholder="연락처" required>
+          </div>
+          <div class="col w50">
+            <label for="contactName">Name</label>
+            <input type="text" id="contactName" placeholder="이름" required>
+          </div>
+        </div>
+        <div class="row">
+          <label for="contactMessage">Message</label>
+          <textarea id="contactMessage" placeholder="문의 사항" required></textarea>
+        </div>
+        <div class="row">
+          <input type="submit" value="Send" class="btn-send">
+        </div>
       </form>
     </div>
-    <button class="btn-close">Close</button>
+    <button class="btn-close">
+      <span class="shadow"></span>
+      <i class="fa-solid fa-xmark"></i>
+    </button>
   </div>
 </main>
 
@@ -130,8 +137,8 @@
   <div class="circle" id="overCircle"></div>
 </div>
 
-<script src="./asset/js/sub.js" type="module"></script>
-<script src="./asset/js/weather.js" type="module"></script>
-<script src="./asset/js/contactus.js" type="module"></script>
+<script src="./assets/js/sub.js" type="module"></script>
+<script src="./assets/js/weather.js" type="module"></script>
+<script src="./assets/js/contactus.js" type="module"></script>
 </body>
 </html>

@@ -1,0 +1,66 @@
+{
+  "ko": {
+    "aboutme": {
+      "name": {
+        "title": "이름",
+        "data": "서보균 - Beerboy"
+      },
+      "age": {
+        "title": "나이",
+        "data": "41 (만)"
+      },
+      "area": {
+        "title": "지역",
+        "data": "서울"
+      },
+      "career": {
+        "title": "경력",
+        "data": "13년차"
+      },
+      "email": {
+        "title": "이메일",
+        "data": "bogyuni@naver.com"
+      },
+      "phone": {
+        "title": "연락처",
+        "data": "010-6608-0083"
+      },
+      "skill": {
+        "title": "기술",
+        "data": ["HTML5", "CSS3", "SCSS", "JavaScript", "TypeScript", "jQuery", "Ajax", "React", "Vue.js", "Vuetify", "SVN", "Git", "Cafe24", "firebase"]
+      }
+    }
+  },
+  "en": {
+    "aboutme": {
+      "name": {
+        "title": "Name",
+        "data": "Bogyun, Seo - Beerboy"
+      },
+      "age": {
+        "title": "Age",
+        "data": "41"
+      },
+      "area": {
+        "title": "Area",
+        "data": "Seoul, S.Korea"
+      },
+      "career": {
+        "title": "Career",
+        "data": "13 Y"
+      },
+      "email": {
+        "title": "Email",
+        "data": "bogyuni@naver.com"
+      },
+      "phone": {
+        "title": "Phone",
+        "data": "82-10-6608-0083"
+      },
+      "skill": {
+        "title": "Skill",
+        "data": ["HTML5", "CSS3", "SCSS", "JavaScript", "TypeScript", "jQuery", "Ajax", "React", "Vue.js", "Vuetify", "SVN", "Git", "Cafe24", "firebase"]
+      }
+    }
+  }
+}

@@ -4,6 +4,55 @@ import { cellmoveKeydown, cellmoveKeyup } from './cellmove.js';
 
 // 페이지 로드되고 로켓 객체의 착륙 시간
 const landingTime = 2200;
+// 사용자 브라우저 언어 환경
+const userLanguage = (navigator.language === 'ko')? 'en' : 'en';
+
+
+function textInsert(data, lan) {
+  const aboutmeTable = document.querySelector('.aboutme-table');
+  const aboutmeData = data.aboutme;
+
+  for (let key in aboutmeData) {
+    const tr = document.createElement('tr');
+    const th = document.createElement('th');
+    const td = document.createElement('td');
+    th.append(aboutmeData[key].title);
+    if (key === 'skill') {
+      td.classList.add('skill-td');
+      for (let i = 0; i < aboutmeData[key].data.length; i++) {
+        td.innerHTML += `<span>${aboutmeData[key].data[i]}</span>`;
+      }
+    } else {
+      td.append(aboutmeData[key].data);
+    }
+    tr.append(th, td);
+    aboutmeTable.append(tr);
+  }
+}
+
+
+// 본문의 문구 데이터 불러오기
+fetch('./assets/tabledata.json')
+  .then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+    }
+    return response.json();
+  })
+  .then(tabledata => {
+    // console.log(tabledata[userLanguage]);
+
+    textInsert(tabledata[userLanguage], userLanguage);
+  })
+  .catch(error => {
+    console.error('tabledata error:', error);
+  });
+
+
+window.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM content onload');
+});
+
 
 window.onkeydown = (e) => {
   if (subStatus.key === true) {

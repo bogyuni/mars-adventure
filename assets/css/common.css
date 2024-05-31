@@ -15,6 +15,13 @@
   font-style: normal;
 }
 
+:root {
+  --main-color: #db4c21;
+  --sub-color: #a35914;
+  --border-color: #69200a;
+  --line-color: #212529;
+ }
+
 .micro5 {
   font-family: 'Micro', sans-serif;
   font-weight: 400;
@@ -24,10 +31,18 @@
   font-family: 'Noto Sans', sans-serif;
 }
 
-* {padding:0;margin:0;box-sizing: border-box;}
-ol, ul, li {list-style: none;}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+ol, ul, li {
+  list-style: none;
+}
 html,
-body {height:100%;}
+body {
+  height:100%;
+}
 body {
   font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
   background-color: #111;
@@ -39,11 +54,69 @@ body {
   background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
   background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
 }
+button {
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+th, td {
+  word-break: break-all;
+  word-wrap: break-word;
+  vertical-align: top;
+}
 
 .dot {position: absolute;width: 10px;height: 10px;}
 
-.rocket-fire {
-  left:80px;
-  top:370px;
-  animation: fireAni .2s linear 0s infinite;
+.row {
+  display: flex;
+  margin-bottom: 32px;
+  position: relative;
+  gap: 8px;
 }
+.row:last-child {
+  margin-bottom: 0;
+}
+.col {
+  display: flex;
+  position: relative;
+}
+.w50 {
+  width: 50%;
+}
+
+.btn {
+  position: relative;
+}
+.btn::before,
+.btn::after {
+  position: absolute;
+  content: '';
+  border: 4px solid #000;
+  width: 100%;
+  height: 100%;
+}
+.btn::before {
+  border-left: 0;
+  border-right: 0;
+  top: -4px;
+  left: 0;
+}
+.btn::after {
+  border-top: 0;
+  border-bottom: 0;
+  top: 0;
+  left: -4px;
+}
+.btn .shadow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 4px solid rgba(0, 0, 0, 0.5);
+  border-top: 0;
+  border-left: 0;
+}
+
+

@@ -44,22 +44,22 @@ function createMainCanvas(objDom, canvasWidth, canvasHeight, objColor, objType) 
     geometry = new THREE.SphereGeometry(1, 32, 32);
     // geometry = new THREE.TetrahedronGeometry(1, 13);
     material = new THREE.MeshPhongMaterial({
-      map: new THREE.TextureLoader().load('./asset/img/earth_dot2.png'),  // Replace with your earth texture
-      // bumpMap: new THREE.TextureLoader().load('./asset/img/earth_clouds.jpeg'),  // Replace with your bump map
+      map: new THREE.TextureLoader().load('./assets/img/earth_dot2.png'),  // Replace with your earth texture
+      // bumpMap: new THREE.TextureLoader().load('./assets/img/earth_clouds.jpeg'),  // Replace with your bump map
       // bumpScale: 1,
-      // specularMap: new THREE.TextureLoader().load('./asset/img/earth.jpg'),  // Replace with your specular map
+      // specularMap: new THREE.TextureLoader().load('./assets/img/earth.jpg'),  // Replace with your specular map
       // specular: new THREE.Color('grey')
     });
   } else if (objType === 'moon') {
     geometry = new THREE.TetrahedronGeometry(1, 8);
     material = new THREE.MeshPhongMaterial({
-      map: new THREE.TextureLoader().load('./asset/img/moon_dot.png'),  // Replace with your earth texture
+      map: new THREE.TextureLoader().load('./assets/img/moon_dot.png'),  // Replace with your earth texture
     });
   } else if (objType === 'mars') {
     // geometry = new THREE.SphereGeometry(1, 32, 32);
     geometry = new THREE.TetrahedronGeometry(1, 8);
     material = new THREE.MeshPhongMaterial({
-      map: new THREE.TextureLoader().load('./asset/img/mars_dot.png'),  // Replace with your earth texture
+      map: new THREE.TextureLoader().load('./assets/img/mars_dot.png'),  // Replace with your earth texture
     });
   }
 
