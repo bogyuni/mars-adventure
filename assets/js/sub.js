@@ -5,13 +5,16 @@ import { cellmoveKeydown, cellmoveKeyup } from './cellmove.js';
 // 페이지 로드되고 로켓 객체의 착륙 시간
 const landingTime = 2200;
 // 사용자 브라우저 언어 환경
-const userLanguage = (navigator.language === 'ko')? 'en' : 'en';
+const userLanguage = (navigator.language === 'ko')? 'ko' : 'en';
 
 
 function textInsert(data, lan) {
   const aboutmeTable = document.querySelector('.aboutme-table');
   const aboutmeData = data.aboutme;
+  const guestfromSelect = document.querySelector('#guestFrom');
+  const guestfromData = data.guestfrom;
 
+  // aboutme table set
   for (let key in aboutmeData) {
     const tr = document.createElement('tr');
     const th = document.createElement('th');
@@ -28,6 +31,16 @@ function textInsert(data, lan) {
     tr.append(th, td);
     aboutmeTable.append(tr);
   }
+
+  //
+  for (let key in guestfromData) {
+    const opt = document.createElement('option');
+    opt.setAttribute('value', key);
+    opt.append(guestfromData[key]);
+    guestfromSelect.append(opt);
+    console.log(key);
+  }
+
 }
 
 

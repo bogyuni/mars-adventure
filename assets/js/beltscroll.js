@@ -12,9 +12,9 @@ const ground = document.querySelector('#ground'); // 1차 배경 - 바닥
 const scenery = document.querySelector('#scenery'); // 1차 배경 - 후경
 const aboutme = document.querySelector('.sub-obj.aboutme'); // 구조물 - 어바웃미
 const portfolio = document.querySelector('.sub-obj.portfolio'); // 구조물 - 포트폴리오
-const contactus = document.querySelector('.sub-obj.contactus') // 구조물 - 컨택어스
+const guest = document.querySelector('.sub-obj.guest') // 구조물 - 컨택어스
 const aboutmePopup = document.querySelector('.aboutme-popup'); // 팝업 - 어바웃미
-const contactusPopup = document.querySelector('.contactus-popup'); // 팝업 - 어바웃미
+const guestPopup = document.querySelector('.guest-popup'); // 팝업 - 어바웃미
 
 // 픽셀 로드
 const pixelList = [
@@ -67,7 +67,7 @@ function activeTrigger() {
   // 구조물들이 트리거 되는 범위는 구조물 크기의 절반 범위
   const aboutmeRange = aboutme.offsetWidth / 2;
   const portfolioRange = portfolio.offsetWidth / 2;
-  const contactusRange = contactus.offsetWidth / 2;
+  const guestRange = guest.offsetWidth / 2;
   // 주인공은 영역의 1/4만 걸쳐도 발동 하도록 설정
   const heroBSCenter = heroBS.getBoundingClientRect().left + (heroBSWidth / 4);
   // 구조물 중심위치 설정
@@ -75,11 +75,11 @@ function activeTrigger() {
   // 스크롤 위치값이 아니라, 배경화면의 위치값을 조정함.
   const aboutmeCenter = aboutme.getBoundingClientRect().left + aboutmeRange;
   const portfolioCenter = portfolio.getBoundingClientRect().left + portfolioRange;
-  const contactusCenter = contactus.getBoundingClientRect().left + contactusRange;
+  const guestCenter = guest.getBoundingClientRect().left + guestRange;
   // 주인공과 구조물이 겹치는 설정 값
   const aboutmePosition = heroBSCenter - aboutmeCenter < 0 ? (heroBSCenter - aboutmeCenter) * -1 : heroBSCenter - aboutmeCenter;
   const portfolioPosition = heroBSCenter - portfolioCenter < 0 ? (heroBSCenter - portfolioCenter) * -1 : heroBSCenter - portfolioCenter;
-  const contactusPosition = heroBSCenter - contactusCenter < 0 ? (heroBSCenter - contactusCenter) * -1 : heroBSCenter - contactusCenter;
+  const guestPosition = heroBSCenter - guestCenter < 0 ? (heroBSCenter - guestCenter) * -1 : heroBSCenter - guestCenter;
 
   // 어바웃미 오픈 트리거 범위
   if (aboutmePosition <= aboutmeRange) {
@@ -93,9 +93,9 @@ function activeTrigger() {
     setSubStatus('cellmove');
   }
   // 컨택어스 오픈 트리거 범위
-  else if (contactusPosition <= contactusRange) {
-    contactus.classList.add('on');
-    contactusPopup.classList.add('on');
+  else if (guestPosition <= guestRange) {
+    guest.classList.add('on');
+    guestPopup.classList.add('on');
     popupCheck = true;
   }
 }
@@ -160,7 +160,7 @@ function beltscrollKeyDown(key) {
   // 취소, 창 닫기
   else if (key === 'ArrowDown' || key === 'Escape') {
     aboutmeClose();
-    contactusClose();
+    guestClose();
   }
 
   heroBS.style.left = heroBSX+'px';
@@ -177,16 +177,16 @@ function aboutmeClose() {
   popupCheck = false;
 }
 // aboutme 창닫기
-function contactusClose() {
-  contactus.classList.remove('on');
-  contactusPopup.classList.remove('on');
+function guestClose() {
+  guest.classList.remove('on');
+  guestPopup.classList.remove('on');
   popupCheck = false;
 }
 
 // 창닫기 버튼 누르면 팝업창 닫음
 document.querySelector('.popup .btn-close').onclick = () => {
   aboutmeClose();
-  contactusClose();
+  guestClose();
 };
 
 

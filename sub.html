@@ -24,8 +24,8 @@
         <div id="rocket" class="sub-obj rocket"></div>
         <div class="sub-obj aboutme"></div>
         <div class="sub-obj portfolio"></div>
-        <div class="sub-obj contactus">
-          contactus
+        <div class="sub-obj guest">
+          guest
         </div>
       </div>
       <div class="line ground" id="ground"></div>
@@ -41,41 +41,67 @@
       <h2>About me</h2>
       <table class="aboutme-table"></table>
     </div>
-    <button class="btn btn-close">
+    <button class="square-line btn-close">
       <span class="shadow"></span>
       <i class="fa-solid fa-xmark"></i>
     </button>
   </div>
 
-  <div class="popup contactus-popup on">
+  <div class="popup guest-popup on">
     <div class="popup-border"></div>
     <div class="inner">
       <h2>Guest book</h2>
-      <form id="contactForm">
-        <div class="row">
-          <label for="contactTitle">Title</label>
-          <input type="text" id="contactTitle" placeholder="제목" required>
-        </div>
-        <div class="row">
-          <div class="col w50">
-            <label for="contactEmail">E-mail</label>
-            <input type="text" id="contactEmail" placeholder="연락처" required>
+
+      <article class="guestlist-wrap">
+        <ul id="guestList" class="guest-list">
+          <li class="guest-item">
+            <div class="guest-name">
+              <a href="mailto:${docData.email}">${docData.name}</a>
+              <span class="guest-from">${docData.from}</span>
+            </div>
+            <div class="guest-message">
+              ${docData.message}
+            </div>
+            <div class="guest-time">${docData.timestamp.toDate().toString()}</div>
+          </li>
+        </ul>
+      </article>
+
+      <article class="guestform-wrap">
+        <form id="guestForm">
+          <div class="row">
+            <div class="col w50">
+              <label for="guestName">Nickname</label>
+              <div class="square-line">
+                <input type="text" id="guestName" placeholder="Nickname" required>
+              </div>
+            </div>
+            <div class="col w50">
+              <label for="guestEmail">Email</label>
+              <div class="square-line">
+                <input type="text" id="guestEmail" placeholder="Email" required>
+              </div>
+            </div>
+            <div class="col">
+              <div class="square-line">
+                <select name="guestFrom" id="guestFrom" required>
+                  <option value="" selected disabled>be From</option>
+                </select>
+              </div>
+            </div>
           </div>
-          <div class="col w50">
-            <label for="contactName">Name</label>
-            <input type="text" id="contactName" placeholder="이름" required>
+          <div class="row">
+            <label for="guestMessage">Message</label>
+            <textarea id="guestMessage" required></textarea>
           </div>
-        </div>
-        <div class="row">
-          <label for="contactMessage">Message</label>
-          <textarea id="contactMessage" placeholder="문의 사항" required></textarea>
-        </div>
-        <div class="row">
-          <input type="submit" value="Send" class="btn-send">
-        </div>
-      </form>
+          <div class="row">
+            <input type="submit" value="Send" class="btn-send">
+          </div>
+        </form>
+      </article>
+
     </div>
-    <button class="btn-close">
+    <button class="square-line btn-close">
       <span class="shadow"></span>
       <i class="fa-solid fa-xmark"></i>
     </button>
@@ -139,6 +165,6 @@
 
 <script src="./assets/js/sub.js" type="module"></script>
 <script src="./assets/js/weather.js" type="module"></script>
-<script src="./assets/js/contactus.js" type="module"></script>
+<script src="./assets/js/guestbook.js" type="module"></script>
 </body>
 </html>

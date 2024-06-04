@@ -41,7 +41,7 @@
         });
 
         async function fetchFirestoreData() {
-          const q = query(collection(db, "contacts"), orderBy("timestamp", "desc"));
+          const q = query(collection(db, "guestbook"), orderBy("timestamp", "desc"));
           const querySnapshot = await getDocs(q);
             const dataDiv = document.getElementById('data');
             querySnapshot.forEach((doc) => {
@@ -49,9 +49,8 @@
               const div = document.createElement('div');
               div.textContent = `ID: ${doc.id}, Data: ${JSON.stringify(docData)}`;
               div.innerHTML = `
-                <h3>제목: ${docData.title}</h3>
-                <p>연락처(이메일): ${docData.contact}</p>
-                <p>이름: ${docData.username}</p>
+                <p>이름: ${docData.name}</p>
+                <p>연락처(이메일): ${docData.email}</p>
                 <p>메세지: ${docData.message}</p>
                 <p>Timestamp: ${docData.timestamp.toDate().toString()}</p>
                 <hr>

@@ -54,6 +54,9 @@ body {
   background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
   background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
 }
+input, textarea {
+  font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
+}
 button {
   border: 0;
   background: none;
@@ -85,30 +88,31 @@ th, td {
   width: 50%;
 }
 
-.btn {
+.square-line {
   position: relative;
 }
-.btn::before,
-.btn::after {
+.square-line::before,
+.square-line::after {
   position: absolute;
   content: '';
   border: 4px solid #000;
   width: 100%;
   height: 100%;
+  z-index: 1;
 }
-.btn::before {
+.square-line::before {
   border-left: 0;
   border-right: 0;
   top: -4px;
   left: 0;
 }
-.btn::after {
+.square-line::after {
   border-top: 0;
   border-bottom: 0;
   top: 0;
   left: -4px;
 }
-.btn .shadow {
+.square-line .shadow {
   position: absolute;
   left: 0;
   top: 0;
@@ -117,6 +121,11 @@ th, td {
   border: 4px solid rgba(0, 0, 0, 0.5);
   border-top: 0;
   border-left: 0;
+  z-index: 1;
+}
+.square-line > * {
+  position: relative;
+  z-index: 2;
 }
 
 

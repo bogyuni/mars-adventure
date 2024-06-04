@@ -108,13 +108,13 @@
 .sub-obj.portfolio.on {
   background-color: red;
 }
-.sub-obj.contactus {
+.sub-obj.guest {
   left: 2600px;
   width: 300px;
   height: 100px;
   background-color: cadetblue;
 }
-.sub-obj.contactus.on {
+.sub-obj.guest.on {
   background-color: red;
   color: #fff;
   font-size: 4em;
