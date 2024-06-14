@@ -81,11 +81,17 @@ th, td {
   margin-bottom: 0;
 }
 .col {
-  display: flex;
   position: relative;
+  flex-grow: 1;
 }
-.w50 {
+.w-third {
+  width: 33.33%;
+}
+.w-half {
   width: 50%;
+}
+.w-full {
+  width: 100%;
 }
 
 .square-line {
@@ -116,14 +122,21 @@ th, td {
   position: absolute;
   left: 0;
   top: 0;
+  /* left: 4px;
+  top: 4px; */
   width: 100%;
   height: 100%;
-  border: 4px solid rgba(0, 0, 0, 0.5);
-  border-top: 0;
-  border-left: 0;
+  /* width: calc(100% - 4px);
+  height: calc(100% - 4px); */
+  border: 4px solid rgba(0, 0, 0, 0.2);
+  border-top-color: rgba(0, 0, 0, 0);
+  border-left-color: rgba(0, 0, 0, 0);
+  /* border-top: 0;
+  border-left: 0; */
   z-index: 1;
 }
 .square-line > * {
+  background: none;
   position: relative;
   z-index: 2;
 }

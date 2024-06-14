@@ -70,19 +70,20 @@
       <article class="guestform-wrap">
         <form id="guestForm">
           <div class="row">
-            <div class="col w50">
+            <div class="col">
               <label for="guestName">Nickname</label>
               <div class="square-line">
                 <input type="text" id="guestName" placeholder="Nickname" required>
               </div>
             </div>
-            <div class="col w50">
+            <div class="col">
               <label for="guestEmail">Email</label>
               <div class="square-line">
                 <input type="text" id="guestEmail" placeholder="Email" required>
               </div>
             </div>
             <div class="col">
+              <label for="guestFrom">be From</label>
               <div class="square-line">
                 <select name="guestFrom" id="guestFrom" required>
                   <option value="" selected disabled>be From</option>
@@ -92,10 +93,23 @@
           </div>
           <div class="row">
             <label for="guestMessage">Message</label>
-            <textarea id="guestMessage" required></textarea>
+            <div class="square-line message-wrap">
+              <textarea id="guestMessage" required></textarea>
+            </div>
           </div>
           <div class="row">
-            <input type="submit" value="Send" class="btn-send">
+            <div class="col w-half">
+              <div class="square-line">
+                <span class="shadow"></span>
+                <button type="button" class="btn">Book</button>
+              </div>
+            </div>
+            <div class="col w-half">
+              <div class="square-line">
+                <span class="shadow"></span>
+                <input type="submit" value="Send" class="btn btn-send">
+              </div>
+            </div>
           </div>
         </form>
       </article>

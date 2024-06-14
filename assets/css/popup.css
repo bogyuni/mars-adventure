@@ -130,34 +130,52 @@
 .guestform-wrap {
   /* display: none; */
 }
+.guestform-wrap .row {
+  gap: 24px;
+  margin-bottom: 36px;
+}
+.guestform-wrap .row .col {
+  width: 33.33%;
+}
 .guestform-wrap .row input,
-.guestform-wrap .row textarea {
+.guestform-wrap .row button,
+.guestform-wrap .row textarea,
+.guestform-wrap .row select {
   width: 100%;
   padding: 8px;
   min-height: 48px;
-  border-radius: 4px;
-  border: 1px solid var(--border-color);
+  border: 0;
+  vertical-align: top;
 }
 .guestform-wrap .row input:focus,
 .guestform-wrap .row textarea:focus {
-  outline: 2px solid var(--main-color);
+  outline: unset;
 }
 .guestform-wrap .row label {
   position: absolute;
   left: 0;
-  top: -20px;
+  top: -24px;
   font-size: 12px;
   color: var(--sub-color);
 }
-.guestform-wrap .row textarea {
+.guestform-wrap .message-wrap {
+  width: 100%;
+}
+.guestform-wrap .message-wrap textarea {
   height: 160px;
 }
-.guestform-wrap .btn-send {
-  background-color: var(--border-color);
-  color: #fff;
+.guestform-wrap .btn {
+  background: none;
+  font-family: 'Micro';
+  font-size: 32px;
+  text-transform: uppercase;
+  color: var(--border-color);
 }
+
 #guestFrom option[value=""][disabled] {
 	display: none;
 }
 
-
+.guestlist-wrap {
+  display: none;
+}
