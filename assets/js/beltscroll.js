@@ -188,6 +188,15 @@ document.querySelector('.popup .btn-close').onclick = () => {
   aboutmeClose();
   guestClose();
 };
+// 게스트북 작성 전환
+document.querySelector('.btn-guest-write').onclick = () => {
+  document.querySelector('.guestlist-wrap').style.display = 'none';
+  document.querySelector('.guestform-wrap').style.display = 'block';
+}
+document.querySelector('.btn-guest-list').onclick = () => {
+  document.querySelector('.guestlist-wrap').style.display = 'block';
+  document.querySelector('.guestform-wrap').style.display = 'none';
+}
 
 
 export { beltscrollKeyDown, beltscrollKeyUp };

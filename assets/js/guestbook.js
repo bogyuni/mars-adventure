@@ -9,24 +9,30 @@ import { collection, addDoc, getDocs, query, orderBy } from 'https://www.gstatic
 async function fetchAndDisplayData() {
   const q = query(collection(db, 'guestbook'), orderBy('timestamp', 'desc'));
   const querySnapshot = await getDocs(q);
-  const dataDiv = document.getElementById('guestList');
+  const itemWrap = document.getElementById('guestList');
   querySnapshot.forEach((doc) => {
     const docData = doc.data();
-    const div = document.createElement('div');
-    div.textContent = `ID: ${doc.id}, Data: ${JSON.stringify(docData)}`;
-    div.innerHTML = `
-    
-      <p>이름: ${docData.name}</p>
-      <p>연락처(이메일): ${docData.email}</p>
-      <p>메세지: ${docData.message}</p>
-      <p>Timestamp: ${docData.timestamp.toDate().toString()}</p>
-      <hr>
+    const item = document.createElement('li');
+    item.classList.add('guest-item');
+    item.textContent = `ID: ${doc.id}, Data: ${JSON.stringify(docData)}`;
+    item.innerHTML = `
+      <div class="top-row">
+        <div class="guest">
+          <div class="portrait">초상화 사진</div>
+          <div class="name">
+            <a href="mailto:${docData.email}">${docData.name}</a><br />
+            <span class="from">from <br /> ${docData.from}</span>
+          </div>
+        </div>
+        <div class="message square-line">${docData.message}<span class="arrow"></span></div>
+      </div>
+      <div class="date">${docData.timestamp.toDate().toString()}</div>
     `;
-    dataDiv.appendChild(div);
+    itemWrap.appendChild(item);
   });
 }
 
-// fetchAndDisplayData();
+fetchAndDisplayData();
 
 
 document.getElementById('guestForm').addEventListener('submit', async (e) => {
@@ -36,12 +42,14 @@ document.getElementById('guestForm').addEventListener('submit', async (e) => {
   const name = document.getElementById('guestName').value;
   const email = document.getElementById('guestEmail').value;
   const message = document.getElementById('guestMessage').value;
+  const from = document.getElementById('guestFrom').value;
 
   try {
     const docRef = await addDoc(collection(db, 'guestbook'), {
       name,
       email,
       message,
+      from,
       timestamp: new Date()
     });
     alert('데이터가 성공적으로 저장되었습니다!');

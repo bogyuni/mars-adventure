@@ -53,18 +53,25 @@
       <h2>Guest book</h2>
 
       <article class="guestlist-wrap">
-        <ul id="guestList" class="guest-list">
-          <li class="guest-item">
-            <div class="guest-name">
-              <a href="mailto:${docData.email}">${docData.name}</a>
-              <span class="guest-from">${docData.from}</span>
+        <ul class="guest-list" id="guestList">
+          <!-- <li class="guest-item">
+            <div class="top-row">
+              <div class="guest">
+                <div class="portrait">초상화 사진</div>
+                <div class="name">
+                  <a href="mailto:${docData.email}">${docData.name}</a><br />
+                  <span class="from">from <br /> ${docData.from}</span>
+                </div>
+              </div>
+              <div class="message square-line">${docData.message}<span class="arrow"></span></div>
             </div>
-            <div class="guest-message">
-              ${docData.message}
-            </div>
-            <div class="guest-time">${docData.timestamp.toDate().toString()}</div>
-          </li>
+            <div class="date">${docData.timestamp.toDate().toString()}</div>
+          </li> -->
         </ul>
+        <button type="button" class="btn-guest-write square-line">
+          <span class="shadow"></span>
+          Write
+        </button>
       </article>
 
       <article class="guestform-wrap">
@@ -101,7 +108,7 @@
             <div class="col w-half">
               <div class="square-line">
                 <span class="shadow"></span>
-                <button type="button" class="btn">Book</button>
+                <button type="button" class="btn btn-guest-list">LIST</button>
               </div>
             </div>
             <div class="col w-half">
@@ -113,7 +120,6 @@
           </div>
         </form>
       </article>
-
     </div>
     <button class="square-line btn-close">
       <span class="shadow"></span>

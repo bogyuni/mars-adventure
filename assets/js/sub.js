@@ -32,10 +32,10 @@ function textInsert(data, lan) {
     aboutmeTable.append(tr);
   }
 
-  //
+  // 
   for (let key in guestfromData) {
     const opt = document.createElement('option');
-    opt.setAttribute('value', key);
+    opt.setAttribute('value', guestfromData[key]);
     opt.append(guestfromData[key]);
     guestfromSelect.append(opt);
     console.log(key);
