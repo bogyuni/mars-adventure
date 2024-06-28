@@ -15,7 +15,6 @@
 .popup.off {
   animation: openAboutme 1s ease 0s 1 reverse forwards;
 }
-
 .popup .popup-border {
   position: absolute;
   left: 10px;
@@ -59,7 +58,6 @@
   border-top: 0;
   border-bottom: 0;
 }
-
 .popup .inner {
   position: relative;
   width: calc(100% - 20px);
@@ -75,7 +73,6 @@
 .popup.on .inner > * {
   visibility: visible;
 }
-
 .popup .btn-close {
   position: absolute;
   right: 38px;
@@ -128,122 +125,7 @@
   width: 80px;
 }
 
-.guestform-wrap {
-  display: none;
-  padding: 20px 4px 4px;
-}
-.guestform-wrap .row {
-  gap: 24px;
-  margin-bottom: 36px;
-}
-.guestform-wrap .row .col {
-  width: 33.33%;
-}
-.guestform-wrap .row input,
-.guestform-wrap .row button,
-.guestform-wrap .row textarea,
-.guestform-wrap .row select {
+.guest-frame {
   width: 100%;
-  padding: 8px;
-  min-height: 48px;
-  border: 0;
-  vertical-align: top;
-}
-.guestform-wrap .row input:focus,
-.guestform-wrap .row textarea:focus {
-  outline: unset;
-}
-.guestform-wrap .row label {
-  position: absolute;
-  left: 0;
-  top: -24px;
-  font-size: 12px;
-  color: var(--sub-color);
-}
-.guestform-wrap .message-wrap {
-  width: 100%;
-}
-.guestform-wrap .message-wrap textarea {
-  height: 270px;
-}
-.guestform-wrap .btn {
-  background: none;
-  font-family: 'Micro';
-  font-size: 32px;
-  text-transform: uppercase;
-  color: var(--border-color);
-}
-#guestFrom option[value=""][disabled] {
-	display: none;
-}
-
-.guestlist-wrap {
-  position: relative;
   height: 87%;
-}
-.guestlist-wrap .guest-list {
-  height: 92%;
-  overflow: auto;
-}
-.guestlist-wrap .guest-item {
-  margin-bottom: 40px;
-}
-.guestlist-wrap .guest-item .top-row {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 8px;
-}
-.guestlist-wrap .guest-item .guest {
-  width: 100px;
-  word-wrap: break-word;
-}
-.guestlist-wrap .guest-item .portrait {
-  width: 100px;
-  height: 100px;
-  background-color: #ddd;
-  margin: 4px 0;
-}
-.guestlist-wrap .guest-item .from {
-  font-size: 12px;
-}
-.guestlist-wrap .guest-item .message {
-  width: 100%;
-  padding: 10px;
-  margin: 4px;
-  white-space: pre-line;
-}
-.guestlist-wrap .guest-item .message .arrow {
-  position: absolute;
-  top: 10px;
-  left: -20px;
-  width: 20px;
-  height: 20px;
-  border-top: 4px solid #000;
-  background-color: #fff;
-  background-image:
-    linear-gradient(0deg, #000 4px, transparent 4px),
-    linear-gradient(90deg, #000 4px, transparent 4px),
-    linear-gradient(180deg, #000 4px, transparent 4px),
-    linear-gradient(270deg, #000 4px, transparent 4px);
-  background-position:
-    0px 0px,
-    4px 4px,
-    8px 8px,
-    12px 12px;
-  background-repeat: no-repeat;
-  background-size: 4px 4px;
-}
-.guestlist-wrap .guest-item .date {
-  margin-left: 124px;
-}
-.guestlist-wrap .btn-guest-write {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  background: none;
-  font-family: 'Micro';
-  font-size: 20px;
-  text-transform: uppercase;
-  color: var(--border-color);
-  padding: 4px 14px;
 }

@@ -74,4 +74,4 @@ const fail = () => {
   alert("좌표를 받아올 수 없음");
 }
 
-// navigator.geolocation.getCurrentPosition(success, fail);
+navigator.geolocation.getCurrentPosition(success, fail);

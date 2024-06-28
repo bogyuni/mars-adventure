@@ -4,8 +4,8 @@ const portData = {
 	'portfolio': {
 		name: 'portfolio',
 		tit: 'Project Outputs',
-		cap: '회사나 프리로 진행한 프로젝트 산출물, 저장소의 오타 portpolio는 신경쓰지 말자.',
-		url: 'https://bogyuni.github.io/portpolio/',
+		cap: '회사나 프리로 진행한 프로젝트 산출물',
+		url: 'https://bogyuni.github.io/portfolio/',
 	},
 	'benchmarking': {
 		name: 'benchmarking',
@@ -23,7 +23,7 @@ const portData = {
 		name: 'doteditor',
 		tit: 'Dot Editor',
 		cap: '도트를 찍어서 픽셀 아트를 만드는 에디터, 이 홈페이지를 구성하기 위해 제작했다.',
-		url: 'https://bogyuni.github.io/DotEditor/',
+		url: 'https://bogyuni.github.io/dot-editor/',
 	},
 };
 

@@ -11,8 +11,8 @@ const userLanguage = (navigator.language === 'ko')? 'ko' : 'en';
 function textInsert(data, lan) {
   const aboutmeTable = document.querySelector('.aboutme-table');
   const aboutmeData = data.aboutme;
-  const guestfromSelect = document.querySelector('#guestFrom');
-  const guestfromData = data.guestfrom;
+  // const guestfromSelect = document.querySelector('#guestFrom');
+  // const guestfromData = data.guestfrom;
 
   // aboutme table set
   for (let key in aboutmeData) {
@@ -32,30 +32,26 @@ function textInsert(data, lan) {
     aboutmeTable.append(tr);
   }
 
-  // 
-  for (let key in guestfromData) {
-    const opt = document.createElement('option');
-    opt.setAttribute('value', guestfromData[key]);
-    opt.append(guestfromData[key]);
-    guestfromSelect.append(opt);
-    console.log(key);
-  }
+  // guestbook from data insert
+  // for (let key in guestfromData) {
+  //   const opt = document.createElement('option');
+  //   opt.setAttribute('value', key);
+  //   opt.append(guestfromData[key]);
+  //   guestfromSelect.append(opt);
+  // }
 
 }
 
-
 // 본문의 문구 데이터 불러오기
-fetch('./assets/tabledata.json')
+fetch('./assets/textdata.json')
   .then(response => {
     if (!response.ok) {
         throw new Error('Network response was not ok ' + response.statusText);
     }
     return response.json();
   })
-  .then(tabledata => {
-    // console.log(tabledata[userLanguage]);
-
-    textInsert(tabledata[userLanguage], userLanguage);
+  .then(data => {
+    textInsert(data[userLanguage], userLanguage);
   })
   .catch(error => {
     console.error('tabledata error:', error);
