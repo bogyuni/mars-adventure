@@ -3,7 +3,7 @@
     "aboutme": {
       "name": {
         "title": "이름",
-        "data": "서보균 - 맥주소년"
+        "data": "서보균"
       },
       "age": {
         "title": "나이",
@@ -30,13 +30,14 @@
         "data": ["HTML5", "CSS3", "SCSS", "JavaScript", "TypeScript", "jQuery", "Ajax", "React", "Vue.js", "Vuetify", "SVN", "Git", "Cafe24", "firebase"]
       }
     },
-    "guestfrom": ["발레스 마리네리스", "아람 카오스", "타르시스 고원", "올림푸스 몬스", "북극", "헬라스 분지", "남부 고지대", "남극", "베크렐 크레이터", "바스티타스 보레알리스", "게일 크레이터", "아라비아 테라", "알바 몬스", "녹티스 라비린투스", "이스메니우스 라쿠스", "시도니아", "크리세 플라니티아", "빅토리아 크레이터", "노아키스 테라", "엘리시움 플라니티아", "카세이 발리스", "아우레움 카오스", "칸도르 카스마", "메리디아니 플라눔", "아르시아 몬스", "고르고눔 카오스", "시르티스 메이저 플라눔", "유토피아 플라니티아", "아르기레 플라니티아", "아레스 발리스", "카프리 멘사", "닐리 포사", "레울 발리스"]
+    "guestfrom": ["발레스 마리네리스", "아람 카오스", "타르시스 고원", "올림푸스 몬스", "북극", "헬라스 분지", "남부 고지대", "남극", "베크렐 크레이터", "바스티타스 보레알리스", "게일 크레이터", "아라비아 테라", "알바 몬스", "녹티스 라비린투스", "이스메니우스 라쿠스", "시도니아", "크리세 플라니티아", "빅토리아 크레이터", "노아키스 테라", "엘리시움 플라니티아", "카세이 발리스", "아우레움 카오스", "칸도르 카스마", "메리디아니 플라눔", "아르시아 몬스", "고르고눔 카오스", "시르티스 메이저 플라눔", "유토피아 플라니티아", "아르기레 플라니티아", "아레스 발리스", "카프리 멘사", "닐리 포사", "레울 발리스"],
+    "myself": "안녕하세요. \n 저는 웹에이젼시를 다니며 다양한 프로젝트를 경험해온 서보균입니다. \n\n 과거에는 웹접근성 인증을 얻기 위한 프로젝트나, 당시 유행하던 반응형 웹을 만들고 앱개발에도 참여하며 웹퍼블리싱 업무를 주로 맡았습니다. \n 프로젝트를 진행하면서 언제나 일정과 욕심 사이에서 힘들었지만, 새롭게 익힌 기술을 적용하고 기존 코드들을 리팩토링 해 나가는 과정은 무척 즐거웠습니다. \n 특히 백엔드 개발자 분들과 협업 하면서 다양한 조건에 맞는 코딩 스타일을 익혔으며, 서버사이드에 대한 지식을 많이 얻었습니다. \n\n 엔서스랩에서 근무했을 때는 AngularJS와 TypeScript를 활용하여 SPA형식의 프로젝트 위주로 작업을 하였으며, \n 사내의 수 많은 개발자 분들과 함께 코드리뷰와 공유를 통한 질적 성장을 추구하였습니다. \n\n 코너크리에이티브 재직시에는 관리자로서 실장직을 역임하며, 개발팀을 운영하고 인력 관리와 함께 새로운 트렌드를 쫓기 위해 노력하였습니다. \n 프론트엔드의 기술만으로는 부족함을 느껴 백엔드에 많은 관심을 가지고 있으며, React를 요구하는 프로젝트 수요에 맞춰 추가적으로 공부하고 있습니다. \n\n 텔레파씨 근무할 때는 다양한 쇼핑몰 플랫폼을 경험하며 운영 노하우를 쌓았으며, \n PHP 사이트 운영을 하고 간단한 백엔드 업무를 수행하였습니다. \n\n 프레임브레이스 소속의 협력인력과 프리랜서로 활동하며 클라이언트의 요구에 맞춰 프로젝트를 진행하였고, \n 현재는 현대카드 내부 프로젝트를 진행하면서 React와 Vue를 활용한 프론트엔드를 수행하고, PL직을 역임하고 있습니다."
   },
   "en": {
     "aboutme": {
       "name": {
         "title": "Name",
-        "data": "Bogyun, Seo - Beerboy"
+        "data": "Bogyun, Seo"
       },
       "age": {
         "title": "Age",
@@ -44,11 +45,11 @@
       },
       "area": {
         "title": "Area",
-        "data": "Seoul, S.Korea"
+        "data": "Seoul, South Korea"
       },
       "career": {
         "title": "Career",
-        "data": "13 Y"
+        "data": "13 Year"
       },
       "email": {
         "title": "Email",
@@ -63,6 +64,8 @@
         "data": ["HTML5", "CSS3", "SCSS", "JavaScript", "TypeScript", "jQuery", "Ajax", "React", "Vue.js", "Vuetify", "SVN", "Git", "Cafe24", "firebase"]
       }
     },
-    "guestfrom": ["Valles Marineris", "Aram Chaos", "Tarsis Plateau", "Olympus Mons", "North Pole", "hellas basin", "southern highlands", "Antarctica", "Becquerel Crater", "Bastitas Borealis", "gale crater", "arabian terra", "Alba Mons", "Noctis Labyrinthus", "Ismenius Lacus", "Sidonia", "chryse planitia", "Victoria Crater", "Noah Keith Terra", "Elysium Planitia", "Casei Balis", "Aureum Chaos", "Kandor Chasma", "Meridiani Planum", "Arsia Mons", "Gorgonum Chaos", "Sirtis major planum", "Utopia Planitia", "Argire Planitia", "Ares Balis", "Capri Mensa", "Nili Posa", "Léul Balis"]
+    "guestfrom": ["Valles Marineris", "Aram Chaos", "Tarsis Plateau", "Olympus Mons", "North Pole", "hellas basin", "southern highlands", "Antarctica", "Becquerel Crater", "Bastitas Borealis", "gale crater", "arabian terra", "Alba Mons", "Noctis Labyrinthus", "Ismenius Lacus", "Sidonia", "chryse planitia", "Victoria Crater", "Noah Keith Terra", "Elysium Planitia", "Casei Balis", "Aureum Chaos", "Kandor Chasma", "Meridiani Planum", "Arsia Mons", "Gorgonum Chaos", "Sirtis major planum", "Utopia Planitia", "Argire Planitia", "Ares Balis", "Capri Mensa", "Nili Posa", "Léul Balis"],
+    "myself": "hello. \n My name is Bo-gyun, Seo. and I have worked at a web agency and have experience working on various projects. \n\n In the past, I was mainly responsible for web publishing, including projects to obtain web accessibility certification, creating responsive webs that were popular at the time, and participating in app development. \n Although it was always difficult to balance schedule and greed while working on a project, the process of applying newly acquired skills and refactoring existing codes was very enjoyable. \n In particular, I learned coding styles suited to various conditions by collaborating with back-end developers and gained a lot of knowledge about server-side. \n\n When I worked at 'Answers Lab', I mainly worked on SPA-type projects using AngularJS and TypeScript. \n We pursued qualitative growth through code review and sharing with countless developers within the company. \n\n While working at 'Coner Creative', I served as a manager and worked as a general manager, running a development team, managing human resources, and trying to chase new trends. \n I feel that front-end technology alone is insufficient, so I am very interested in back-end and am studying additionally to meet the needs of projects that require React. \n\n While working at 'Telepasee', I gained operational know-how by experiencing various shopping mall platforms. \n I operated a PHP site and performed simple backend tasks. \n\n Working as a freelancer with Frame Brace's collaborators, we carried out projects according to the client's needs. \n Currently, I am working on an internal project at Hyundai Card, performing front-end work using React and Vue, and holding a PL position."
+
   }
 }

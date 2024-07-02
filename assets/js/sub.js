@@ -11,6 +11,9 @@ const userLanguage = (navigator.language === 'ko')? 'ko' : 'en';
 function textInsert(data, lan) {
   const aboutmeTable = document.querySelector('.aboutme-table');
   const aboutmeData = data.aboutme;
+  const myself = document.querySelector('.aboutme-myself');
+  const myselfData = data.myself;
+  myself.append(myselfData);
   // const guestfromSelect = document.querySelector('#guestFrom');
   // const guestfromData = data.guestfrom;
 

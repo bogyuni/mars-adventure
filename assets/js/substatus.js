@@ -35,8 +35,9 @@ function changeOver(direct, subname) {
   // 현재 주인공 객체의 위치값을 받아옴
   const heroBSWidth = heroBS.offsetWidth;
   const heroBSHeight = heroBS.offsetHeight;
-  const heroBSLeft = heroBS.getBoundingClientRect().left + (heroBSWidth / 2);
-  const heroBSTop = heroBS.getBoundingClientRect().top + (heroBSHeight / 2);
+  // rover는 5px dot으로 새로 만들어야함. 임시로 1/2 스케일 적용
+  const heroBSLeft = heroBS.getBoundingClientRect().left + (heroBSWidth / 4);
+  const heroBSTop = heroBS.getBoundingClientRect().top + (heroBSHeight / 4);
   // 화면전환 원의 사이즈 지정, 사이즈는 화면 가로세로 비율 중 큰 사이즈의 2.3배로 지정,
   // 이렇게 해야 큰 쪽(가로든 세로든) 화면 끝까지 커버가 가능함
   const overCircleDiameter = Math.round(winHighRatioSize * 2.3);

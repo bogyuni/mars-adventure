@@ -99,7 +99,15 @@
   color: var(--main-color);
   font-weight: bold;
 }
+.popup-content {
+  overflow: auto;
+  height: 87%;
+}
 
+.aboutme-myself {
+  white-space: pre-line;
+  margin-bottom: 28px;
+}
 .aboutme-table .skill-td span {
   white-space: nowrap;
   display: inline-block;
@@ -123,6 +131,10 @@
 .aboutme-table th {
   text-align: left;
   width: 80px;
+  padding-left: 0;
+}
+.aboutme-table td {
+  padding-right: 0;
 }
 
 .guest-frame {

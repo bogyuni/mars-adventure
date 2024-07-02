@@ -123,6 +123,7 @@
   position: absolute;
   left: 200px;
   bottom: var(--ground-h);
+  /* rover는 5px dot으로 새로 만들어야함. 임시로 1/2 스케일 적용 */
   transform: scale(0.5);
   transform-origin: bottom;
   visibility: hidden;
