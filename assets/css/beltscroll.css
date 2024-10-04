@@ -36,8 +36,8 @@
   position: absolute;
   left: 0;
   top: 0;
-  min-width: 200%;
-  width: 3100px;
+  /* min-width: 200%; */
+  width: 4000px;
   height: 100%;
   overflow: hidden;
   transition: left 0.2s ease;
