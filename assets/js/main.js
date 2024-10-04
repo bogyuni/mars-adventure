@@ -27,8 +27,8 @@ pixelDataLoad(pixelData.rocketObj, rocket);
  */
 function createMainCanvas(objDom, canvasWidth, canvasHeight, objColor, objType) {
   const renderer = new THREE.WebGLRenderer({ canvas: objDom, alpha: true, premultipliedAlpha: false, });
-  const cameraWidth = canvasWidth / 2; // canvas width
-  const cameraHeight = canvasHeight / 2; // canvas height
+  const cameraWidth = canvasWidth; // canvas width
+  const cameraHeight = canvasHeight; // canvas height
   const fov = 70;  // field of view(시야각) 수직면 X도로 설정
   const aspect = cameraWidth / cameraHeight; // 비율
   const near = 0.1; // near 와 far 는 카메라 앞에 렌더링되는 공간 범위를 지정하는 요소다.
@@ -107,7 +107,7 @@ let marsTop = 0;
 
 window.onload = () => {
   earthTop = earth.offsetTop;
-  earthStart = earthTop - winHeight;
+  earthStart = earthTop - (winHeight * 1.5);
   marsTop = mars.offsetTop;
 } // onload
 
@@ -123,22 +123,34 @@ window.onscroll = (e) => {
   backSpace.style.backgroundPosition = 'center -' + (window.scrollY/8)+'px';
 
   // earth min scale
-  earthSetScale = window.scrollY > earthStart ? (window.scrollY / 1000) + 0.1 : 0.1;
+  earthSetScale = window.scrollY > earthStart ? (window.scrollY / 2000) + 0.1 : 0.1;
   // earth max scale
-  earthSetScale = earthSetScale > 1.3 ? 1.3 : earthSetScale;
-  earth.style.transform = 'scale('+ earthSetScale +')';
+  earthSetScale = earthSetScale > 2 ? 2 : earthSetScale;
+  earth.style.transform = 'scale('+ earthSetScale +') translateY('+ window.scrollY * 0.30 +'px)';
 
-  iss.style.transform = 'translate('+ (window.scrollY/2 - 200) +'px, -' + (window.scrollY/3) + 'px)';
+  iss.style.transform = 'translate('+ (window.scrollY - 1800) +'px, -' + (window.scrollY / 8) + 'px)';
 
-  if (window.scrollY > (earthTop - 200) ) {
+  if (window.scrollY > (earthTop + 1400) ) {
     rocket.classList.add('on');
   } else {
     rocket.classList.remove('on');
   }
 
-  if (window.scrollY > marsTop - 300) {
+  if (window.scrollY > marsTop - 500) {
     rocket.classList.add('in');
   } else {
     rocket.classList.remove('in');
   }
+
+  console.log(window.scrollY);
 } // onscroll
+
+
+
+// lenis scroll
+const lenis = new Lenis();
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);

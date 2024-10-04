@@ -14,7 +14,8 @@ const aboutme = document.querySelector('.sub-obj.aboutme'); // 구조물 - 어�
 const portfolio = document.querySelector('.sub-obj.portfolio'); // 구조물 - 포트폴리오
 const guest = document.querySelector('.sub-obj.guest') // 구조물 - 컨택어스
 const aboutmePopup = document.querySelector('.aboutme-popup'); // 팝업 - 어바웃미
-const guestPopup = document.querySelector('.guest-popup'); // 팝업 - 어바웃미
+const guestPopup = document.querySelector('.guest-popup'); // 팝업 - 게스트북
+const guidePopup = document.querySelector('.guide-popup'); // 팝업 - 가이드
 
 // 픽셀 로드
 const pixelList = [
@@ -39,7 +40,8 @@ pixelList.forEach((el) => {
 function groundRendering() {
   const groundWidth = ground.offsetWidth;
   const groundTileWidth = 120;
-  const tileLegth = Math.round(groundWidth / groundTileWidth);
+  const tileLegth = Math.round(groundWidth / groundTileWidth) + 2;
+  console.log(tileLegth);
   for (let i = 0; i < tileLegth; i++) {
     pixelDataLoad(pixelData.ground, ground);
   }
@@ -145,7 +147,7 @@ function beltscrollKeyDown(key) {
     }
     // 주인공 현재 위치값이 화면 크기의 75% 보다 크고, 1차 배경의 위치값이 전체맵크기에서 화면 크기를 뺀 값보다 작다면 (1차배경이 화면 우측 끝에 도달하지 않았다면),
     // 주인공은 움직이지 않고, 배경이 움직임
-    else if (heroBSX >= winWidth * 0.75 && zLine1X < mapWidth - winWidth) {
+    else if (heroBSX >= winWidth * 0.75 && zLine1X < mapWidth - (winWidth + 50)) {
       moveBackground('right');
     } else {
       console.log('화면 우측 끝에 도달함');
@@ -161,6 +163,7 @@ function beltscrollKeyDown(key) {
   else if (key === 'ArrowDown' || key === 'Escape') {
     aboutmeClose();
     guestClose();
+    guideClose();
   }
 
   heroBS.style.left = heroBSX+'px';
@@ -182,6 +185,11 @@ function guestClose() {
   guestPopup.classList.remove('on');
   popupCheck = false;
 }
+// guide 창닫기
+function guideClose() {
+  guidePopup.classList.remove('on');
+  popupCheck = false;
+}
 
 // 창닫기 버튼 누르면 팝업창 닫음
 const popupCloseBtn = document.querySelectorAll('.popup .btn-close');
@@ -189,6 +197,7 @@ popupCloseBtn.forEach(btn => {
   btn.onclick = () => {
     aboutmeClose();
     guestClose();
+    guideClose();
   };
 })
 

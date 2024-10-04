@@ -109,7 +109,7 @@
   background-color: red;
 }
 .sub-obj.guest {
-  left: 2600px;
+  left: 3120px;
   width: 300px;
   height: 100px;
   background-color: cadetblue;
@@ -150,18 +150,6 @@
 }
 #beltscroll .hero.move.right .wheel {
   animation: wheelMove 0.2s ease 0s infinite reverse ;
-}
-
-.guide-popup {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  border: 2px dashed #999;
-  background-color: #fff;
-  padding: 2em;
-  text-align: center;
-  transform: translate(-50%, -50%);
-  display: none;
 }
 
 .weather-wrap {

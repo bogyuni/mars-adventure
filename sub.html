@@ -35,6 +35,38 @@
 
   <div class="weather-wrap" id="weather"></div>
 
+  <div class="popup on guide-popup">
+    <div class="popup-border"></div>
+    <div class="inner">
+      <h2>Welcome!</h2>
+      <p class="desc">
+        화성에 착륙한 것을 환영합니다.<br>
+        이곳에서는 마우스보다 키보드를 사용해 주세요.<br>
+        팝업은 닫기버튼 클릭으로 닫을 수 있습니다.<br>
+        
+      </p>
+      <dl class="guide-list">
+        <dt>⇦</dt>
+        <dd>: Left move, 탐사로보가 왼쪽으로 이동합니다.</dd>
+        <dt>⇨</dt>
+        <dd>: Right move, 탐사로보가 오른쪽으로 이동합니다.</dd>
+        <dt>⇧</dt>
+        <dd>: Move in, 오브젝트를 작동합니다. 팝업이 열리거나, 기지 안으로 이동합니다.</dd>
+        <dt>⇩</dt>
+        <dd>: Out, Close, 팝업을 닫습니다.</dd>
+        <dt>spacebar</dt>
+        <dd>: arrow up 키와 동일하게 오브젝트를 작동시킵니다.</dd>
+        <dt>ESC</dt>
+        <dd>: arrow down 키와 동일하게 팝업을 닫습니다.</dd>
+      </dl>
+      <p>현재 사이트는 <strong>60%</strong> 정도 완료되었습니다.</p>
+    </div>
+    <button class="square-line btn-close">
+      <span class="shadow"></span>
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
   <div class="popup aboutme-popup">
     <div class="popup-border"></div>
     <div class="inner">
@@ -99,16 +131,13 @@
       <h3 id="portPopTit">Portfolio Title</h3>
       <p id="portPopCap">Caption</p>
       <a id="portPopLink" href="" target="_blank">Move to link</a>
-      <span>* Enter를 누르면 새창으로 이동합니다.</span>
+      <p>
+        * Enter 키를 누르면 새창으로 이동합니다.<br>
+        * ESC 키를 누르면 팝업을 닫습니다.
+      </p>
     </div>
   </div>
 </main>
-
-<aside class="guide-popup">
-  ⇦ : Left move,<br>
-  ⇨ : Right move,<br>
-  ⇧ : Move in
-</aside>
 
 <aside class="weather-popup">
   <p id="weatherData"></p>
