@@ -7,8 +7,11 @@ const landingTime = 2200;
 // 사용자 브라우저 언어 환경
 const userLanguage = (navigator.language === 'ko')? 'ko' : 'en';
 
-
-function textInsert(data, lan) {
+/**
+ * 다국어 관리를 위한 json 텍스트 삽입 함수
+ * @param {*} data 
+ */
+function textInsert(data) {
   const aboutmeTable = document.querySelector('.aboutme-table');
   const aboutmeData = data.aboutme;
   const myself = document.querySelector('.aboutme-myself');
@@ -54,17 +57,50 @@ fetch('./assets/textdata.json')
     return response.json();
   })
   .then(data => {
-    textInsert(data[userLanguage], userLanguage);
+    textInsert(data[userLanguage]);
   })
   .catch(error => {
     console.error('tabledata error:', error);
   });
 
+// 쿠키 설정 함수
+function setCookie(name, value, days) {
+  const date = new Date();
+  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // days 값을 ms로 변환
+  const expires = 'expires=' + date.toUTCString();
+  document.cookie = name + '=' + value + ';' + expires + ';path=/';
+}
+// 쿠키 가져오기 함수
+function getCookie(name) {
+  const cookieArr = document.cookie.split(';');
+  for (let i = 0; i < cookieArr.length; i++) {
+    const cookie = cookieArr[i].trim();
+    if (cookie.indexOf(name + "=") === 0) {
+      return cookie.substring((name.length + 1));
+    }
+  }
+  return null;
+}
 
 window.addEventListener('DOMContentLoaded', () => {
-  console.log('DOM content onload');
-});
+  console.log('DOM content loaded');
 
+  // 가이드 팝업, 쿠키 설정
+  const guidePopup = document.querySelector('.guide-popup');
+  const closeGuide = document.querySelector('.guide-popup .btn-close');
+  const guideToday = document.getElementById('guideToday');
+
+  const noShowGuide = getCookie('noShowGuide');
+  if (!noShowGuide) {
+    guidePopup.classList.add('on');
+  }
+
+  closeGuide.addEventListener('click', function() {
+    if (guideToday.checked) {
+      setCookie('noShowGuide', true, 1); // 쿠키를 하루 동안 저장
+    }
+  });
+});
 
 window.onkeydown = (e) => {
   if (subStatus.key === true) {
@@ -93,6 +129,8 @@ window.onload = () => {
   // 페이지 로드 전에  display none(예:css) 처리하면, 화면의 크기와 같은 값들을 불러올 수 없다.
   document.querySelector('#cellmove').style.display = 'none';
 
+  document.querySelector('body').classList.remove('sub-loading');
+
   if (subStatus.name === 'beltscroll') {
     // 로켓이 랜딩되도록 클래스 부여
     document.querySelector('#rocket').classList.add('on');
@@ -106,8 +144,3 @@ window.onload = () => {
     console.log('Cell move');
   }
 };
-
-// 가이드 팝업 제작 중
-// document.querySelector('.guide-popup').addEventListener('click', function () {
-//   this.remove();
-// });

@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="./assets/css/cellmove.css">
   <script src="./assets/js/common.js"></script>
 </head>
-<body>
+<body class="sub-loading">
 <main class="sub-wrap" id="beltscroll">
   <div class="viewport">
     <div class="z-line-back back2"></div>
@@ -35,7 +35,7 @@
 
   <div class="weather-wrap" id="weather"></div>
 
-  <div class="popup on guide-popup">
+  <div class="popup guide-popup">
     <div class="popup-border"></div>
     <div class="inner">
       <h2>Welcome!</h2>
@@ -61,6 +61,10 @@
       </dl>
       <p>현재 사이트는 <strong>60%</strong> 정도 완료되었습니다.</p>
     </div>
+    <label class="today-cookie">
+      오늘 하루 열지 않기
+      <input type="checkbox" id="guideToday">
+    </label>
     <button class="square-line btn-close">
       <span class="shadow"></span>
       <i class="fa-solid fa-xmark"></i>
@@ -145,6 +149,12 @@
 
 <div class="changeover">
   <div class="circle" id="overCircle"></div>
+</div>
+
+<div class="loading">
+  <div class="txt-box">
+    now loading<span class="dot-con"><i>.</i><i>.</i><i>.</i><i>.</i></span>
+  </div>
 </div>
 
 <script src="./assets/js/sub.js" type="module"></script>

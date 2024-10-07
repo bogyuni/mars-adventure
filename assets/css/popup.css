@@ -154,3 +154,9 @@
 .guide-popup .guide-list dd {
   width: 78%;
 }
+.guide-popup .today-cookie {
+  position: absolute;
+  right: 110px;
+  top: 52px;
+  cursor: pointer;
+}

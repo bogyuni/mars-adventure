@@ -48,3 +48,47 @@
   transition: border 1.2s ease-out;
 }
 
+.sub-loading {
+  overflow: hidden;
+}
+.sub-loading > * {
+  opacity: 0;
+}
+.sub-loading .loading {
+  opacity: 1 !important;
+  display: flex;
+}
+
+.loading {
+  position: fixed;
+  left:0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.loading .txt-box {
+  font-size: 122px;
+  font-family: 'Micro';
+  text-transform: uppercase;
+}
+.loading .dot-con i {
+  /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+  animation: loadingDot 1s ease infinite alternate;
+  /* animation-direction:alternate;
+  animation-fill-mode:backwards; */
+}
+.loading .dot-con i:nth-child(2) {animation-delay: 0.2s;}
+.loading .dot-con i:nth-child(3) {animation-delay: 0.4s;}
+.loading .dot-con i:nth-child(4) {animation-delay: 0.6s;}
+
+@keyframes loadingDot {
+  0% {opacity: 0;}
+  1% {opacity: 1;}
+  50% {opacity: 1;}
+  51% {opacity: 0;}
+  100% {opacity: 0;}
+}
