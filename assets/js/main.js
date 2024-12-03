@@ -10,7 +10,7 @@ const guideScroll = document.querySelector('.guide-scroll');
 const earth = document.querySelector('#earth');
 const mars = document.querySelector('#mars');
 const moon = document.querySelector('#moon');
-const iss = document.querySelector('#iss');
+const satellite = document.querySelector('#satellite');
 const rocket = document.querySelector('#rocket');
 
 pixelDataLoad(pixelData.rocketFire, rocket);
@@ -31,10 +31,10 @@ function createMainCanvas(objDom, canvasWidth, canvasHeight, objColor, objType) 
   const cameraHeight = canvasHeight; // canvas height
   const fov = 70;  // field of view(시야각) 수직면 X도로 설정
   const aspect = cameraWidth / cameraHeight; // 비율
-  const near = 0.1; // near 와 far 는 카메라 앞에 렌더링되는 공간 범위를 지정하는 요소다.
+  const near = 0.1; // near, far : 카메라 앞에 렌더링되는 공간 범위를 지정하는 요소
   const far = 5;
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-  camera.position.z = 2; // 카메라는 -Z 축 + Y 축, 즉 아래를 본다.
+  camera.position.z = 2; // 카메라는 -Z 축 + Y 축으로 아래를 보게한다
 
   let geometry = '';
   const radius = 1.1;
@@ -63,16 +63,15 @@ function createMainCanvas(objDom, canvasWidth, canvasHeight, objColor, objType) 
     });
   }
 
-  // Meterial 을 만들어 색을 지정한다. 색 지정은 CSS 처럼 hex 코드를 사용한다.
+  // Meterial을 만들어 색을 지정, 색 지정은 CSS 처럼 hex 코드를 사용
   // const material = new THREE.MeshPhongMaterial({ color: objColor, flatShading: true });
-  // 앞서 만든 물체와 색을 이용해 Mesh 를 만든다.
+  // 앞서 만든 물체와 색을 이용해 Mesh를 생성
   const sphere = new THREE.Mesh( geometry, material );
 
-  
-  const scene = new THREE.Scene(); // 이제 Scene 을 만든다.
-  scene.add( sphere ); //마지막으로 Scene 에 넣는다.
+  const scene = new THREE.Scene(); // Scene을 생성
+  scene.add( sphere ); // Scene에 삽입
 
-  // 애니메이션을 구현하기 위해 requestAnimationFrame 루프로 렌더링 함수를 호출한다.
+  // 애니메이션을 구현하기 위해 requestAnimationFrame 루프로 렌더링 함수를 호출
   function animate(time) {
     time *= 0.0001;  // convert time to seconds
     // sphere.rotation.x = time;
@@ -82,17 +81,17 @@ function createMainCanvas(objDom, canvasWidth, canvasHeight, objColor, objType) 
   }
   animate();
 
-  // 광원을 추가하여 그림자를 만들자.
+  // 광원을 추가하여 그림자 생성
   var ambientLight = new THREE.AmbientLight(0x404040);  // Soft white light
   scene.add(ambientLight);
   var directionalLight = new THREE.DirectionalLight(0xffffff, 1);
   directionalLight.position.set(5, 3, 5);
   scene.add(directionalLight);
-  // DirectionalLight 에 위치(position) 와 타깃(target) 속성이 있다.
+  // DirectionalLight에 위치(position)와 타깃(target) 속성이 있다.
   // 기본 값은 (0, 0, 0) 으로 position 을 (-1, 2, 4)로 설정해 약간 동서쪽으로 보낸다.
-  // target 은 기본값 (0, 0, 0) 그대로 두어 공간 중앙에 비춘다.
+  // target은 기본값 (0, 0, 0) 그대로 두어 공간 중앙에 비춘다.
 
-  // 이제 계단 현상을 없애보자.
+  // 계단 현상을 제거하기
   renderer.setSize(cameraWidth, cameraHeight, false);
   renderer.setPixelRatio(window.devicePixelRatio);
 }
@@ -100,18 +99,24 @@ createMainCanvas(earth, 500, 500, 0xaa8844, 'earth');
 createMainCanvas(moon, 300, 300, 0xaa8844, 'moon');
 createMainCanvas(mars, 600, 600, 0xaa8844, 'mars');
 
+// const earthTop = winHeight * 2; // earth의 offsetTop은 화면 크기의 2배 위치
 let earthTop = 0;
+const earthScaleMax = 1.6;
+const earthScaleStand = 0.0005;
 let earthStart = 0;
-let earthSetScale = 0;
+let earthScaleSet = 0;
+
+let satelliteStart = 0;
+
 let marsTop = 0;
 
 window.onload = () => {
-  earthTop = earth.offsetTop;
-  earthStart = earthTop - (winHeight * 1.5);
+  earthTop = document.querySelector('.earth-wrap').offsetTop - winHeight;
   marsTop = mars.offsetTop;
 } // onload
 
-window.onscroll = (e) => {
+
+window.onscroll = () => {
   if (window.scrollY > 10) {
     guideScroll.classList.add('scrolled');
     introBG.classList.add('scrolled');
@@ -119,30 +124,40 @@ window.onscroll = (e) => {
     guideScroll.classList.remove('scrolled');
     introBG.classList.remove('scrolled');
   }
-  mainWrap.style.backgroundPosition = 'center -' + (window.scrollY/18)+'px';
-  backSpace.style.backgroundPosition = 'center -' + (window.scrollY/8)+'px';
+  mainWrap.style.backgroundPosition = 'center -' + (window.scrollY / 18)+'px';
+  backSpace.style.backgroundPosition = 'center -' + (window.scrollY / 8)+'px';
 
-  // earth min scale
-  earthSetScale = window.scrollY > earthStart ? (window.scrollY / 2000) + 0.1 : 0.1;
-  // earth max scale
-  earthSetScale = earthSetScale > 2 ? 2 : earthSetScale;
-  earth.style.transform = 'scale('+ earthSetScale +') translateY('+ window.scrollY * 0.30 +'px)';
+  earthStart = window.scrollY - earthTop <= 0 ? 0 : window.scrollY - earthTop;
+  earthScaleSet = earthStart * earthScaleStand > earthScaleMax ? earthScaleMax : earthStart * earthScaleStand;
+  earth.style.transform = 'scale('+ earthScaleSet +')';
 
-  iss.style.transform = 'translate('+ (window.scrollY - 1800) +'px, -' + (window.scrollY / 8) + 'px)';
+  console.log(
+    earthTop,
+    window.scrollY,
+    earthStart,
+    earthStart - (winHeight * 2),
 
-  if (window.scrollY > (earthTop + 1400) ) {
+  )
+
+  // satellite 이동
+  satelliteStart = (earthStart - (winHeight * 3)) * 0.2;
+  satellite.style.left = satelliteStart +'%';
+  satellite.style.width = 160 - satelliteStart + 'px';
+
+  // 로켓 온
+  if (window.scrollY > earthTop + (winHeight * 4)) {
     rocket.classList.add('on');
   } else {
     rocket.classList.remove('on');
   }
 
-  if (window.scrollY > marsTop - 500) {
-    rocket.classList.add('in');
-  } else {
-    rocket.classList.remove('in');
-  }
+  // 로켓 오프
+  // if (window.scrollY > marsTop - 500) {
+  //   rocket.classList.add('in');
+  // } else {
+  //   rocket.classList.remove('in');
+  // }
 
-  console.log(window.scrollY);
 } // onscroll
 
 

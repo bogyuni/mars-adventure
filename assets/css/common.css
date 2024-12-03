@@ -20,7 +20,7 @@
   --sub-color: #a35914;
   --border-color: #69200a;
   --line-color: #212529;
- }
+}
 
 .micro {
   font-family: 'Micro', sans-serif;
@@ -42,10 +42,7 @@ ol, ul, li {
 html, body {
   height:100%;
 }
-body {
-  font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
-}
-input, textarea {
+body, input, textarea {
   font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
 }
 button {

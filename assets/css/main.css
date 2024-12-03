@@ -4,12 +4,9 @@
 @import url(./animation.css);
 
 .main-wrap {
-	overflow: hidden;
 	position: relative;
 	color: #fff;
-	min-height: 100%;
-	height: 690vh;
-	height: 970vh;
+	min-height: 100vh;
 	background-image: url(../img/bg_stars.jpeg);
 	background-repeat: repeat;
 	background-position: center 0px;
@@ -17,6 +14,7 @@
 	background-attachment: fixed;
 	transition: background 0.2s ease;
 }
+
 .back-space {
 	position: absolute;
 	left:0;
@@ -33,23 +31,28 @@
 }
 
 .intro {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	margin-bottom: 200vh;
+}
+.intro .tit-wrap {
 	position: absolute;
 	left:50%;
 	top:50vh;
 	transform: translate(-50%, -50%);
 	text-align: center;
 }
-.intro h1 {
+.intro .title {
 	font-family: "Micro";
 	font-size: 100px;
 }
-/* 바둑판 격자 무늬 */
-.intro-bg {
+.intro-bg { /* 바둑판 격자 무늬 */
 	position: absolute;
 	left:0;
 	top:0;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	background-image:
 		linear-gradient(rgba(255,255,255,.07) 2px, transparent 2px),
 		linear-gradient(90deg, rgba(255,255,255,.07) 2px, transparent 2px),
@@ -62,12 +65,11 @@
 .intro-bg.scrolled {
 	opacity: 0;
 }
-
 .guide-scroll {
 	position: absolute;
 	left:50%;
-	top:100vh;
-	transform: translate(-50%, -400%);
+	bottom:0;
+	translate: -50% -50px;
 	text-align: center;
 	transition: opacity 1s ease;
 }
@@ -97,40 +99,126 @@
 	animation: guide_scroll 1.4s ease 0.4s infinite;
 }
 
-.main-obj {
-	position: absolute;
-}
-.main-obj img {
-	width: 100%;
+.earth-wrap {
+	height: 500vh;
+	position: relative;
+	margin-bottom: 100vh;
+	border:1px solid red;
 }
 #earth {
-	left: 30%;
-	top: 150vh;
+	position: sticky;
+	left: 50%;
+	top: 50%;
+	transform: scale(0);
+	translate: -50% -50%;
 }
-#iss {
-	left: 10%;
-	top: 280vh;
+.satellite-wrap {
+	position: absolute;
+	left: 0;
+	top: 200vh;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	border:1px solid red;
+}
+#satellite {
+	position: absolute;
+	left: -10%;
+	top: 60%;
 	width: 100px;
-	transition: transform 0.1s ease;
+	transition: all 0.1s ease;
+
+}
+
+.moon-wrap {
+	position: relative;
+	margin-bottom: 400vh;
 }
 #moon {
-	right: 20%;
-	top: 600vh;
+	position: relative;
+	left: 70%;
+	translate: -50% 0;
+}
+.mars-wrap {
+	position: relative;
+	height: 100vh;
 }
 #mars {
-	left: 20%;
-	top: 900vh;
+	position: absolute;
+	top: 50%;
+	left: 30%;
+	translate: -50% -50%;
+}
+
+@keyframes border-angle-rotate {
+  from { --border-angle: 0deg; }
+  to { --border-angle: 360deg; }
+}
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+.main-gate {
+	position: absolute;
+	left: 55%;
+	bottom: 50vh;
+	padding: 8px;
+	--border-angle: 0deg;
+  animation: border-angle-rotate 2s infinite linear;
+}
+.main-gate::before,
+.main-gate::after {
+	content: "";
+	display: block;
+	position: absolute;
+	border-radius:8px;
+	inset: 4px;
+	animation: border-angle-rotate 4s infinite linear;
+}
+.main-gate::before {
+	inset: 0;
+	/* background: repeating-conic-gradient(
+		from var(--border-angle), hsl(190deg 20% 10%), hsl(190deg 20% 10%) 30deg, oklch(100% 50% 190deg) calc(360deg / 6)
+	) border-box; */
+	background: repeating-conic-gradient(
+		from var(--border-angle), black, black 0deg, oklch(100% 40% 50deg) calc(360deg / 6)
+	) border-box;
+}
+/* .main-gate::after {
+	background: repeating-conic-gradient(
+		from calc(var(--border-angle) * -1), oklch(100% 40% 50deg), black 60deg
+	) border-box;
+} */
+.main-gate a {
+	font-family: "Micro";
+	font-size: 100px;
+	text-decoration: none;
+	color: #bf7758;
+	line-height: 0.7;
+	background-color: #000;
+	border-radius: 8px;
+	display: block;
+	position: relative;
+	z-index: 1;
+	padding: 12px 24px;
+}
+
+
+.rocket-wrap {
+	position: fixed;
+	left: 50%;
+	top:50%;
+	border:1px solid red;
 }
 #rocket {
 	z-index: 2;
-	position: fixed;
-	left:50%;
 	top:0;
 	transform: scale(0) rotate(0deg) translate(-2010px, 1870px);
 	transition: all 1.2s cubic-bezier(.62,.16,.13,1.01);
 }
 #rocket.on {
-	transform: scale(0.4) rotate(180deg) translate(-100px, -710px);
+	transform: scale(1) rotate(180deg) translate(0, 0);
 }
 #rocket.in {
 	transition-duration: 2s;
@@ -138,23 +226,7 @@
 	left: 30%;
 	transform: scale(0.0) rotate(595deg) translate(-5000px, -400px);
 }
-.rocket-obj {
+/* .rocket-obj {
 	transform: scaleX(-1);
-}
+} */
 
-
-.main-gate {
-	position: absolute;
-	left: 55%;
-	bottom: 50vh;
-	border: 10px dashed #bf7758;
-	padding: 1em 3em;
-	border-radius: 30px;
-}
-.main-gate a {
-	font-family: "Micro";
-	font-size: 100px;
-	text-decoration: none;
-	color: #bf7758;
-	line-height: 0.7;
-}

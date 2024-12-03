@@ -12,29 +12,38 @@
 	<main class="main-wrap">
 		<div class="back-space"></div>
 
-		<div class="intro-bg"></div>
 		<section class="intro">
-			<h1>MARS ADVENTURE</h1>
-			<p class="caption">BeerBoy's Portfolio site</p>
+			<div class="intro-bg"></div>
+			<div class="tit-wrap">
+				<h1 class="title">MARS ADVENTURE</h1>
+				<p class="caption">BeerBoy's Portfolio site</p>
+			</div>
+			<div class="guide-scroll">SCROLL DOWN</div>
 		</section>
 
-		<article class="guide-scroll">SCROLL DOWN</article>
+		<article class="earth-wrap">
+			<canvas id="earth"></canvas>
+			<div class="satellite-wrap">
+				<img id="satellite" src="./assets/img/satellite_dot.png" alt="artificial satellite">
+			</div>
+		</article>
 
-		<canvas id="earth" class="main-obj"></canvas>
+		<article class="moon-wrap">
+			<canvas id="moon"></canvas>
+		</article>
 
-		<div id="iss" class="main-obj">
-			<img src="./assets/img/iss_dot.png" alt="">
+		<article class="mars-wrap">
+			<canvas id="mars"></canvas>
+			<div class="main-gate"><a href="./sub.html">WELCOME<br> TO MARS</a></div>
+		</article>
+
+		<div class="rocket-wrap">
+			<div id="rocket"></div>
+			<div class="comment-box">
+				<p class="p1">지구를 벗어났다. 오버.</p>
+			</div>
 		</div>
 
-		<canvas id="moon" class="main-obj"></canvas>
-
-		<canvas id="mars" class="main-obj"></canvas>
-
-		<div id="rocket" class="main-obj"></div>
-
-		<div class="main-gate">
-			<a href="./sub.html">WELCOME<br> TO MARS</a>
-		</div>
 	</main>
 
 	<script type="importmap">
