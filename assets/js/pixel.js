@@ -2,8 +2,8 @@ const pixelRoot = './assets/pixel/';
 
 const pixelData = {
   // Hero
-  rocketFire: 'rocket-fire2.html',
-  rocketObj: 'rocket-obj3.html',
+  rocketFire: 'rocket-fire3.html',
+  rocketObj: 'rocket-obj4.html',
   rover: 'rover.html',
   roverWheel: 'rover-wheel.html',
 
