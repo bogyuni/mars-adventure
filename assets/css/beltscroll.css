@@ -79,8 +79,8 @@
   bottom: 0;
 }
 .sub-obj.rocket {
-  transform: scale(0.5);
-  transform-origin:bottom;
+  /* transform: scale(0.5);
+  transform-origin:bottom; */
   left: 200px;
   bottom: 130%;
 }
