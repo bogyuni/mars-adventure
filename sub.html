@@ -17,6 +17,7 @@
 <main class="sub-wrap" id="beltscroll">
   <div class="viewport">
     <div class="z-line-back back2"></div>
+    <div class="weather-wrap" id="weather"></div>
     <div class="z-line-back back1"></div>
     <div class="z-line-wrap">
       <div class="line scenery" id="scenery"></div>
@@ -24,16 +25,16 @@
         <div id="rocket" class="sub-obj rocket"></div>
         <div class="sub-obj aboutme"></div>
         <div class="sub-obj portfolio"></div>
-        <div class="sub-obj guest">
-          guest
-        </div>
+        <div class="sub-obj guestbook"></div>
       </div>
       <div class="line ground" id="ground"></div>
     </div>
     <div class="hero" id="heroBS"></div>
-  </div>
 
-  <div class="weather-wrap" id="weather"></div>
+    <aside class="weather-popup">
+      <p id="weatherData"></p>
+    </aside>
+  </div>
 
   <div class="popup guide-popup">
     <div class="popup-border"></div>
@@ -86,11 +87,11 @@
     </button>
   </div>
 
-  <div class="popup guest-popup">
+  <div class="popup guestbook-popup">
     <div class="popup-border"></div>
     <div class="inner">
       <h2>Guest book</h2>
-      <iframe class="guest-frame" src="./guestbook.html" frameborder="0"></iframe>
+      <iframe class="guestbook-frame" src="./guestbook.html" frameborder="0"></iframe>
     </div>
     <button class="square-line btn-close">
       <span class="shadow"></span>
@@ -143,9 +144,6 @@
   </div>
 </main>
 
-<aside class="weather-popup">
-  <p id="weatherData"></p>
-</aside>
 
 <div class="changeover">
   <div class="circle" id="overCircle"></div>

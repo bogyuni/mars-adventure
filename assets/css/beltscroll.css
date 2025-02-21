@@ -19,7 +19,7 @@
   bottom: 100px;
   width: 180%;
   height: calc(100% - var(--ground-h));
-  transition: left 0.2s ease;
+  transition: left 0.3s linear;
 }
 .z-line-back.back1 {
   width: 180%;
@@ -37,10 +37,10 @@
   left: 0;
   top: 0;
   /* min-width: 200%; */
-  width: 4000px;
+  width: 3950px;
   height: 100%;
   overflow: hidden;
-  transition: left 0.2s ease;
+  transition: left 0.2s linear;
 }
 .z-line-wrap .line {
   position: absolute;
@@ -79,8 +79,6 @@
   bottom: 0;
 }
 .sub-obj.rocket {
-  /* transform: scale(0.5);
-  transform-origin:bottom; */
   left: 200px;
   bottom: 130%;
 }
@@ -108,11 +106,8 @@
 .sub-obj.portfolio.on {
   background-color: red;
 }
-.sub-obj.guest {
+.sub-obj.guestbook {
   left: 3120px;
-  width: 300px;
-  height: 100px;
-  background-color: cadetblue;
 }
 .sub-obj.guest.on {
   background-color: red;
@@ -123,33 +118,38 @@
   position: absolute;
   left: 200px;
   bottom: var(--ground-h);
-  /* rover는 5px dot으로 새로 만들어야함. 임시로 1/2 스케일 적용 */
-  transform: scale(0.5);
-  transform-origin: bottom;
   visibility: hidden;
-  transition: left 0.2s ease, visibility 0.2s linear 2.2s;
+  transition: left 0.1s linear, visibility 0.2s linear 2.2s;
+  padding-bottom: 16px;
 }
 #beltscroll .hero.on {
   visibility: visible;
 }
 #beltscroll .hero .wheel {
-  position: absolute;
-  top: 200px;
+  position: absolute !important;
+  bottom: 0;
+  z-index: 1;
 }
-#beltscroll .hero .wheelL {
+#beltscroll .hero .wheel1 {
   left: 0px;
 }
-#beltscroll .hero .wheelR {
-  left: 150px;
+#beltscroll .hero .wheel2 {
+  left: 36px;
+}
+#beltscroll .hero .wheel3 {
+  left: 72px;
 }
 #beltscroll .hero.left {
-  transform: scale(-0.5, 0.5);
+  transform: scaleX(-1);
 }
-#beltscroll .hero.move.left .wheel {
-  animation: wheelMove 0.2s ease 0s infinite normal ;
+/* #beltscroll .hero.move.left .wheel {
+  animation: wheelMove 0.2s ease 0s infinite normal;
 }
 #beltscroll .hero.move.right .wheel {
-  animation: wheelMove 0.2s ease 0s infinite reverse ;
+  animation: wheelMove 0.2s ease 0s infinite normal;
+} */
+#beltscroll .hero.move .wheel {
+  animation: wheelMove 0.3s linear 0s infinite normal;
 }
 
 .weather-wrap {

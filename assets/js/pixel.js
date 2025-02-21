@@ -4,8 +4,8 @@ const pixelData = {
   // Hero
   rocketFire: 'rocket-fire3.html',
   rocketObj: 'rocket-obj4.html',
-  rover: 'rover.html',
-  roverWheel: 'rover-wheel.html',
+  rover: 'rover2.html',
+  roverWheel: 'rover-wheel2.html',
 
   // Weather
   clear: 'w-clear.html',
@@ -21,6 +21,7 @@ const pixelData = {
   // structure
   aboutme: 'aboutme.html',
   portfolio: 'portfolio.html',
+  guestbook: 'guestbook.html',
 }
 
 const pixelDataLoad = (uri, obj, custom) => {
@@ -31,7 +32,8 @@ const pixelDataLoad = (uri, obj, custom) => {
   .then((text) => {
     obj.insertAdjacentHTML('beforeend', text);
     if (custom) {
-      obj.lastChild.classList.add(custom);
+      const className = custom.split(' ');
+      obj.lastChild.classList.add(...className);
     }
   })
   .catch((error) => {

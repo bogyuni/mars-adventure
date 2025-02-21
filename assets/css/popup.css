@@ -9,12 +9,12 @@
   transform: translateX(-50%);
   transition: width 0.4s ease 0s, height 0.6s ease 0.5s;
 }
-.popup.on {
+.popup.open {
   animation: openAboutme 1s ease 0s 1 normal forwards;
 }
-.popup.off {
+/* .popup.off {
   animation: openAboutme 1s ease 0s 1 reverse forwards;
-}
+} */
 .popup .popup-border {
   position: absolute;
   left: 10px;
@@ -70,7 +70,7 @@
   visibility: hidden;
   transition: visibility 0s ease 1s;
 }
-.popup.on .inner > * {
+.popup.open .inner > * {
   visibility: visible;
 }
 .popup .btn-close {
@@ -137,7 +137,7 @@
   padding-right: 0;
 }
 
-.guest-frame {
+.guestbook-frame {
   width: 100%;
   height: 87%;
 }
