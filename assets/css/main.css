@@ -103,7 +103,7 @@
 	height: 500vh;
 	position: relative;
 	margin-bottom: 100vh;
-	border:1px solid red;
+	border:2px solid blue;
 }
 #earth {
 	position: sticky;
@@ -142,6 +142,7 @@
 .mars-wrap {
 	position: relative;
 	height: 100vh;
+	border:2px solid #fff000;
 }
 #mars {
 	position: absolute;
@@ -209,24 +210,54 @@
 	position: fixed;
 	left: 50%;
 	top:50%;
-	border:1px solid red;
+	height: 304px;
+	width: 184px;
 }
 #rocket {
 	z-index: 2;
 	top:0;
 	transform: scale(0) rotate(0deg) translate(-2010px, 1870px);
 	transition: all 1.2s cubic-bezier(.62,.16,.13,1.01);
+	position: absolute;
+	left: 0;
+	top: 0;
 }
 #rocket.on {
 	transform: scale(1) rotate(180deg) translate(0, 0);
 }
 #rocket.in {
 	transition-duration: 2s;
-	top: 30%;
-	left: 30%;
-	transform: scale(0.0) rotate(595deg) translate(-5000px, -400px);
+	top: -600%;
+	left: -300%;
+	transform: scale(0.0) rotate(595deg) translate(-2000px, -400px);
 }
-/* .rocket-obj {
-	transform: scaleX(-1);
-} */
+#rocket .rocket-fire {
+	position: absolute !important;
+	top: 100%;
+	left: 60px;
+}
+.comment-box {
+	position: absolute;
+	left: 110%;
+	bottom: 40px;
+}
+.comment-box::before {
+	content: '';
+	border: 8px solid #ccc;
+	position: absolute;
+	left: -8px;
+	top: 26px;
+	transform: rotate(-45deg);
+}
+.comment-box .p-wrap {
+	border: 4px solid #ccc;
+	background-color: #fff;
+	padding: 10px;
+	border-radius: 5px;
+	position: relative;
+}
 
+.rocket-wrap .comment-box p {
+	color: #000;
+	white-space: nowrap;
+}

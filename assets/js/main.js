@@ -100,6 +100,7 @@ createMainCanvas(moon, 300, 300, 0xaa8844, 'moon');
 createMainCanvas(mars, 600, 600, 0xaa8844, 'mars');
 
 // const earthTop = winHeight * 2; // earth의 offsetTop은 화면 크기의 2배 위치
+const earthWrap = document.querySelector('.earth-wrap');
 let earthTop = 0;
 const earthScaleMax = 1.6;
 const earthScaleStand = 0.0005;
@@ -108,11 +109,12 @@ let earthScaleSet = 0;
 
 let satelliteStart = 0;
 
+const marsWrap = document.querySelector('.mars-wrap');
 let marsTop = 0;
 
 window.onload = () => {
-  earthTop = document.querySelector('.earth-wrap').offsetTop - winHeight;
-  marsTop = mars.offsetTop;
+  earthTop = earthWrap.offsetTop - winHeight;
+  marsTop = marsWrap.offsetTop;
 } // onload
 
 
@@ -132,10 +134,14 @@ window.onscroll = () => {
   earth.style.transform = 'scale('+ earthScaleSet +')';
 
   console.log(
-    earthTop,
-    window.scrollY,
-    earthStart,
-    earthStart - (winHeight * 2),
+    // window.scrollY,
+    // earthTop,
+    // earthStart,
+    // earthStart - (winHeight * 2),
+    winHeight,
+    earthWrap.offsetHeight,
+    winHeight * 5,
+    // earthTop + marsWrap.innerHeight,
 
   )
 
@@ -152,11 +158,11 @@ window.onscroll = () => {
   }
 
   // 로켓 오프
-  // if (window.scrollY > marsTop - 500) {
-  //   rocket.classList.add('in');
-  // } else {
-  //   rocket.classList.remove('in');
-  // }
+  if (window.scrollY > marsTop - 500) {
+    rocket.classList.add('in');
+  } else {
+    rocket.classList.remove('in');
+  }
 
 } // onscroll
 
