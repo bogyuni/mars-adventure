@@ -13,6 +13,8 @@ const moon = document.querySelector('#moon');
 const satellite = document.querySelector('#satellite');
 const rocket = document.querySelector('#rocket');
 
+const commentBox = document.querySelector('.comment-box');
+
 pixelDataLoad(pixelData.rocketFire, rocket);
 pixelDataLoad(pixelData.rocketObj, rocket);
 
@@ -115,6 +117,18 @@ let marsTop = 0;
 window.onload = () => {
   earthTop = earthWrap.offsetTop - winHeight;
   marsTop = marsWrap.offsetTop;
+
+
+
+  const devGuideLine = document.querySelector('.dev-guide-line');
+  if(devGuideLine.lenth > 0) {
+    const maxHeight = mainWrap.offsetHeight;
+    const winHeightLength = parseInt(maxHeight / winHeight);
+    for (let i = 0; i < winHeightLength; i++) {
+      devGuideLine.innerHTML += '<div class="in-line" style="top:'+ winHeight * i +'px">win: '+ i +'</div>';
+    }
+  }
+
 } // onload
 
 
@@ -158,10 +172,34 @@ window.onscroll = () => {
   }
 
   // 로켓 오프
-  if (window.scrollY > marsTop - 500) {
+  if (window.scrollY > marsTop - (winHeight * 0.2)) {
     rocket.classList.add('in');
   } else {
     rocket.classList.remove('in');
+  }
+
+
+  // 코멘트 1 노출
+  if (window.scrollY > winHeight * 6.5 && window.scrollY < winHeight * 8) {
+    commentBox.classList.add('on');
+    commentBox.querySelectorAll('p').forEach(p => {
+      p.classList.remove('on');
+    });
+    commentBox.querySelector('.p1').classList.add('on');
+  } else if (window.scrollY > winHeight * 10.3 && window.scrollY < winHeight * 11.5) {
+    commentBox.classList.add('on');
+    commentBox.querySelectorAll('p').forEach(p => {
+      p.classList.remove('on');
+    });
+    commentBox.querySelector('.p2').classList.add('on');
+  } else if (window.scrollY > winHeight * 14 && window.scrollY < winHeight * 15) {
+    commentBox.classList.add('on');
+    commentBox.querySelectorAll('p').forEach(p => {
+      p.classList.remove('on');
+    });
+    commentBox.querySelector('.p3').classList.add('on');
+  } else {
+    commentBox.classList.remove('on');
   }
 
 } // onscroll

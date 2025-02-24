@@ -100,10 +100,10 @@
 }
 
 .earth-wrap {
-	height: 500vh;
 	position: relative;
-	margin-bottom: 100vh;
-	border:2px solid blue;
+	height: 500vh;
+	margin-bottom: 300vh;
+	/* border:2px solid blue; */
 }
 #earth {
 	position: sticky;
@@ -119,7 +119,7 @@
 	width: 100%;
 	height: 100vh;
 	overflow: hidden;
-	border:1px solid red;
+	/* border:1px solid red; */
 }
 #satellite {
 	position: absolute;
@@ -142,7 +142,7 @@
 .mars-wrap {
 	position: relative;
 	height: 100vh;
-	border:2px solid #fff000;
+	/* border:2px solid #fff000; */
 }
 #mars {
 	position: absolute;
@@ -227,37 +227,65 @@
 }
 #rocket.in {
 	transition-duration: 2s;
-	top: -600%;
-	left: -300%;
+	top: -100%;
+	left: -200%;
 	transform: scale(0.0) rotate(595deg) translate(-2000px, -400px);
 }
 #rocket .rocket-fire {
 	position: absolute !important;
 	top: 100%;
 	left: 60px;
+	animation: fireAni .2s linear 0s infinite;
 }
+
 .comment-box {
 	position: absolute;
 	left: 110%;
 	bottom: 40px;
+	transform: scale(1, 0);
+	transition: transform 0.4s;
+}
+.comment-box.on {
+	transform: scale(1, 1);
 }
 .comment-box::before {
 	content: '';
-	border: 8px solid #ccc;
+	border: 8px solid #aaa;
 	position: absolute;
 	left: -8px;
 	top: 26px;
 	transform: rotate(-45deg);
 }
 .comment-box .p-wrap {
-	border: 4px solid #ccc;
+	border: 4px solid #aaa;
 	background-color: #fff;
 	padding: 10px;
 	border-radius: 5px;
 	position: relative;
 }
-
-.rocket-wrap .comment-box p {
+.comment-box p {
 	color: #000;
 	white-space: nowrap;
+	display: none;
+}
+.comment-box p.on {
+	display: block;
+}
+
+
+
+.dev-guide-line {
+	position: absolute;
+	right:0;
+	top:0;
+	width: 1px;
+	height: 100%;
+	background-color: #ff0;
+}
+.dev-guide-line .in-line {
+	position: absolute;
+	right: 0;
+	background-color: #ff0;
+	height: 1px;
+	width: 100px;
 }
