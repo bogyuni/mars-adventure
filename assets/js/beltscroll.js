@@ -25,6 +25,7 @@ const pixelList = [
   {uri: pixelData.roverWheel, obj: heroBS, custom: 'wheel wheel1'},
   {uri: pixelData.roverWheel, obj: heroBS, custom: 'wheel wheel2'},
   {uri: pixelData.roverWheel, obj: heroBS, custom: 'wheel wheel3'},
+  {uri: pixelData.roverLight, obj: heroBS},
   {uri: pixelData.rock1, obj: scenery},
   {uri: pixelData.rock2, obj: scenery},
   {uri: pixelData.aboutme, obj: aboutme},
@@ -166,7 +167,7 @@ function beltscrollKeyDown(key) {
     // 주인공 현재 위치값이 화면 크기의 75% 보다 크고, 1차 배경의 위치값이 전체맵크기에서 화면 크기를 뺀 값보다 작다면 (1차배경이 화면 우측 끝에 도달하지 않았다면),
     else if (heroBSX >= winWidth * 0.75) {
       // 주인공은 움직이지 않고, 배경이 움직임
-      if (zLine1X < mapWidth - winWidth) {
+      if (zLine1X < mapWidth - winWidth * 1.15) {
         startMoving('right');
       } else {
         console.log('화면 우측 끝에 도달함');
@@ -179,6 +180,8 @@ function beltscrollKeyDown(key) {
   // 트리거 발동
   else if (key === 'ArrowUp' || key === ' ') {
     activeTrigger();
+    heroBS.classList.add('up');
+
   }
   // 취소, 창 닫기
   else if (key === 'ArrowDown' || key === 'Escape') {
@@ -189,7 +192,7 @@ function beltscrollKeyDown(key) {
 }
 
 function beltscrollKeyUp() {
-  heroBS.classList.remove('move');
+  heroBS.classList.remove('move', 'up');
   stopMoving(); // 키를 떼면 이동 중지
 }
 

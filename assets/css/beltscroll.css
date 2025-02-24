@@ -84,6 +84,10 @@
 }
 .sub-obj.rocket .rocket-fire {
   transition: visibility 0s 1.8s;
+  position: absolute !important;
+  left: 60px;
+  top: 100%;
+	animation: fireAni .2s linear 0s infinite;
 }
 .sub-obj.rocket.on {
   animation: r_landing 2.2s ease 0s 1 forwards;
@@ -94,10 +98,10 @@
 .sub-obj.aboutme {
   left: 1200px;
 }
-.sub-obj.aboutme.on {
-  /* color: #fff;
-  font-size: 4em; */
-}
+/* .sub-obj.aboutme.on {
+  color: #fff;
+  font-size: 4em;
+} */
 .sub-obj.portfolio {
   left: 1900px;
   /* width: 200px;
@@ -150,6 +154,16 @@
 } */
 #beltscroll .hero.move .wheel {
   animation: wheelMove 0.3s linear 0s infinite normal;
+}
+#beltscroll .hero .rover-light {
+  position: absolute !important;
+  right: -28px;
+  top: 52px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+#beltscroll .hero.up .rover-light {
+  opacity: 1;
 }
 
 .weather-wrap {

@@ -6,6 +6,7 @@ const pixelData = {
   rocketObj: 'rocket-obj4.html',
   rover: 'rover2.html',
   roverWheel: 'rover-wheel2.html',
+  roverLight: 'rover-light.html',
 
   // Weather
   clear: 'w-clear.html',

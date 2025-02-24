@@ -233,8 +233,8 @@
 }
 #rocket .rocket-fire {
 	position: absolute !important;
-	top: 100%;
 	left: 60px;
+	top: 100%;
 	animation: fireAni .2s linear 0s infinite;
 }
 
