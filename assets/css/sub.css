@@ -19,8 +19,8 @@
   padding: 1em;
   font-size: 14px;
   line-height: 1.4;
+  z-index: 10;
 }
-
 #weatherData {
   word-break: break-all;
 }

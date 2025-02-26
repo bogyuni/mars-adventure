@@ -10,9 +10,9 @@ const zLine2 = document.querySelector('.z-line-back.back1'); // 2차 배경 - �
 const zLine3 = document.querySelector('.z-line-back.back2'); // 3차 배경 - 최후경
 const ground = document.querySelector('#ground'); // 1차 배경 - 바닥
 const scenery = document.querySelector('#scenery'); // 1차 배경 - 후경
-const aboutme = document.querySelector('.sub-obj.aboutme'); // 구조물 - 어바웃미
-const portfolio = document.querySelector('.sub-obj.portfolio'); // 구조물 - 포트폴리오
-const guestbook = document.querySelector('.sub-obj.guestbook') // 구조물 - 게스트북
+const aboutme = document.querySelector('.aboutme-wrap'); // 구조물 - 어바웃미
+const portfolio = document.querySelector('.portfolio-wrap'); // 구조물 - 포트폴리오
+const guestbook = document.querySelector('.guestbook-wrap') // 구조물 - 게스트북
 const aboutmePopup = document.querySelector('.aboutme-popup'); // 팝업 - 어바웃미
 const guestbookPopup = document.querySelector('.guestbook-popup'); // 팝업 - 게스트북
 const guidePopup = document.querySelector('.guide-popup'); // 팝업 - 가이드
@@ -27,7 +27,7 @@ const pixelList = [
   {uri: pixelData.roverWheel, obj: heroBS, custom: 'wheel wheel3'},
   {uri: pixelData.roverLight, obj: heroBS},
   {uri: pixelData.rock1, obj: scenery},
-  {uri: pixelData.rock2, obj: scenery},
+  // {uri: pixelData.rock2, obj: scenery},
   {uri: pixelData.aboutme, obj: aboutme},
   {uri: pixelData.portfolio, obj: portfolio},
   {uri: pixelData.guestbook, obj: guestbook},

@@ -108,7 +108,6 @@ const earthScaleMax = 1.6;
 const earthScaleStand = 0.0005;
 let earthStart = 0;
 let earthScaleSet = 0;
-
 let satelliteStart = 0;
 
 const marsWrap = document.querySelector('.mars-wrap');
@@ -117,8 +116,6 @@ let marsTop = 0;
 window.onload = () => {
   earthTop = earthWrap.offsetTop - winHeight;
   marsTop = marsWrap.offsetTop;
-
-
 
   const devGuideLine = document.querySelector('.dev-guide-line');
   if(devGuideLine.lenth > 0) {
@@ -129,8 +126,12 @@ window.onload = () => {
     }
   }
 
-} // onload
+} // window load
 
+window.onresize = () => {
+  earthTop = earthWrap.offsetTop - winHeight;
+  marsTop = marsWrap.offsetTop;
+} // window resize
 
 window.onscroll = () => {
   if (window.scrollY > 10) {
@@ -202,7 +203,7 @@ window.onscroll = () => {
     commentBox.classList.remove('on');
   }
 
-} // onscroll
+} // window scroll
 
 
 
