@@ -12,6 +12,8 @@ const ground = document.querySelector('#ground'); // 1차 배경 - 바닥
 const scenery = document.querySelector('#scenery'); // 1차 배경 - 후경
 const aboutme = document.querySelector('.aboutme-wrap'); // 구조물 - 어바웃미
 const portfolio = document.querySelector('.portfolio-wrap'); // 구조물 - 포트폴리오
+const portfolioHover = portfolio.querySelector('.hover-con'); // 구조물 - 포트폴리오
+
 const guestbook = document.querySelector('.guestbook-wrap') // 구조물 - 게스트북
 const aboutmePopup = document.querySelector('.aboutme-popup'); // 팝업 - 어바웃미
 const guestbookPopup = document.querySelector('.guestbook-popup'); // 팝업 - 게스트북
@@ -30,6 +32,7 @@ const pixelList = [
   // {uri: pixelData.rock2, obj: scenery},
   {uri: pixelData.aboutme, obj: aboutme},
   {uri: pixelData.portfolio, obj: portfolio},
+  {uri: pixelData.portfolioHover, obj: portfolioHover},
   {uri: pixelData.guestbook, obj: guestbook},
 ];
 
@@ -65,7 +68,7 @@ let isMoving = false; // 이동 중인지 확인
 let moveDirection = null; // 이동 방향 저장
 
 
-function activeTrigger() {
+function activeTrigger(status) {
   // 현재 가독성이 안 좋아 리팩토링 예정
   const heroBSWidth = heroBS.offsetWidth;
   // 구조물들이 트리거 되는 범위는 구조물 크기의 절반 범위
@@ -85,23 +88,34 @@ function activeTrigger() {
   const portfolioPosition = heroBSCenter - portfolioCenter < 0 ? (heroBSCenter - portfolioCenter) * -1 : heroBSCenter - portfolioCenter;
   const guestPosition = heroBSCenter - guestCenter < 0 ? (heroBSCenter - guestCenter) * -1 : heroBSCenter - guestCenter;
 
-  // 어바웃미 오픈 트리거 범위
-  if (aboutmePosition <= aboutmeRange) {
-    aboutme.classList.add('on');
-    aboutmePopup.classList.add('open');
-    popupCheck = true;
+  if (status === 'action') {
+    // 어바웃미 오픈 트리거 범위
+    if (aboutmePosition <= aboutmeRange) {
+      aboutme.classList.add('on');
+      aboutmePopup.classList.add('open');
+      popupCheck = true;
+    }
+    // 포트폴리오 트리거 범위 - 이후 셀무브로 페이즈 전환
+    else if (portfolioPosition <= portfolioRange) {
+      // portfolio.classList.add('on');
+      setSubStatus('cellmove');
+    }
+    // 게스트북 오픈 트리거 범위
+    else if (guestPosition <= guestRange) {
+      guestbook.classList.add('on');
+      guestbookPopup.classList.add('open');
+      popupCheck = true;
+    }
+  } else if (status === 'move') {
+    // 포트폴리오 트리거 범위 - 이후 셀무브로 페이즈 전환
+    if (portfolioPosition <= portfolioRange) {
+      portfolio.classList.add('on');
+    } else {
+      portfolio.classList.remove('on');
+    }
+
   }
-  // 포트폴리오 트리거 범위 - 이후 셀무브로 페이즈 전환
-  else if (portfolioPosition <= portfolioRange) {
-    portfolio.classList.add('on');
-    setSubStatus('cellmove');
-  }
-  // 컨택어스 오픈 트리거 범위
-  else if (guestPosition <= guestRange) {
-    guestbook.classList.add('on');
-    guestbookPopup.classList.add('open');
-    popupCheck = true;
-  }
+
 }
 
 function moveBackground() {
@@ -157,6 +171,8 @@ function beltscrollKeyDown(key) {
     }
     heroBS.classList.remove('right');
     heroBS.classList.add('left', 'move');
+
+    activeTrigger('move');
   }
   // 우측 이동
   else if (key === 'ArrowRight' && !popupCheck) {
@@ -176,12 +192,13 @@ function beltscrollKeyDown(key) {
     }
     heroBS.classList.remove('left');
     heroBS.classList.add('right', 'move');
+
+    activeTrigger('move');
   }
   // 트리거 발동
   else if (key === 'ArrowUp' || key === ' ') {
-    activeTrigger();
+    activeTrigger('action');
     heroBS.classList.add('up');
-
   }
   // 취소, 창 닫기
   else if (key === 'ArrowDown' || key === 'Escape') {

@@ -22,6 +22,7 @@ const pixelData = {
   // structure
   aboutme: 'aboutme.html',
   portfolio: 'portfolio2.html',
+  portfolioHover: 'portfolio-hover.html',
   guestbook: 'guestbook.html',
 }
 

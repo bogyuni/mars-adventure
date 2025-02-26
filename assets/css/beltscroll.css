@@ -78,6 +78,16 @@
   position: absolute;
   bottom: 0;
 }
+.sub-obj .hover-con {
+  position: absolute;
+  left: -8px;
+  top: -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 8px);
+  box-sizing: content-box;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
 .sub-obj.rocket {
   left: 200px;
   bottom: 130%;
@@ -101,8 +111,8 @@
 .portfolio-wrap {
   left: 1900px;
 }
-.portfolio-wrap.on {
-  background-color: red;
+.portfolio-wrap.on .hover-con {
+  opacity: 1;
 }
 .guestbook-wrap {
   left: 3120px;
