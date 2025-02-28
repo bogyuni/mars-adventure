@@ -15,7 +15,7 @@ const pixelData = {
   snow: 'w-snow.html',
 
   // Background
-  ground: 'bg-ground.html',
+  ground: 'bg-ground2.html',
   rock1: 'bg-rock1.html',
   rock2: 'bg-rock2.html',
 

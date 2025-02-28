@@ -16,22 +16,27 @@
 <body class="sub-loading">
 <main class="sub-wrap" id="beltscroll">
   <div class="viewport">
+    <div class="z-line-back back3"></div>
     <div class="z-line-back back2"></div>
-    <div class="z-line-back back1"></div>
-    <div class="z-line-wrap">
-      <div class="line scenery" id="scenery"></div>
+    <div class="z-line-back back1">
+      <div class="line scenery"></div>
       <div class="line obj-wrap">
         <div id="rocket" class="sub-obj rocket"></div>
-        <div class="sub-obj aboutme-wrap"></div>
+        <div class="sub-obj aboutme-wrap">
+          <div class="trigger-area"></div>
+          <div class="hover-con"></div>
+        </div>
         <div class="sub-obj portfolio-wrap">
           <div class="hover-con"></div>
         </div>
         <div class="sub-obj guestbook-wrap"></div>
       </div>
-      <div class="line ground" id="ground"></div>
+      <div class="line ground"></div>
     </div>
     <div class="hero" id="heroBS"></div>
     <div class="weather-wrap" id="weather"></div>
+
+    <!-- <div class="dev-guide-wrap"></div> -->
 
     <aside class="weather-popup">
       <p id="weatherData"></p>
@@ -93,7 +98,7 @@
     <div class="popup-border"></div>
     <div class="inner">
       <h2>Guest book</h2>
-      <iframe class="guestbook-frame" src="./guestbook.html" frameborder="0"></iframe>
+      <!-- <iframe class="guestbook-frame" src="./guestbook.html" frameborder="0"></iframe> -->
     </div>
     <button class="square-line btn-close">
       <span class="shadow"></span>
@@ -158,7 +163,7 @@
 </div>
 
 <script src="./assets/js/sub.js" type="module"></script>
-<script src="./assets/js/weather.js" type="module"></script>
-<!-- <script src="./assets/js/guestbook.js" type="module"></script> -->
+<!-- 개발 중엔 날씨 API 접근 차단 -->
+<!-- <script src="./assets/js/weather.js" type="module"></script> -->
 </body>
 </html>

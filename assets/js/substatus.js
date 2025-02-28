@@ -87,7 +87,7 @@ function setSubStatus(val) {
     setTimeout(function(){
       document.querySelector('#beltscroll').style.display = 'block';
       document.querySelector('#cellmove').style.display = 'none';
-      document.querySelector('.sub-obj.portfolio').classList.remove('on');
+      // document.querySelector('.sub-obj.portfolio').classList.remove('on');
       heroBS.classList.add('on');
       changeOver('out', 'cellmove');
     }, changeTime);
