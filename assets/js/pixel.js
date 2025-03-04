@@ -24,6 +24,7 @@ const pixelData = {
   portfolio: 'portfolio2.html',
   portfolioHover: 'portfolio-hover.html',
   guestbook: 'guestbook.html',
+  guestbookHover: 'guestbook-hover.html',
 }
 
 const pixelDataLoad = (uri, obj, custom) => {

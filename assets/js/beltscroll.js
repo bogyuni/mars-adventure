@@ -14,6 +14,7 @@ const aboutme = document.querySelector('.aboutme-wrap'); // 구조물 - 어바�
 const portfolio = document.querySelector('.portfolio-wrap'); // 구조물 - 포트폴리오
 const portfolioHover = portfolio.querySelector('.hover-con'); // 구조물 - 포트폴리오 hover
 const guestbook = document.querySelector('.guestbook-wrap') // 구조물 - 게스트북
+const guestbookHover = guestbook.querySelector('.hover-con') // 구조물 - 게스트북
 const aboutmePopup = document.querySelector('.aboutme-popup'); // 팝업 - 어바웃미
 const guestbookPopup = document.querySelector('.guestbook-popup'); // 팝업 - 게스트북
 const guidePopup = document.querySelector('.guide-popup'); // 팝업 - 가이드
@@ -33,6 +34,7 @@ const pixelList = [
   {uri: pixelData.portfolio, obj: portfolio},
   {uri: pixelData.portfolioHover, obj: portfolioHover},
   {uri: pixelData.guestbook, obj: guestbook},
+  {uri: pixelData.guestbookHover, obj: guestbookHover},
 ];
 
 pixelList.forEach((el) => {
@@ -93,33 +95,31 @@ const BSstate = {
 const { hero, map, obj, mv } = BSstate;
 
 function activeTrigger(status) {
-  if (status === 'action') {
-    // 어바웃미 오픈 트리거 범위
-    if (hero.absX >= obj.aboutme.x && hero.absX <= obj.aboutme.max) {
-      aboutme.classList.add('on');
-      aboutmePopup.classList.add('open');
-      mv.isPopup = true;
-    }
-    // 포트폴리오 트리거 범위 - 이후 셀무브로 페이즈 전환
-    else if (hero.absX >= obj.portfolio.x && hero.absX <= obj.portfolio.max) {
-      setSubStatus('cellmove');
-    }
-    // 게스트북 오픈 트리거 범위
-    else if (hero.absX >= obj.guestbook.x && hero.absX <= obj.guestbook.max) {
-      guestbook.classList.add('on');
-      guestbookPopup.classList.add('open');
-      mv.isPopup = true;
-    }
-  } else if (status === 'move') {
-    // // 포트폴리오 트리거 범위 - 이후 셀무브로 페이즈 전환
-    // if (portfolioPosition <= portfolioRange) {
-    //   portfolio.classList.add('on');
-    // } else {
-    //   portfolio.classList.remove('on');
-    // }
+  const triggers = [
+    { name: 'aboutme', dom: aboutme, popup: aboutmePopup },
+    { name: 'portfolio', dom: portfolio, action: () => setSubStatus('cellmove') },
+    { name: 'guestbook', dom: guestbook, popup: guestbookPopup }
+  ];
 
-  }
+  triggers.forEach(({ name, dom, popup, action }) => {
+    const objTarget = obj[name];
+    const domTarget = dom;
 
+    if (hero.absX >= objTarget.x && hero.absX <= objTarget.max) {
+      if (status === 'action') {
+        if (popup) {
+          popup.classList.add('open');
+          mv.isPopup = true;
+        } else if (action) {
+          action();
+        }
+      } else if (status === 'move') {
+        domTarget.classList.add('on');
+      }
+    } else {
+      domTarget.classList.remove('on');
+    }
+  });
 }
 
 function moveBackground(direction) {
@@ -146,16 +146,14 @@ function beltscrollKeyDown(key) {
         hero.x += mv.distance;
         hero.absX += mv.distance;
       }
-      // 주인공 현재 위치값이 화면 크기의 75% 보다 크고, 1차 배경의 위치값이 전체맵크기에서 화면 크기를 뺀 값보다 작다면 (1차배경이 화면 우측 끝에 도달하지 않았다면),
-      // else if (hero.x >= map.winWidth * 0.75) {
-        // 주인공은 움직이지 않고, 배경이 움직임
+      // 1차 배경의 위치값이 전체맵크기에서 화면 크기를 뺀 값보다 작다면 (1차배경이 화면 우측 끝에 도달하지 않았다면),
+      // 주인공은 움직이지 않고, 배경이 움직임
       else if (map.zLine1X < map.width - map.winWidth * 1.15) {
         moveBackground('right');
         hero.absX += mv.distance;
       } else {
         console.log('화면 우측 끝에 도달함');
       }
-      // }
       heroBS.classList.remove('left');
     }
     // 좌측 이동
@@ -165,15 +163,13 @@ function beltscrollKeyDown(key) {
         hero.x -= mv.distance;
         hero.absX -= mv.distance;
       }
-      // 주인공 현재 위치값이 화면 크기의 15% 보다 작은데, 1차 배경의 위치값이 0보다 크다면,
-      else if (hero.x < map.winWidth * 0.15) {
-        // 주인공은 움직이지 않고, 배경이 움직임
-        if (map.zLine1X > 0 ) {
-          hero.absX -= mv.distance;
-          moveBackground('left')
-        } else {
-          console.log('화면 좌측 끝에 도달함');
-        }
+      // 1차 배경의 위치값이 0보다 크다면,
+      // 주인공은 움직이지 않고, 배경이 움직임
+      else if (map.zLine1X > 0) {
+        moveBackground('left')
+        hero.absX -= mv.distance;
+      } else {
+        console.log('화면 좌측 끝에 도달함');
       }
       heroBS.classList.add('left');
     }
@@ -181,7 +177,6 @@ function beltscrollKeyDown(key) {
     heroBS.classList.add('move');
     activeTrigger('move');
     heroBS.style.left = `${hero.x}px`;
-
   }
 
   // 트리거 발동
@@ -196,11 +191,11 @@ function beltscrollKeyDown(key) {
   }
 
 
-  console.log(
-    'hero.absX : '+hero.absX,
-    ' min : '+obj.aboutme.x,
-    ' max : '+obj.aboutme.max,
-  )
+  // console.log(
+  //   'hero.absX : '+hero.absX,
+  //   ' min : '+obj.aboutme.x,
+  //   ' max : '+obj.aboutme.max,
+  // )
 }
 
 function beltscrollKeyUp() {

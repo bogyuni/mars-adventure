@@ -36,7 +36,7 @@
 }
 .z-line-back.back2 {
   width: 180%;
-  height: 60%;
+  height: 50%;
   background: url(../img/back2-2.png) no-repeat center/cover;
 }
 .z-line-back.back3 {
@@ -86,6 +86,9 @@
   opacity: 0;
   transition: opacity 0.4s ease;
 }
+.sub-obj.on .hover-con {
+  opacity: 1;
+}
 .sub-obj.rocket {
   left: 200px;
   bottom: 130%;
@@ -104,17 +107,15 @@
 .sub-obj.rocket.on .rocket-fire {
   visibility: hidden;
 }
+
 .aboutme-wrap {
   left: 1200px;
 }
 .portfolio-wrap {
   left: 1900px;
 }
-.portfolio-wrap.on .hover-con {
-  opacity: 1;
-}
 .guestbook-wrap {
-  left: 3120px;
+  left: 3000px;
 }
 
 /* 주인공 - 로버 */
@@ -127,7 +128,6 @@
   translate: -50% 0;
   visibility: hidden;
   transition: left 0.1s linear, visibility 0.2s linear 2.2s;
-  border:1px solid red;
 }
 #beltscroll .hero.on {
   visibility: visible;
