@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 :root {
-  --ground-h: 60px;
+  --ground-h: 80px;
 }
 
 #beltscroll .viewport {
@@ -18,7 +18,12 @@
   position: absolute;
   left: 0;
   bottom: var(--ground-h);
-  transition: left 0.3s linear;
+  /* transition: left 0.3s linear; */
+
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000;
 }
 .z-line-back.back1 {
   position: absolute;
@@ -27,7 +32,7 @@
   width: 4000px;
   height: 100%;
   overflow: hidden;
-  transition: left 0.2s linear;
+  /* transition: left 0.2s linear; */
 }
 .z-line-back.back1 .line {
   position: absolute;
@@ -60,11 +65,11 @@
   display: flex;
   flex-wrap: nowrap;
 }
-.line.ground .bg-ground {
+/* .line.ground .bg-ground {
   background: linear-gradient(#a56441, #713a1d);
-}
+} */
 .line.ground .bg-ground .dot-base {
-  translate: 0 -16px;
+  translate: 0 -12px;
 }
 
 /* 주변 오브젝트 */

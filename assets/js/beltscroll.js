@@ -44,7 +44,7 @@ pixelList.forEach((el) => {
 
 function groundRendering() {
   const groundWidth = ground.offsetWidth;
-  const groundTileWidth = 300;
+  const groundTileWidth = 132;
   const tileLegth = Math.round(groundWidth / groundTileWidth) + 2;
   for (let i = 0; i < tileLegth; i++) {
     pixelDataLoad(pixelData.ground, ground);
@@ -54,8 +54,8 @@ groundRendering();
 
 const BSstate = {
   hero: {
-    x: 200,
-    absX: 200,
+    x: 200, // 화면상의 위치값값
+    absX: 200, // 절대 위치값
     width: 116,
     height: 96,
   },
@@ -87,13 +87,48 @@ const BSstate = {
   },
   mv: { // movement
     direction: null,
-    distance: 20,
+    distance: 30,
     isMoving: false,
     isPopup: false,
   }
 };
 const { hero, map, obj, mv } = BSstate;
 
+// 배경 움직임 관련 함수수
+function moveBackground() {
+  if (!mv.isMoving) return; // 이미 움직이는 중이면 실행하지 않음
+
+  if (mv.direction === 'left') {
+    map.zLine1X -= mv.distance;
+    map.zLine2X -= mv.distance * map.zLine2Speed;
+    map.zLine3X -= mv.distance * map.zLine3Speed;
+  } else if (mv.direction === 'right') {
+    map.zLine1X += mv.distance;
+    map.zLine2X += mv.distance * map.zLine2Speed;
+    map.zLine3X += mv.distance * map.zLine3Speed;
+  }
+  zLine1.style.transform = `translateX(-${map.zLine1X}px)`;
+  zLine2.style.transform = `translateX(-${map.zLine2X}px)`;
+  zLine3.style.transform = `translateX(-${map.zLine3X}px)`;
+
+  requestAnimationFrame(moveBackground); // 다음 프레임 호출
+}
+
+function startMoving(direct) {
+  if (!mv.isMoving) {
+    mv.direction = direct;
+    mv.isMoving = true;
+    requestAnimationFrame(moveBackground);
+  } else {
+    console.log("배경 이동 중");
+  }
+}
+
+function stopMoving() {
+  mv.isMoving = false;
+}
+
+// 동작 활성 함수
 function activeTrigger(status) {
   const triggers = [
     { name: 'aboutme', dom: aboutme, popup: aboutmePopup },
@@ -122,19 +157,16 @@ function activeTrigger(status) {
   });
 }
 
-function moveBackground(direction) {
-  if (direction === 'left') {
-    map.zLine1X -= mv.distance;
-    map.zLine2X -= mv.distance * map.zLine2Speed;
-    map.zLine3X -= mv.distance * map.zLine3Speed;
-  } else if (direction === 'right') {
-    map.zLine1X += mv.distance;
-    map.zLine2X += mv.distance * map.zLine2Speed;
-    map.zLine3X += mv.distance * map.zLine3Speed;
+let lastHeroX = hero.absX; // 이전 위치 저장
+const triggerThreshold = 10; // 트리거 감지 최소 이동 거리 (10px)
+
+function checkTriggers() {
+  console.log(Math.abs(lastHeroX - hero.absX));
+
+  if (Math.abs(lastHeroX - hero.absX) >= triggerThreshold) { 
+    activeTrigger('move');
+    lastHeroX = hero.absX;
   }
-  zLine1.style.transform = `translateX(-${map.zLine1X}px)`;
-  zLine2.style.transform = `translateX(-${map.zLine2X}px)`;
-  zLine3.style.transform = `translateX(-${map.zLine3X}px)`;
 }
 
 function beltscrollKeyDown(key) {
@@ -149,10 +181,11 @@ function beltscrollKeyDown(key) {
       // 1차 배경의 위치값이 전체맵크기에서 화면 크기를 뺀 값보다 작다면 (1차배경이 화면 우측 끝에 도달하지 않았다면),
       // 주인공은 움직이지 않고, 배경이 움직임
       else if (map.zLine1X < map.width - map.winWidth * 1.15) {
-        moveBackground('right');
+        startMoving('right');
         hero.absX += mv.distance;
       } else {
-        console.log('화면 우측 끝에 도달함');
+        console.log('우측 끝에 도달함');
+        stopMoving();
       }
       heroBS.classList.remove('left');
     }
@@ -166,17 +199,23 @@ function beltscrollKeyDown(key) {
       // 1차 배경의 위치값이 0보다 크다면,
       // 주인공은 움직이지 않고, 배경이 움직임
       else if (map.zLine1X > 0) {
-        moveBackground('left')
+        startMoving('left');
         hero.absX -= mv.distance;
       } else {
-        console.log('화면 좌측 끝에 도달함');
+        console.log('좌측 끝에 도달함');
+        stopMoving();
       }
       heroBS.classList.add('left');
     }
 
-    heroBS.classList.add('move');
-    activeTrigger('move');
+    if (!heroBS.classList.contains('move')) {
+      heroBS.classList.add('move');
+    }
+
     heroBS.style.left = `${hero.x}px`;
+
+    // activeTrigger('move');
+    // checkTriggers(); // 위치 변경 감지 후 트리거 실행
   }
 
   // 트리거 발동
@@ -187,20 +226,13 @@ function beltscrollKeyDown(key) {
 
   // 취소, 창 닫기
   if (key === 'ArrowDown' || key === 'Escape') {
-    closePopup()
+    closePopup();
   }
-
-
-  // console.log(
-  //   'hero.absX : '+hero.absX,
-  //   ' min : '+obj.aboutme.x,
-  //   ' max : '+obj.aboutme.max,
-  // )
 }
 
 function beltscrollKeyUp() {
   heroBS.classList.remove('move', 'up');
-  // stopMoving(); // 키를 떼면 이동 중지
+  stopMoving(); // 키를 떼면 이동 중지
 }
 
 // 팝업 닫기
