@@ -98,18 +98,44 @@ const { hero, map, obj, mv } = BSstate;
 function moveBackground() {
   if (!mv.isMoving) return; // 이미 움직이는 중이면 실행하지 않음
 
-  if (mv.direction === 'left') {
-    map.zLine1X -= mv.distance;
-    map.zLine2X -= mv.distance * map.zLine2Speed;
-    map.zLine3X -= mv.distance * map.zLine3Speed;
-  } else if (mv.direction === 'right') {
-    map.zLine1X += mv.distance;
-    map.zLine2X += mv.distance * map.zLine2Speed;
-    map.zLine3X += mv.distance * map.zLine3Speed;
+  if (mv.direction === 'right') {
+    // 주인공 현재 위치값이 화면크기의 75% 보다 작으면 주인공이 이동함
+    if (hero.x < map.winWidth * 0.75 + hero.width) {
+      hero.absX += mv.distance;
+      hero.x += mv.distance;
+    }
+    // 1차 배경의 위치값이 전체맵크기에서 화면 크기를 뺀 값보다 작다면 (1차배경이 화면 우측 끝에 도달하지 않았다면),
+    // 주인공은 움직이지 않고, 배경이 움직임
+    else if (map.zLine1X < map.width - map.winWidth * 1.15) {
+      hero.absX += mv.distance;
+      map.zLine1X += mv.distance;
+      map.zLine2X += mv.distance * map.zLine2Speed;
+      map.zLine3X += mv.distance * map.zLine3Speed;
+    }
   }
+  else if (mv.direction === 'left') {
+    // 주인공 현재 위치값이 화면크기의 15% 보다 크다면 주인공이 이동함
+    if (hero.x > map.winWidth * 0.15) {
+      hero.absX -= mv.distance;
+      hero.x -= mv.distance;
+    }
+    // 1차 배경의 위치값이 0보다 크다면,
+    // 주인공은 움직이지 않고, 배경이 움직임
+    else if (map.zLine1X > 0) {
+      hero.absX -= mv.distance;
+      map.zLine1X -= mv.distance;
+      map.zLine2X -= mv.distance * map.zLine2Speed;
+      map.zLine3X -= mv.distance * map.zLine3Speed;
+    }
+  }
+
+  heroBS.style.left = `${hero.x}px`;
   zLine1.style.transform = `translateX(-${map.zLine1X}px)`;
   zLine2.style.transform = `translateX(-${map.zLine2X}px)`;
   zLine3.style.transform = `translateX(-${map.zLine3X}px)`;
+  console.log(hero.absX);
+  // activeTrigger('move');
+  // checkTriggers(); // 위치 변경 감지 후 트리거 실행
 
   requestAnimationFrame(moveBackground); // 다음 프레임 호출
 }
@@ -119,8 +145,6 @@ function startMoving(direct) {
     mv.direction = direct;
     mv.isMoving = true;
     requestAnimationFrame(moveBackground);
-  } else {
-    console.log("배경 이동 중");
   }
 }
 
@@ -138,7 +162,7 @@ function activeTrigger(status) {
 
   triggers.forEach(({ name, dom, popup, action }) => {
     const objTarget = obj[name];
-    const domTarget = dom;
+    // const domTarget = dom;
 
     if (hero.absX >= objTarget.x && hero.absX <= objTarget.max) {
       if (status === 'action') {
@@ -149,73 +173,48 @@ function activeTrigger(status) {
           action();
         }
       } else if (status === 'move') {
-        domTarget.classList.add('on');
+        dom.classList.add('on');
       }
     } else {
-      domTarget.classList.remove('on');
+      dom.classList.remove('on');
     }
   });
+
+  // console.log(hero.absX);
 }
 
 let lastHeroX = hero.absX; // 이전 위치 저장
-const triggerThreshold = 10; // 트리거 감지 최소 이동 거리 (10px)
+const triggerThreshold = 30; // 트리거 감지 최소 이동 거리 (10px)
 
 function checkTriggers() {
-  console.log(Math.abs(lastHeroX - hero.absX));
-
   if (Math.abs(lastHeroX - hero.absX) >= triggerThreshold) { 
     activeTrigger('move');
     lastHeroX = hero.absX;
   }
 }
 
+// let lastKeyPressTime = 0;
+// const keyDelay = 50;
+
 function beltscrollKeyDown(key) {
+  // const now = Date.now();
+  // if (now - lastKeyPressTime < keyDelay) {
+  //   return; // 너무 빠른 입력은 무시
+  // }
+  // lastKeyPressTime = now;
+
   if ((key === 'ArrowRight' || key === 'ArrowLeft') && !mv.isPopup) {
-    // 우측 이동
     if (key === 'ArrowRight') {
-      // 주인공 현재 위치값이 화면크기의 75% 보다 작으면 주인공이 이동함
-      if (hero.x < map.winWidth * 0.75 + hero.width) {
-        hero.x += mv.distance;
-        hero.absX += mv.distance;
-      }
-      // 1차 배경의 위치값이 전체맵크기에서 화면 크기를 뺀 값보다 작다면 (1차배경이 화면 우측 끝에 도달하지 않았다면),
-      // 주인공은 움직이지 않고, 배경이 움직임
-      else if (map.zLine1X < map.width - map.winWidth * 1.15) {
-        startMoving('right');
-        hero.absX += mv.distance;
-      } else {
-        console.log('우측 끝에 도달함');
-        stopMoving();
-      }
+      startMoving('right');
       heroBS.classList.remove('left');
     }
-    // 좌측 이동
     if (key === 'ArrowLeft') {
-      // 주인공 현재 위치값이 화면크기의 15% 보다 크다면 주인공이 이동함
-      if (hero.x > map.winWidth * 0.15) {
-        hero.x -= mv.distance;
-        hero.absX -= mv.distance;
-      }
-      // 1차 배경의 위치값이 0보다 크다면,
-      // 주인공은 움직이지 않고, 배경이 움직임
-      else if (map.zLine1X > 0) {
-        startMoving('left');
-        hero.absX -= mv.distance;
-      } else {
-        console.log('좌측 끝에 도달함');
-        stopMoving();
-      }
+      startMoving('left');
       heroBS.classList.add('left');
     }
-
-    if (!heroBS.classList.contains('move')) {
-      heroBS.classList.add('move');
-    }
-
-    heroBS.style.left = `${hero.x}px`;
-
+    heroBS.classList.add('move');
     // activeTrigger('move');
-    // checkTriggers(); // 위치 변경 감지 후 트리거 실행
+    checkTriggers(); // 위치 변경 감지 후 트리거 실행
   }
 
   // 트리거 발동

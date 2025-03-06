@@ -132,7 +132,8 @@
   padding-bottom: 16px;
   translate: -50% 0;
   visibility: hidden;
-  transition: left 0.1s linear, visibility 0.2s linear 2.2s;
+  /* transition: left 0.1s linear, visibility 0.2s linear 2.2s; */
+  transition: visibility 0.2s ease 2.2s;
 }
 #beltscroll .hero.on {
   visibility: visible;
