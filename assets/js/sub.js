@@ -92,7 +92,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const noShowGuide = getCookie('noShowGuide');
   if (!noShowGuide) {
-    guidePopup.classList.add('on');
+    guidePopup.classList.add('open');
   }
 
   closeGuide.addEventListener('click', function() {

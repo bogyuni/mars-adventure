@@ -12,9 +12,9 @@ const ground = document.querySelector('.ground'); // 1차 배경 - 바닥
 const scenery = document.querySelector('.scenery'); // 1차 배경 - 후경
 const aboutme = document.querySelector('.aboutme-wrap'); // 구조물 - 어바웃미
 const portfolio = document.querySelector('.portfolio-wrap'); // 구조물 - 포트폴리오
-const portfolioHover = portfolio.querySelector('.hover-con'); // 구조물 - 포트폴리오 hover
+// const portfolioHover = portfolio.querySelector('.hover-con'); // 구조물 - 포트폴리오 hover
 const guestbook = document.querySelector('.guestbook-wrap') // 구조물 - 게스트북
-const guestbookHover = guestbook.querySelector('.hover-con') // 구조물 - 게스트북
+// const guestbookHover = guestbook.querySelector('.hover-con') // 구조물 - 게스트북 hover
 const aboutmePopup = document.querySelector('.aboutme-popup'); // 팝업 - 어바웃미
 const guestbookPopup = document.querySelector('.guestbook-popup'); // 팝업 - 게스트북
 const guidePopup = document.querySelector('.guide-popup'); // 팝업 - 가이드
@@ -32,9 +32,9 @@ const pixelList = [
   // {uri: pixelData.rock2, obj: scenery},
   {uri: pixelData.aboutme, obj: aboutme},
   {uri: pixelData.portfolio, obj: portfolio},
-  {uri: pixelData.portfolioHover, obj: portfolioHover},
+  // {uri: pixelData.portfolioHover, obj: portfolioHover},
   {uri: pixelData.guestbook, obj: guestbook},
-  {uri: pixelData.guestbookHover, obj: guestbookHover},
+  // {uri: pixelData.guestbookHover, obj: guestbookHover},
 ];
 
 pixelList.forEach((el) => {
@@ -54,7 +54,7 @@ groundRendering();
 
 const BSstate = {
   hero: {
-    x: 200, // 화면상의 위치값값
+    x: 200, // 화면상의 위치값
     absX: 200, // 절대 위치값
     width: 116,
     height: 96,
@@ -67,6 +67,12 @@ const BSstate = {
     zLine3X: 0,
     zLine2Speed: 0.4,
     zLine3Speed: 0.1,
+  },
+  mv: { // movement
+    distance: 30,
+    direction: null,
+    isMoving: false,
+    isPopup: false,
   },
   obj: { // structures
     aboutme: {
@@ -85,17 +91,10 @@ const BSstate = {
       max: 3000 + 592,
     },
   },
-  mv: { // movement
-    direction: null,
-    distance: 30,
-    isMoving: false,
-    isPopup: false,
-  }
 };
 const { hero, map, obj, mv } = BSstate;
 
-// 배경 움직임 관련 함수수
-function moveBackground() {
+function moveFrameSet() {
   if (!mv.isMoving) return; // 이미 움직이는 중이면 실행하지 않음
 
   if (mv.direction === 'right') {
@@ -111,6 +110,8 @@ function moveBackground() {
       map.zLine1X += mv.distance;
       map.zLine2X += mv.distance * map.zLine2Speed;
       map.zLine3X += mv.distance * map.zLine3Speed;
+    } else {
+      console.log('우측 끝에 도달함');
     }
   }
   else if (mv.direction === 'left') {
@@ -126,6 +127,8 @@ function moveBackground() {
       map.zLine1X -= mv.distance;
       map.zLine2X -= mv.distance * map.zLine2Speed;
       map.zLine3X -= mv.distance * map.zLine3Speed;
+    } else {
+      console.log('좌측 끝에 도달함');
     }
   }
 
@@ -133,18 +136,15 @@ function moveBackground() {
   zLine1.style.transform = `translateX(-${map.zLine1X}px)`;
   zLine2.style.transform = `translateX(-${map.zLine2X}px)`;
   zLine3.style.transform = `translateX(-${map.zLine3X}px)`;
-  console.log(hero.absX);
-  // activeTrigger('move');
-  // checkTriggers(); // 위치 변경 감지 후 트리거 실행
-
-  requestAnimationFrame(moveBackground); // 다음 프레임 호출
+  requestAnimationFrame(moveFrameSet);
 }
 
 function startMoving(direct) {
   if (!mv.isMoving) {
     mv.direction = direct;
     mv.isMoving = true;
-    requestAnimationFrame(moveBackground);
+    heroBS.classList.add('move');
+    requestAnimationFrame(moveFrameSet);
   }
 }
 
@@ -152,79 +152,41 @@ function stopMoving() {
   mv.isMoving = false;
 }
 
-// 동작 활성 함수
-function activeTrigger(status) {
+function activeTrigger() {
   const triggers = [
-    { name: 'aboutme', dom: aboutme, popup: aboutmePopup },
-    { name: 'portfolio', dom: portfolio, action: () => setSubStatus('cellmove') },
-    { name: 'guestbook', dom: guestbook, popup: guestbookPopup }
+    { name: obj.aboutme, popup: aboutmePopup },
+    { name: obj.portfolio, action: () => setSubStatus('cellmove') },
+    { name: obj.guestbook, popup: guestbookPopup }
   ];
 
-  triggers.forEach(({ name, dom, popup, action }) => {
-    const objTarget = obj[name];
-    // const domTarget = dom;
-
-    if (hero.absX >= objTarget.x && hero.absX <= objTarget.max) {
-      if (status === 'action') {
-        if (popup) {
-          popup.classList.add('open');
-          mv.isPopup = true;
-        } else if (action) {
-          action();
-        }
-      } else if (status === 'move') {
-        dom.classList.add('on');
+  triggers.forEach(({ name, popup, action }) => {
+    if (hero.absX >= name.x && hero.absX <= name.max) {
+      if (popup) {
+        mv.isPopup = true;
+        popup.classList.add('open');
+      } else if (action) {
+        action();
       }
-    } else {
-      dom.classList.remove('on');
     }
   });
-
-  // console.log(hero.absX);
 }
-
-let lastHeroX = hero.absX; // 이전 위치 저장
-const triggerThreshold = 30; // 트리거 감지 최소 이동 거리 (10px)
-
-function checkTriggers() {
-  if (Math.abs(lastHeroX - hero.absX) >= triggerThreshold) { 
-    activeTrigger('move');
-    lastHeroX = hero.absX;
-  }
-}
-
-// let lastKeyPressTime = 0;
-// const keyDelay = 50;
 
 function beltscrollKeyDown(key) {
-  // const now = Date.now();
-  // if (now - lastKeyPressTime < keyDelay) {
-  //   return; // 너무 빠른 입력은 무시
-  // }
-  // lastKeyPressTime = now;
-
-  if ((key === 'ArrowRight' || key === 'ArrowLeft') && !mv.isPopup) {
-    if (key === 'ArrowRight') {
-      startMoving('right');
-      heroBS.classList.remove('left');
-    }
-    if (key === 'ArrowLeft') {
-      startMoving('left');
-      heroBS.classList.add('left');
-    }
-    heroBS.classList.add('move');
-    // activeTrigger('move');
-    checkTriggers(); // 위치 변경 감지 후 트리거 실행
+  if (key === 'ArrowRight' && !mv.isPopup) {
+    startMoving('right');
+    heroBS.classList.remove('left');
   }
-
+  else if (key === 'ArrowLeft' && !mv.isPopup) {
+    startMoving('left');
+    heroBS.classList.add('left');
+  }
   // 트리거 발동
-  if (key === 'ArrowUp' || key === ' ') {
-    activeTrigger('action');
+  else if (key === 'ArrowUp' || key === ' ') {
+    activeTrigger();
     heroBS.classList.add('up');
   }
-
   // 취소, 창 닫기
-  if (key === 'ArrowDown' || key === 'Escape') {
+  else if (key === 'ArrowDown' || key === 'Escape') {
     closePopup();
   }
 }
