@@ -18,6 +18,12 @@
   - three.js : 3D object
 - run: npx vite
 
+## Branches
+- main - 배포용
+- dev - 현재 개발 중인 내용
+- beta - 초기버전
+- hover-active - sub 페이지 벨트스크롤 페이즈에서 키다운 시 오브젝크 중첩 구현
+
 ## Page information
 
 ### index.html

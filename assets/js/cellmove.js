@@ -1,4 +1,14 @@
 import { setSubStatus } from './substatus.js';
+import { pixelData, pixelDataLoad } from './pixel.js';
+
+
+// 선택자
+const heroCM = document.querySelector('#heroCM'); // 주인공, 개척자
+const viewArea = document.querySelector('#viewArea'); // 타일 이동 공간
+const portPopup = document.querySelector('#portPopup'); // 팝업
+const portPopTit = document.querySelector('#portPopTit'); // 팝업 타이틀
+const portPopCap = document.querySelector('#portPopCap'); // 팝업 문구
+const portPopLink = document.querySelector('#portPopLink'); // 팝업 링크
 
 const portData = {
 	'portfolio': {
@@ -27,13 +37,15 @@ const portData = {
 	},
 };
 
-// 선택자
-const heroCM = document.querySelector('#heroCM'); // 주인공, 개척자
-const viewArea = document.querySelector('#viewArea'); // 타일 이동 공간
-const portPopup = document.querySelector('#portPopup'); // 팝업
-const portPopTit = document.querySelector('#portPopTit'); // 팝업 타이틀
-const portPopCap = document.querySelector('#portPopCap'); // 팝업 문구
-const portPopLink = document.querySelector('#portPopLink'); // 팝업 링크
+// 픽셀 로드
+const pixelList = [
+  {uri: pixelData.manFront, obj: heroCM},
+];
+pixelList.forEach((el) => {
+  const custom = el.custom ? el.custom : undefined;
+  pixelDataLoad(el.uri, el.obj, custom);
+});
+
 
 // 설정값
 const tileSize = 50; // 셀의 사이즈
@@ -118,7 +130,7 @@ function cellmoveKeydown(key) {
 			}
 		}
 
-		heroCM.innerHTML = heroCM.dataset.direction;
+		// heroCM.innerHTML = heroCM.dataset.direction;
 
 		// 이동 후 딜레이 지나면 다시 이동 가능
 		setTimeout(function(){

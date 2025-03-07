@@ -1,4 +1,4 @@
-@keyframes guide_scroll {
+@keyframes guideScroll {
   0% {
     opacity: 0.2;
   }
@@ -19,7 +19,7 @@
   }
 }
 
-@keyframes r_landing {
+@keyframes landing {
   0% {
     bottom: 100%;
   }
@@ -40,7 +40,7 @@
   }
 }
 
-@keyframes openAboutme {
+@keyframes openPopup {
   0% {
     width:0;
     height: 0;
@@ -52,5 +52,17 @@
   100% {
     width: 800px;
     height: 600px;
+  }
+}
+
+@keyframes fadeEffect {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

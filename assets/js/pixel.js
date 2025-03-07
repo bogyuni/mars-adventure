@@ -7,6 +7,7 @@ const pixelData = {
   rover: 'rover2.html',
   roverWheel: 'rover-wheel2.html',
   roverLight: 'rover-light.html',
+  manFront: 'man-front.html',
 
   // Weather
   clear: 'w-clear.html',
@@ -20,11 +21,12 @@ const pixelData = {
   rock2: 'bg-rock2.html',
 
   // structure
-  aboutme: 'aboutme.html',
+  aboutme: 'aboutme2.html',
+  aboutmeOutline: 'aboutme-outline.html',
   portfolio: 'portfolio2.html',
-  portfolioHover: 'portfolio-hover.html',
+  portfolioOutline: 'portfolio-outline.html',
   guestbook: 'guestbook.html',
-  guestbookHover: 'guestbook-hover.html',
+  guestbookOutline: 'guestbook-outline.html',
 }
 
 const pixelDataLoad = (uri, obj, custom) => {

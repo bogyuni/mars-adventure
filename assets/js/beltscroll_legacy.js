@@ -12,7 +12,7 @@ const ground = document.querySelector('.ground'); // 1차 배경 - 바닥
 const scenery = document.querySelector('.scenery'); // 1차 배경 - 후경
 const aboutme = document.querySelector('.aboutme-wrap'); // 구조물 - 어바웃미
 const portfolio = document.querySelector('.portfolio-wrap'); // 구조물 - 포트폴리오
-const portfolioHover = portfolio.querySelector('.hover-con'); // 구조물 - 포트폴리오
+const portfolioHover = portfolio.querySelector('.outline-con'); // 구조물 - 포트폴리오
 
 const guestbook = document.querySelector('.guestbook-wrap') // 구조물 - 게스트북
 const aboutmePopup = document.querySelector('.aboutme-popup'); // 팝업 - 어바웃미

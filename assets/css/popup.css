@@ -10,10 +10,10 @@
   transition: width 0.4s ease 0s, height 0.6s ease 0.5s;
 }
 .popup.open {
-  animation: openAboutme 1s ease 0s 1 normal forwards;
+  animation: openPopup 1s ease 0s 1 normal forwards;
 }
 /* .popup.off {
-  animation: openAboutme 1s ease 0s 1 reverse forwards;
+  animation: openPopup 1s ease 0s 1 reverse forwards;
 } */
 .popup .popup-border {
   position: absolute;

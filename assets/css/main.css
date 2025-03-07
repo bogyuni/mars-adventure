@@ -92,11 +92,11 @@
 }
 .guide-scroll::before {
 	top: 90%;
-	animation: guide_scroll 1.4s ease 0s infinite;
+	animation: guideScroll 1.4s ease 0s infinite;
 }
 .guide-scroll::after {
 	top: 130%;
-	animation: guide_scroll 1.4s ease 0.4s infinite;
+	animation: guideScroll 1.4s ease 0.4s infinite;
 }
 
 .earth-wrap {
