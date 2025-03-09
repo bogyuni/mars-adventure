@@ -48,7 +48,7 @@ pixelList.forEach((el) => {
 
 
 // 설정값
-const tileSize = 50; // 셀의 사이즈
+const tileSize = 100; // 셀의 사이즈
 const delayTime = 101; // 셀 이동 시 딜레이를 주어 연속 이동 제약, 이렇게 안하면 위치값이 어긋남
 const viewWidth = viewArea.offsetWidth;
 const viewHeight = viewArea.offsetHeight;

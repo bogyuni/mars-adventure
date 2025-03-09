@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 :root {
-	--tile: 50px;
+	--tile: 100px;
 	--duration: 0.1s;
 }
 
@@ -15,7 +15,7 @@
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	width:1000px;
+	width:1100px;
 	height: 700px;
 	background-image: 
 	linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444),
@@ -23,6 +23,7 @@
 	background-position: 0 0, var(--tile) var(--tile);
 	background-size: calc(var(--tile) * 2) calc(var(--tile) * 2);
 	transform: translate(-50%, -50%) scale(1);
+	border:1px solid red;
 }
 
 #cellmove .hero {
@@ -33,6 +34,13 @@
 	z-index: 2;
 	background-color: blue;
 }
+#cellmove .hero .man {
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	translate: -50% 0;
+}
+
 
 #cellmove .hero[data-direction="up"] {
 	background-color: green;
@@ -74,23 +82,23 @@
 	border-bottom: 2px dotted #fff;
 }
 .port-obj.portfolio {
-	left: calc(var(--tile) * 2);
-	top: calc(var(--tile) * 1);
+	left: calc(var(--tile) * 0);
+	top: calc(var(--tile) * 0);
 }
 .port-obj.benchmarking {
-	left: calc(var(--tile) * 16);
-	top: calc(var(--tile) * 2);
+	left: calc(var(--tile) * 8);
+	top: calc(var(--tile) * 0);
 }
 .port-obj.game {
-	left: calc(var(--tile) * 2);
-	top: calc(var(--tile) * 6);
+	left: calc(var(--tile) * 0);
+	top: calc(var(--tile) * 4);
 }
 .port-obj.doteditor {
-	left: calc(var(--tile) * 15);
-	top: calc(var(--tile) * 7);
+	left: calc(var(--tile) * 8);
+	top: calc(var(--tile) * 4);
 }
 .port-obj.exit {
-	left: calc(var(--tile) * 9);
+	left: calc(var(--tile) * 4);
 	top: calc(var(--tile) * 0);
 }
 
