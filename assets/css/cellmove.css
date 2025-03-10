@@ -3,6 +3,7 @@
 :root {
 	--tile: 100px;
 	--duration: 0.1s;
+	--bg-cell: 4px;
 }
 
 #cellmove .viewport {
@@ -23,7 +24,39 @@
 	background-position: 0 0, var(--tile) var(--tile);
 	background-size: calc(var(--tile) * 2) calc(var(--tile) * 2);
 	transform: translate(-50%, -50%) scale(1);
-	border:1px solid red;
+}
+
+#cellmove .portfolio-inbg {
+	position: absolute;
+	left:0;
+	top: 0;
+	width: 100%;
+	height: calc(var(--tile) * 2);
+	z-index: 1;
+	background: linear-gradient(180deg,
+	#887977 calc(var(--bg-cell) * 0),#887977 calc(var(--bg-cell) * 1),
+	#695654 calc(var(--bg-cell) * 1),#695654 calc(var(--bg-cell) * 2),
+	#352627 calc(var(--bg-cell) * 2),#352627 calc(var(--bg-cell) * 3),
+	#494142 calc(var(--bg-cell) * 3),#494142 calc(var(--bg-cell) * 5),
+	#695653 calc(var(--bg-cell) * 5),#695653 calc(var(--bg-cell) * 14),
+	#453f41 calc(var(--bg-cell) * 14),#453f41 calc(var(--bg-cell) * 15),
+	#918682 calc(var(--bg-cell) * 15),#918682 calc(var(--bg-cell) * 16),
+	#685451 calc(var(--bg-cell) * 16),#685451 calc(var(--bg-cell) * 18),
+	#484544 calc(var(--bg-cell) * 18),#484544 calc(var(--bg-cell) * 19),
+	#595955 calc(var(--bg-cell) * 19),#595955 calc(var(--bg-cell) * 20),
+	#86837e calc(var(--bg-cell) * 20),#86837e calc(var(--bg-cell) * 23),
+	#d0cfcd calc(var(--bg-cell) * 23),#d0cfcd calc(var(--bg-cell) * 24),
+	#aeadab calc(var(--bg-cell) * 24),#aeadab calc(var(--bg-cell) * 27),
+	#e38e3e calc(var(--bg-cell) * 27),#e38e3e calc(var(--bg-cell) * 30),
+	#afacac calc(var(--bg-cell) * 30),#afacac calc(var(--bg-cell) * 41),
+	#83807b calc(var(--bg-cell) * 41),#83807b calc(var(--bg-cell) * 42),
+	#d1d1cf calc(var(--bg-cell) * 42),#d1d1cf calc(var(--bg-cell) * 43),
+	#979390 calc(var(--bg-cell) * 43),#979390 calc(var(--bg-cell) * 45),
+	#5a4b4a calc(var(--bg-cell) * 45),#5a4b4a calc(var(--bg-cell) * 46),
+	#b0a9a3 calc(var(--bg-cell) * 46),#b0a9a3 calc(var(--bg-cell) * 47),
+	#6a554f calc(var(--bg-cell) * 47),#6a554f calc(var(--bg-cell) * 49),
+	#4a4447 calc(var(--bg-cell) * 49),#4a4447 calc(var(--bg-cell) * 50)
+	);
 }
 
 #cellmove .hero {
@@ -32,27 +65,27 @@
 	height:var(--tile);
 	transition: left var(--duration) ease, top var(--duration) ease;
 	z-index: 2;
-	background-color: blue;
 }
-#cellmove .hero .man {
+#cellmove .hero [class*='man-'] {
 	position: absolute;
 	left: 50%;
 	bottom: 0;
 	translate: -50% 0;
+	display: none;
 }
 
-
-#cellmove .hero[data-direction="up"] {
-	background-color: green;
+#cellmove .hero[data-direction="up"] .man-back {
+	display: block;
 }
-#cellmove .hero[data-direction="right"] {
-	background-color: red;
+#cellmove .hero[data-direction="right"] .man-side {
+	display: block;
 }
-#cellmove .hero[data-direction="down"] {
-	background-color: yellow;
+#cellmove .hero[data-direction="down"] .man-front {
+	display: block;
 }
-#cellmove .hero[data-direction="left"] {
-	background-color: blue;
+#cellmove .hero[data-direction="left"] .man-side {
+	display: block;
+	transform: scaleX(-1);
 }
 
 .port-obj {
@@ -83,11 +116,11 @@
 }
 .port-obj.portfolio {
 	left: calc(var(--tile) * 0);
-	top: calc(var(--tile) * 0);
+	top: calc(var(--tile) * 1);
 }
 .port-obj.benchmarking {
 	left: calc(var(--tile) * 8);
-	top: calc(var(--tile) * 0);
+	top: calc(var(--tile) * 1);
 }
 .port-obj.game {
 	left: calc(var(--tile) * 0);

@@ -4,6 +4,7 @@ import { pixelData, pixelDataLoad } from './pixel.js';
 
 // 선택자
 const heroCM = document.querySelector('#heroCM'); // 주인공, 개척자
+const portfolioInBG = document.querySelector('.portfolio-inbg') // 배경 - 벽면
 const viewArea = document.querySelector('#viewArea'); // 타일 이동 공간
 const portPopup = document.querySelector('#portPopup'); // 팝업
 const portPopTit = document.querySelector('#portPopTit'); // 팝업 타이틀
@@ -40,6 +41,10 @@ const portData = {
 // 픽셀 로드
 const pixelList = [
   {uri: pixelData.manFront, obj: heroCM},
+  {uri: pixelData.manSide, obj: heroCM},
+  {uri: pixelData.manBack, obj: heroCM},
+  {uri: pixelData.portfolioInBG, obj: portfolioInBG},
+	
 ];
 pixelList.forEach((el) => {
   const custom = el.custom ? el.custom : undefined;

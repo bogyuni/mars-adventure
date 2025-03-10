@@ -8,6 +8,8 @@ const pixelData = {
   roverWheel: 'rover-wheel2.html',
   roverLight: 'rover-light.html',
   manFront: 'man-front.html',
+  manSide: 'man-side.html',
+  manBack: 'man-back.html',
 
   // Weather
   clear: 'w-clear.html',
@@ -19,6 +21,7 @@ const pixelData = {
   ground: 'bg-ground4.html',
   rock1: 'bg-rock1.html',
   rock2: 'bg-rock2.html',
+  portfolioInBG: 'portfolio-inbg.html',
 
   // structure
   aboutme: 'aboutme2.html',
