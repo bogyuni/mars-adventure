@@ -19,6 +19,7 @@ const guestbookOutline = guestbook.querySelector('.outline-con') // 구조물 - 
 const aboutmePopup = document.querySelector('.aboutme-popup'); // 팝업 - 어바웃미
 const guestbookPopup = document.querySelector('.guestbook-popup'); // 팝업 - 게스트북
 const guidePopup = document.querySelector('.guide-popup'); // 팝업 - 가이드
+const profile = document.querySelector('.profile-photo'); // 팝업 - 가이드
 
 // 픽셀 로드
 const pixelList = [
@@ -37,6 +38,7 @@ const pixelList = [
   {uri: pixelData.portfolioOutline, obj: portfolioOutline},
   {uri: pixelData.guestbook, obj: guestbook},
   {uri: pixelData.guestbookOutline, obj: guestbookOutline},
+  {uri: pixelData.profile, obj: profile},
 ];
 
 pixelList.forEach((el) => {

@@ -30,6 +30,12 @@ const pixelData = {
   portfolioOutline: 'portfolio-outline.html',
   guestbook: 'guestbook.html',
   guestbookOutline: 'guestbook-outline.html',
+  portObjPortfolio: 'port-obj-portfolio.html',
+
+  // etc
+  profile: 'profile.html',
+
+
 }
 
 const pixelDataLoad = (uri, obj, custom) => {

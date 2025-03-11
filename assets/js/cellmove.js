@@ -10,6 +10,7 @@ const portPopup = document.querySelector('#portPopup'); // 팝업
 const portPopTit = document.querySelector('#portPopTit'); // 팝업 타이틀
 const portPopCap = document.querySelector('#portPopCap'); // 팝업 문구
 const portPopLink = document.querySelector('#portPopLink'); // 팝업 링크
+const portObjPortfolio = document.querySelector('.port-obj.portfolio'); //obj portfolio
 
 const portData = {
 	'portfolio': {
@@ -44,6 +45,7 @@ const pixelList = [
   {uri: pixelData.manSide, obj: heroCM},
   {uri: pixelData.manBack, obj: heroCM},
   {uri: pixelData.portfolioInBG, obj: portfolioInBG},
+  {uri: pixelData.portObjPortfolio, obj: portObjPortfolio},
 	
 ];
 pixelList.forEach((el) => {

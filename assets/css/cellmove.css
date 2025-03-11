@@ -18,12 +18,22 @@
 	top: 50%;
 	width:1100px;
 	height: 700px;
-	background-image: 
-	linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444),
-	linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444);
+	/* background-image: 
+		linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444),
+		linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444);
 	background-position: 0 0, var(--tile) var(--tile);
-	background-size: calc(var(--tile) * 2) calc(var(--tile) * 2);
-	transform: translate(-50%, -50%) scale(1);
+	background-size: calc(var(--tile) * 2) calc(var(--tile) * 2); */
+	--s: 100px;
+	--c1: #dddddd;
+	--c2: #c1bcb6;
+	--_g:var(--c1) 15%,var(--c2) 0 28%,#0000 0 72%,var(--c2) 0 85%,var(--c1) 0;
+	background:
+		conic-gradient(from 90deg at 2px 2px,#0000 25%,var(--c1) 0) -1px -1px,
+		linear-gradient(-45deg,var(--_g)),linear-gradient(45deg,var(--_g)),
+		conic-gradient(from 90deg at 40% 40%,var(--c1) 25%,var(--c2) 0) 
+		calc(var(--s)/-5) calc(var(--s)/-5);
+	background-size: var(--s) var(--s); 
+	translate: -50% -50%;
 }
 
 #cellmove .portfolio-inbg {
@@ -32,7 +42,6 @@
 	top: 0;
 	width: 100%;
 	height: calc(var(--tile) * 2);
-	z-index: 1;
 	background: linear-gradient(180deg,
 	#887977 calc(var(--bg-cell) * 0),#887977 calc(var(--bg-cell) * 1),
 	#695654 calc(var(--bg-cell) * 1),#695654 calc(var(--bg-cell) * 2),
@@ -90,19 +99,28 @@
 
 .port-obj {
 	position: absolute;
-	background-color: #fff;
+	/* background-color: #fff; */
 	width:calc(var(--tile) * 3);
 	height: calc(var(--tile) * 2);
 	text-align: center;
 }
-.port-obj h5 {
+.port-obj::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom:-10%;
+	border-radius: 50%;
+	width: 100%;
+	height: 40%;
+	background-color: rgba(0,0,0,0.3);
+}
+.port-obj .name-tag {
 	font-size: 24px;
 	line-height: 1;
 	height: 18px;
 	font-family: 'Micro';
-}
-.port-obj p {
-	font-size: 12px;
+	position: absolute;
+	z-index: 2;
 }
 .port-obj .entrance {
 	position: absolute;
@@ -113,11 +131,18 @@
 	background: linear-gradient(180deg, #000 50%, transparent 100%);
 	border: 2px solid black;
 	border-bottom: 2px dotted #fff;
+	opacity: 0;
 }
 .port-obj.portfolio {
 	left: calc(var(--tile) * 0);
 	top: calc(var(--tile) * 1);
 }
+.port-obj.portfolio .name-tag {
+	left: 95px;
+	top: 72px;
+	opacity: 0.6;
+}
+
 .port-obj.benchmarking {
 	left: calc(var(--tile) * 8);
 	top: calc(var(--tile) * 1);

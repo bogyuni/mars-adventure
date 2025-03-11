@@ -137,6 +137,17 @@
   padding-right: 0;
 }
 
+.profile-photo {
+  display: flex;
+  justify-content: end;
+}
+.profile-photo .profile {
+  padding: 8px 0 0 8px;
+}
+.profile-photo .dot-base {
+  overflow: visible !important;
+}
+
 .guestbook-frame {
   width: 100%;
   height: 87%;
