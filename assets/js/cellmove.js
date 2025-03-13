@@ -1,6 +1,8 @@
 import { setSubStatus } from './substatus.js';
 import { pixelData, pixelDataLoad } from './pixel.js';
 
+// setSubStatus('cellmove');
+
 
 // 선택자
 const heroCM = document.querySelector('#heroCM'); // 주인공, 개척자
@@ -11,6 +13,10 @@ const portPopTit = document.querySelector('#portPopTit'); // 팝업 타이틀
 const portPopCap = document.querySelector('#portPopCap'); // 팝업 문구
 const portPopLink = document.querySelector('#portPopLink'); // 팝업 링크
 const portObjPortfolio = document.querySelector('.port-obj.portfolio'); //obj portfolio
+const portObjBenchmarking = document.querySelector('.port-obj.benchmarking'); //obj Benchmarking
+const portObjGame = document.querySelector('.port-obj.game'); //obj Game
+const portObjDoteditor = document.querySelector('.port-obj.doteditor'); //obj Dot editor
+
 
 const portData = {
 	'portfolio': {
@@ -46,12 +52,23 @@ const pixelList = [
   {uri: pixelData.manBack, obj: heroCM},
   {uri: pixelData.portfolioInBG, obj: portfolioInBG},
   {uri: pixelData.portObjPortfolio, obj: portObjPortfolio},
+  {uri: pixelData.portObjBenchmarking, obj: portObjBenchmarking},
+  {uri: pixelData.portObjGame, obj: portObjGame},
+  {uri: pixelData.portObjDoteditor, obj: portObjDoteditor},
 	
 ];
 pixelList.forEach((el) => {
   const custom = el.custom ? el.custom : undefined;
   pixelDataLoad(el.uri, el.obj, custom);
 });
+
+const CMstate = {
+	mv: { // movement
+		tileSize: 100,
+    isMoving: false,
+    isPopup: false,
+	}
+}
 
 
 // 설정값
@@ -111,33 +128,31 @@ function cellmoveKeydown(key) {
 			if(currentPosition('left') > 0) {
 				heroCM.style.left = `${currentPosition('left') - tileSize}px`;
 				heroCM.dataset.direction = 'left';
-			} else {
-				console.log('Left MAX')
+			// } else {
+			// 	console.log('Left MAX');
 			}
 		} else if (key === 'ArrowRight') {
 			if (currentPosition('left') < viewWidth - tileSize) {
 				heroCM.style.left = `${currentPosition('left') + tileSize}px`;
 				heroCM.dataset.direction = 'right';
-			} else {
-				console.log('Right MAX');
+			// } else {
+			// 	console.log('Right MAX');
 			}
 		} else if (key === 'ArrowUp') {
-			if (currentPosition('top') > 0) {
+			if (currentPosition('top') > tileSize) {
 				heroCM.style.top = `${currentPosition('top') - tileSize}px`;
 				heroCM.dataset.direction = 'up';
-			} else {
-				console.log('Top MAX');
+			// } else {
+			// 	console.log('Top MAX');
 			}
 		} else if (key === 'ArrowDown') {
 			if (currentPosition('top') < viewHeight - tileSize) {
 				heroCM.style.top = `${currentPosition('top') + tileSize}px`;
 				heroCM.dataset.direction = 'down';
-			} else {
-				console.log('Bottom MAX');
+			// } else {
+			// 	console.log('Bottom MAX');
 			}
 		}
-
-		// heroCM.innerHTML = heroCM.dataset.direction;
 
 		// 이동 후 딜레이 지나면 다시 이동 가능
 		setTimeout(function(){
@@ -191,7 +206,7 @@ function cellmoveKeyup() {
 						setTimeout(function(){
 							heroCM.style.top = heroCMStat.y+'px';
 							heroCM.style.left = heroCMStat.x+'px';
-						},1400);
+						}, 1400);
 					}
 					// exit 가 아니면 해당 포폴 팝업을 오픈한다
 					else {

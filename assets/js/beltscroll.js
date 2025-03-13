@@ -11,11 +11,8 @@ const zLine3 = document.querySelector('.z-line-back.back3'); // 3차 배경 - �
 const ground = document.querySelector('.ground'); // 1차 배경 - 바닥
 const scenery = document.querySelector('.scenery'); // 1차 배경 - 후경
 const aboutme = document.querySelector('.aboutme-wrap'); // 구조물 - 어바웃미
-const aboutmeOutline = aboutme.querySelector('.outline-con'); // 구조물 - 어바웃미 Outline
 const portfolio = document.querySelector('.portfolio-wrap'); // 구조물 - 포트폴리오
-const portfolioOutline = portfolio.querySelector('.outline-con'); // 구조물 - 포트폴리오 Outline
 const guestbook = document.querySelector('.guestbook-wrap') // 구조물 - 게스트북
-const guestbookOutline = guestbook.querySelector('.outline-con') // 구조물 - 게스트북 Outline
 const aboutmePopup = document.querySelector('.aboutme-popup'); // 팝업 - 어바웃미
 const guestbookPopup = document.querySelector('.guestbook-popup'); // 팝업 - 게스트북
 const guidePopup = document.querySelector('.guide-popup'); // 팝업 - 가이드
@@ -33,11 +30,8 @@ const pixelList = [
   {uri: pixelData.rock1, obj: scenery},
   // {uri: pixelData.rock2, obj: scenery},
   {uri: pixelData.aboutme, obj: aboutme},
-  {uri: pixelData.aboutmeOutline, obj: aboutmeOutline},
   {uri: pixelData.portfolio, obj: portfolio},
-  {uri: pixelData.portfolioOutline, obj: portfolioOutline},
   {uri: pixelData.guestbook, obj: guestbook},
-  {uri: pixelData.guestbookOutline, obj: guestbookOutline},
   {uri: pixelData.profile, obj: profile},
 ];
 
@@ -103,13 +97,13 @@ function moveFrameSet() {
 
   if (mv.direction === 'right') {
     // 주인공 현재 위치값이 화면크기의 75% 보다 작으면 주인공이 이동함
-    if (hero.x < map.winWidth * 0.75 + hero.width) {
+    if (hero.x < map.winWidth - hero.width) {
       hero.absX += mv.distance;
       hero.x += mv.distance;
     }
     // 1차 배경의 위치값이 전체맵크기에서 화면 크기를 뺀 값보다 작다면 (1차배경이 화면 우측 끝에 도달하지 않았다면),
     // 주인공은 움직이지 않고, 배경이 움직임
-    else if (map.zLine1X < map.width - map.winWidth * 1.15) {
+    else if (map.zLine1X < map.width - (map.winWidth + hero.width)) {
       hero.absX += mv.distance;
       map.zLine1X += mv.distance;
       map.zLine2X += mv.distance * map.zLine2Speed;
@@ -120,7 +114,7 @@ function moveFrameSet() {
   }
   else if (mv.direction === 'left') {
     // 주인공 현재 위치값이 화면크기의 15% 보다 크다면 주인공이 이동함
-    if (hero.x > map.winWidth * 0.15) {
+    if (hero.x > hero.width) {
       hero.absX -= mv.distance;
       hero.x -= mv.distance;
     }
@@ -214,6 +208,17 @@ popupCloseBtn.forEach(btn => {
     closePopup();
   };
 });
+
+// 브라우저 크기 변경 대응
+function winDebounce(callback, delay) {
+  let timeout;
+  return function () {
+    clearTimeout(timeout);
+    timeout = setTimeout(callback, delay);
+  };
+}
+window.addEventListener('resize', winDebounce(() => { map.winWidth = window.innerWidth; }, 200));
+
 
 export { beltscrollKeyDown, beltscrollKeyUp };
 

@@ -23,7 +23,7 @@
       <div class="line obj-wrap">
         <div id="rocket" class="sub-obj rocket"></div>
         <div class="sub-obj aboutme-wrap">
-          <div class="outline-con"></div>
+          <!-- <div class="outline-con"></div> -->
         </div>
         <div class="sub-obj portfolio-wrap">
           <div class="outline-con"></div>
@@ -114,43 +114,48 @@
     <div class="view-area" id="viewArea">
       <div class="portfolio-inbg"></div>
 
-      <div class="hero" id="heroCM" data-direction="down"></div>
-
       <div class="port-obj portfolio" data-id="portfolio">
         <h5 class="name-tag">PORTFOLIO</h5>
         <div class="entrance"></div>
       </div>
       <div class="port-obj benchmarking" data-id="benchmarking">
-        <h5>BENCHMARKING</h5>
-        <p>[2022]</p>
+        <h5 class="name-tag">BENCHMARKING</h5>
         <div class="entrance"></div>
       </div>
       <div class="port-obj game" data-id="game">
-        <h5>GAME</h5>
-        <p>[2016]</p>
+        <h5 class="name-tag">GAME</h5>
         <div class="entrance"></div>
       </div>
       <div class="port-obj doteditor" data-id="doteditor">
-        <h5>DOT EDITOR</h5>
-        <p>[2024]</p>
+        <h5 class="name-tag tag1">DOT</h5>
+        <h5 class="name-tag tag2">EDITOR</h5>
         <div class="entrance"></div>
       </div>
       <div class="port-obj exit" data-id="exit">
-        <h5>EXIT</h5>
-        <p>[Go to MARS]</p>
+        <h5 class="name-tag">EXIT</h5>
         <div class="entrance"></div>
       </div>
+
+      <div class="hero" id="heroCM" data-direction="down"></div>
     </div>
 
-    <div class="port-popup" id="portPopup">
-      <h3 id="portPopTit">Portfolio Title</h3>
-      <p id="portPopCap">Caption</p>
-      <a id="portPopLink" href="" target="_blank">Move to link</a>
-      <p>
-        * Enter 키를 누르면 새창으로 이동합니다.<br>
-        * ESC 키를 누르면 팝업을 닫습니다.
-      </p>
+    <div class="popup" id="portPopup">
+      <div class="popup-border"></div>
+      <div class="inner">
+        <h3 id="portPopTit">Portfolio Title</h3>
+        <p id="portPopCap">Caption</p>
+        <a id="portPopLink" href="" target="_blank">Move to link</a>
+        <p>
+          * Enter 키를 누르면 새창으로 이동합니다.<br>
+          * ESC 키를 누르면 팝업을 닫습니다.
+        </p>
+      </div>
+      <button class="square-line btn-close">
+        <span class="shadow"></span>
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>
+
   </div>
 </main>
 

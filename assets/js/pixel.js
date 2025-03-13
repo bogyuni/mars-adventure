@@ -25,12 +25,12 @@ const pixelData = {
 
   // structure
   aboutme: 'aboutme2.html',
-  aboutmeOutline: 'aboutme-outline.html',
   portfolio: 'portfolio2.html',
-  portfolioOutline: 'portfolio-outline.html',
   guestbook: 'guestbook.html',
-  guestbookOutline: 'guestbook-outline.html',
   portObjPortfolio: 'port-obj-portfolio.html',
+  portObjBenchmarking: 'port-obj-benchmarking.html',
+  portObjGame: 'port-obj-game.html',
+  portObjDoteditor: 'port-obj-doteditor.html',
 
   // etc
   profile: 'profile.html',
