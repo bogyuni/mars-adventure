@@ -22,6 +22,7 @@ const pixelData = {
   rock1: 'bg-rock1.html',
   rock2: 'bg-rock2.html',
   portfolioInBG: 'portfolio-inbg.html',
+  zLineBack2: 'z-line-back2.html',
 
   // structure
   aboutme: 'aboutme2.html',
