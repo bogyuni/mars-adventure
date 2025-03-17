@@ -46,22 +46,22 @@ function createMainCanvas(objDom, canvasWidth, canvasHeight, objColor, objType) 
     geometry = new THREE.SphereGeometry(1, 32, 32);
     // geometry = new THREE.TetrahedronGeometry(1, 13);
     material = new THREE.MeshPhongMaterial({
-      map: new THREE.TextureLoader().load('./assets/img/earth_dot2.png'),  // Replace with your earth texture
-      // bumpMap: new THREE.TextureLoader().load('./assets/img/earth_clouds.jpeg'),  // Replace with your bump map
+      map: new THREE.TextureLoader().load('./assets/img/earth_dot.png'),
+      // bumpMap: new THREE.TextureLoader().load('./assets/img/earth_clouds.jpeg'),
       // bumpScale: 1,
-      // specularMap: new THREE.TextureLoader().load('./assets/img/earth.jpg'),  // Replace with your specular map
+      // specularMap: new THREE.TextureLoader().load('./assets/img/earth.jpg'),
       // specular: new THREE.Color('grey')
     });
   } else if (objType === 'moon') {
     geometry = new THREE.TetrahedronGeometry(1, 8);
     material = new THREE.MeshPhongMaterial({
-      map: new THREE.TextureLoader().load('./assets/img/moon_dot.png'),  // Replace with your earth texture
+      map: new THREE.TextureLoader().load('./assets/img/moon_dot.png'),
     });
   } else if (objType === 'mars') {
     // geometry = new THREE.SphereGeometry(1, 32, 32);
     geometry = new THREE.TetrahedronGeometry(1, 8);
     material = new THREE.MeshPhongMaterial({
-      map: new THREE.TextureLoader().load('./assets/img/mars_dot.png'),  // Replace with your earth texture
+      map: new THREE.TextureLoader().load('./assets/img/mars_dot.png'),
     });
   }
 
@@ -118,7 +118,7 @@ window.onload = () => {
   marsTop = marsWrap.offsetTop;
 
   const devGuideLine = document.querySelector('.dev-guide-line');
-  if(devGuideLine.lenth > 0) {
+  if(devGuideLine != null && !devGuideLine) {
     const maxHeight = mainWrap.offsetHeight;
     const winHeightLength = parseInt(maxHeight / winHeight);
     for (let i = 0; i < winHeightLength; i++) {

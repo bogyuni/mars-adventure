@@ -18,20 +18,20 @@
 .z-line-back {
   position: absolute;
   left: 0;
+  min-width: 100vw;
   bottom: var(--ground-h);
   will-change: transform;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px;
 }
-.z-line-back .bg-layer {
+/* .z-line-back .bg-layer {
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-}
-
+} */
 .z-line-back.back1 {
   top: 0;
   width: 4000px;
@@ -44,11 +44,11 @@
   width: 100%;
 }
 .z-line-back.back2 {
-  width: 4000px;
+  width: 2300px;
   height: 320px;
-  /* background: url(../img/back2-2.png) no-repeat center/cover; */
+  background: url(../img/back2.png) repeat left / 100%;
 }
-.z-line-back.back2 .bg-layer1 {
+/* .z-line-back.back2 .bg-layer1 {
   background-image: linear-gradient(90deg, #c18762, #d08c63);
   clip-path: polygon(8% 34%, 11% 40%, 52% 68%, 70% 75%, 100% 90%, 100% 100%, 0 100%, 0 39%);
   }
@@ -63,13 +63,13 @@
 .z-line-back.back2 .bg-layer4 {
   background-image: linear-gradient(90deg, #c18762, #97684c);
   clip-path: polygon(45% 100%, 52% 17%, 68% 0, 72% 12%, 77% 30%, 100% 45%, 88% 100%);
-}
+} */
 .z-line-back.back3 {
-  width: 3000px;
+  width: 1400px;
   height: 720px;
-  /* background: url(../img/back3.png) no-repeat center/cover; */
+  background: url(../img/back3.png) repeat left / 100%;
 }
-.z-line-back.back3 .bg-layer1 {
+/* .z-line-back.back3 .bg-layer1 {
   background-image: linear-gradient(90deg, #917461, #ddab8d);
   clip-path: polygon(14% 63%, 30% 76%, 39% 80%, 56% 69%, 64% 46%, 88% 49%, 100% 28%, 100% 100%, 0 100%, 0 62%, 8% 67%);
 }
@@ -80,7 +80,7 @@
 .z-line-back.back3 .bg-layer3 {
   background-image: linear-gradient(90deg, #b9aa9c, #cbae9a);
   clip-path: polygon(28% 5%, 35% 8%, 48% 0, 58% 4%, 74% 0, 80% 7%, 93% 0, 100% 9%, 100% 100%, 0 100%, 0 10%, 13% 8%);
-}
+} */
 
 .line.scenery {
   bottom: var(--ground-h);
@@ -207,7 +207,6 @@
   height: 100%;
 }
 
-
 .dev-guide-wrap {
   position: fixed;
   left: 0;
@@ -216,4 +215,48 @@
   width: 100%;
   height: 100%;
   border:calc(100vw * 0.15) solid #ff000050;
+}
+
+.bigsize-popup {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  padding: 80px;
+  text-align: center;
+  border: 10px solid #000;
+  background-color: #fff;
+  font-size: 30px;
+  white-space: pre-line;
+  line-height: 2;
+  display: none;
+}
+.bigsize-popup::after {
+  content: '❌';
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+
+
+@media screen and (min-width: 1100px) {
+  .z-line-back.back2 {width: 2800px;}
+  .z-line-back.back3 {width: 2200px;}
+}
+@media screen and (min-width: 1900px) {
+  .z-line-back.back2 {width: 3300px;}
+  .z-line-back.back3 {width: 2200px;}
+}
+@media screen and (min-width: 2500px) {
+  .z-line-back.back2 {width: 3300px;}
+  .z-line-back.back3 {width: 2700px;}
+}
+@media screen and (min-width: 3800px) {
+  .z-line-back.back2 {width: 3900px;}
+  .z-line-back.back3 {width: 3900px;}
+}
+@media screen and (min-width: 4000px) {
+  .z-line-back.back1 {width: 100%;}
+  .bigsize-popup {display: block;}
 }

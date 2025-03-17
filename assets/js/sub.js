@@ -143,4 +143,8 @@ window.onload = () => {
   } else if (subStatus.name === 'cellmove') {
     console.log('Cell move');
   }
+
+  document.querySelector('.bigsize-popup').addEventListener('click', function() {
+    this.style.display = 'none';
+  });
 };
