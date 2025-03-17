@@ -94,6 +94,7 @@
   font-size: 14px;
   margin-bottom: 20px;
   color: var(--sub-color);
+  color: #333;
 }
 .popup p a {
   color: var(--main-color);

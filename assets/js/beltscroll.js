@@ -33,7 +33,7 @@ const pixelList = [
   {uri: pixelData.portfolio, obj: portfolio},
   {uri: pixelData.guestbook, obj: guestbook},
   {uri: pixelData.profile, obj: profile},
-  {uri: pixelData.zLineBack2, obj: zLine2},
+  // {uri: pixelData.zLineBack2, obj: zLine2},
 ];
 
 pixelList.forEach((el) => {

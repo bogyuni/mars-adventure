@@ -1,3 +1,14 @@
+(function() {
+  if (window.location.pathname.startsWith("/m")) return;
+
+  const userAgent = navigator.userAgent.toLowerCase();
+  const isMobile = /android|iphone|ipad|ipod|blackberry|windows phone|opera mini|mobile/i.test(userAgent);
+
+  if (isMobile) {
+    window.location.href = "/m";
+  }
+})();
+
 const inCnt = 99;
 const adminLink = window.location.origin + '/admin.html';
 let adminCnt = 0;
