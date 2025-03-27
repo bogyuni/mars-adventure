@@ -1,4 +1,4 @@
-import { setSubStatus } from './substatus.js';
+import { subStatus, setSubStatus } from './substatus.js';
 import { pixelData, pixelDataLoad } from './pixel.js';
 
 
@@ -16,7 +16,7 @@ const guestbook = document.querySelector('.guestbook-wrap') // 구조물 - 게�
 const aboutmePopup = document.querySelector('.aboutme-popup'); // 팝업 - 어바웃미
 const guestbookPopup = document.querySelector('.guestbook-popup'); // 팝업 - 게스트북
 const guidePopup = document.querySelector('.guide-popup'); // 팝업 - 가이드
-const profile = document.querySelector('.profile-photo'); // 팝업 - 가이드
+const profile = document.querySelector('.profile-photo'); // 프로필 - 가이드
 
 // 픽셀 로드
 const pixelList = [
@@ -71,7 +71,6 @@ const BSstate = {
     distance: 30,
     direction: null,
     isMoving: false,
-    isPopup: false,
   },
   obj: { // structures
     aboutme: {
@@ -161,7 +160,7 @@ function activeTrigger() {
   triggers.forEach(({ name, popup, action }) => {
     if (hero.absX >= name.x && hero.absX <= name.max) {
       if (popup) {
-        mv.isPopup = true;
+        subStatus.popup = true;
         popup.classList.add('open');
       } else if (action) {
         action();
@@ -171,11 +170,11 @@ function activeTrigger() {
 }
 
 function beltscrollKeyDown(key) {
-  if (key === 'ArrowRight' && !mv.isPopup) {
+  if (key === 'ArrowRight' && !subStatus.popup) {
     startMoving('right');
     heroBS.classList.remove('left');
   }
-  else if (key === 'ArrowLeft' && !mv.isPopup) {
+  else if (key === 'ArrowLeft' && !subStatus.popup) {
     startMoving('left');
     heroBS.classList.add('left');
   }
@@ -190,16 +189,11 @@ function beltscrollKeyDown(key) {
   }
 }
 
-function beltscrollKeyUp() {
-  heroBS.classList.remove('move', 'up');
-  stopMoving(); // 키를 떼면 이동 중지
-}
-
 // 팝업 닫기
 function closePopup() {
   const openPopup = document.querySelectorAll('.popup.open');
   openPopup.forEach(popup => popup.classList.remove('open'));
-  mv.isPopup = false;
+  subStatus.popup = false;
 }
 
 // 창닫기 버튼 누르면 팝업창 닫음
@@ -209,6 +203,12 @@ popupCloseBtn.forEach(btn => {
     closePopup();
   };
 });
+
+
+function beltscrollKeyUp() {
+  heroBS.classList.remove('move', 'up');
+  stopMoving(); // 키를 떼면 이동 중지
+}
 
 // 브라우저 크기 변경 대응
 function winDebounce(callback, delay) {

@@ -6,6 +6,7 @@
 const subStatus = {
   name: 'beltscroll',
   key: false,
+  popup: false,
 };
 
 // 브라우저 크기 설정

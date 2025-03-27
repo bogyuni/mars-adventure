@@ -1,8 +1,5 @@
-import { setSubStatus } from './substatus.js';
+import { subStatus, setSubStatus } from './substatus.js';
 import { pixelData, pixelDataLoad } from './pixel.js';
-
-// setSubStatus('cellmove');
-
 
 // 선택자
 const heroCM = document.querySelector('#heroCM'); // 주인공, 개척자
@@ -16,7 +13,6 @@ const portObjPortfolio = document.querySelector('.port-obj.portfolio'); //obj po
 const portObjBenchmarking = document.querySelector('.port-obj.benchmarking'); //obj Benchmarking
 const portObjGame = document.querySelector('.port-obj.game'); //obj Game
 const portObjDoteditor = document.querySelector('.port-obj.doteditor'); //obj Dot editor
-
 
 const portData = {
 	'portfolio': {
@@ -62,22 +58,12 @@ pixelList.forEach((el) => {
   pixelDataLoad(el.uri, el.obj, custom);
 });
 
-const CMstate = {
-	mv: { // movement
-		tileSize: 100,
-    isMoving: false,
-    isPopup: false,
-	}
-}
-
-
 // 설정값
 const tileSize = 100; // 셀의 사이즈
 const delayTime = 101; // 셀 이동 시 딜레이를 주어 연속 이동 제약, 이렇게 안하면 위치값이 어긋남
 const viewWidth = viewArea.offsetWidth;
 const viewHeight = viewArea.offsetHeight;
 let moveCheck = true; // 캐릭터 이동 후 딜레이 체크
-let popupCheck = false;
 
 // 주인공 위치값
 const heroCMStat = {
@@ -120,7 +106,7 @@ function currentPosition(coordinate) {
  */
 function cellmoveKeydown(key) {
 	// 이동 가능상태이고 팝업 오픈이 아니면 이동 실행
-	if (moveCheck === true && popupCheck === false) {
+	if (moveCheck === true && subStatus.popup === false) {
 		// 이동 하는 시점에서 이동 불가능
 		moveCheck = false;
 
@@ -161,13 +147,10 @@ function cellmoveKeydown(key) {
 	}
 
 	// 팝업이 오픈된 상태
-	if (popupCheck === true) {
+	if (subStatus.popup === true) {
 		// esc를 누르면 창닫힘
 		if (key === 'Escape') {
-			portPopup.classList.remove('open');
-			// 팝업이 닫히면 셀 한칸만큼 위로 밀려남
-			heroCM.style.top = `${currentPosition('top') + tileSize}px`;
-			popupCheck = false;
+			closePopup();
 		}
 		// 엔터를 누르면 팝업의 링크를 새창으로 열기
 		else if (key === 'Enter') {
@@ -185,14 +168,26 @@ function openPortPopup(id) {
 	portPopTit.innerHTML = portData[id].tit;
 	portPopCap.innerHTML = portData[id].cap;
 	portPopLink.href = portData[id].url;
-	popupCheck = true;
+	subStatus.popup = true;
 }
 
-/**
- * 셀무브에서 키업하면서 작동 하는 트리거 함수
- */
+// 팝업 닫기
+function closePopup() {
+	portPopup.classList.remove('open');
+	// 팝업이 닫히면 셀 한칸만큼 뒤뒤로 밀려남
+	heroCM.style.top = `${currentPosition('top') + tileSize}px`;
+	subStatus.popup = false;
+}
+
+// 창닫기 버튼 누르면 팝업창 닫음
+portPopup.querySelector('.btn-close').onclick = () => {
+	closePopup();
+};
+
+
+// 셀무브에서 키업하면서 작동 하는 트리거 함수
 function cellmoveKeyup() {
-	if (popupCheck === false) {
+	if (subStatus.popup === false) {
 		// 이동 후 딜레이 시간을 줘서 이동이 완료되면 트리거 발동
 		setTimeout(function(){
 			// 반복문을 돌려서 포폴 오브젝트의 위치값을 서칭함
