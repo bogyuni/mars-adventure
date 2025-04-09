@@ -141,6 +141,7 @@
 }
 .mars-wrap {
 	position: relative;
+	min-height: 760px;
 	height: 100vh;
 	/* border:2px solid #fff000; */
 }
