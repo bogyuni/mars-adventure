@@ -246,11 +246,11 @@
 }
 @media screen and (min-width: 1900px) {
   .z-line-back.back2 {width: 3300px;}
-  .z-line-back.back3 {width: 2200px;}
+  .z-line-back.back3 {width: 2450px;}
 }
 @media screen and (min-width: 2500px) {
   .z-line-back.back2 {width: 3300px;}
-  .z-line-back.back3 {width: 2700px;}
+  .z-line-back.back3 {width: 2750px;}
 }
 @media screen and (min-width: 3800px) {
   .z-line-back.back2 {width: 3900px;}
