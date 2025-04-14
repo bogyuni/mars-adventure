@@ -221,6 +221,12 @@
 #rocket.on {
 	transform: scale(1) rotate(180deg) translate(0, 0);
 }
+@media screen and (max-height:1000px) {
+	#rocket.on {
+		transform: scale(0.75) rotate(180deg) translate(0, 0);
+	}
+	
+}
 #rocket.in {
 	transition-duration: 2s;
 	top: -100%;

@@ -95,7 +95,7 @@ function createMainCanvas(objDom, canvasWidth, canvasHeight, objColor, objType) 
 
   // 계단 현상을 제거하기
   renderer.setSize(cameraWidth, cameraHeight, false);
-  renderer.setPixelRatio(window.devicePixelRatio);
+  // renderer.setPixelRatio(window.devicePixelRatio);
 }
 createMainCanvas(earth, 500, 500, 0xaa8844, 'earth');
 createMainCanvas(moon, 300, 300, 0xaa8844, 'moon');
@@ -145,7 +145,7 @@ window.onscroll = () => {
   backSpace.style.backgroundPosition = 'center -' + (window.scrollY / 8)+'px';
 
   earthStart = window.scrollY - earthTop <= 0 ? 0 : window.scrollY - earthTop;
-  earthScaleSet = earthStart * earthScaleStand > earthScaleMax ? earthScaleMax : earthStart * earthScaleStand;
+	earthScaleSet = earthStart * earthScaleStand > earthScaleMax ? earthScaleMax : earthStart * earthScaleStand;
   earth.style.transform = 'scale('+ earthScaleSet +')';
 
   console.log(
@@ -153,9 +153,10 @@ window.onscroll = () => {
     // earthTop,
     // earthStart,
     // earthStart - (winHeight * 2),
-    winHeight,
-    earthWrap.offsetHeight,
-    winHeight * 5,
+		// earthScaleMax,
+    // winHeight,
+    // earth.offsetHeight * earthScaleSet,
+    // winHeight * 5,
     // earthTop + marsWrap.innerHeight,
 
   )
