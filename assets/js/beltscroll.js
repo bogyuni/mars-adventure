@@ -68,7 +68,7 @@ const BSstate = {
     zLine3Speed: 0.1,
   },
   mv: { // movement
-    distance: 30,
+    distance: 15,
     direction: null,
     isMoving: false,
   },
